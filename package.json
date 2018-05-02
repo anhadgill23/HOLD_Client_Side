@@ -1,0 +1,69 @@
+{
+  "name": "react-simple-boilerplate",
+  "version": "1.0.0",
+  "description": "Simple and lightweight Boilerplate for ReactJS projects",
+  "scripts": {
+    "lint": "eslint --ext .jsx,.js src",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/popnfresh234/chatty.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "boilerplate",
+    "reload",
+    "live",
+    "edit",
+    "webpack"
+  ],
+  "author": "Alex Hollidy",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "6.22.0",
+    "babel-preset-react": "6.23.0",
+    "babel-preset-stage-0": "6.22.0",
+    "eslint": "3.15.0",
+    "eslint-plugin-react": "6.9.0",
+    "node-sass": "4.5.0",
+    "sass-loader": "6.0.0",
+    "sockjs-client": "^1.1.2",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.1.4",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "handlebars": "^4.0.11",
+    "handlebars-loader": "^1.7.0",
+    "html-webpack-plugin": "^2.30.1",
+    "http-server": "^0.10.0",
+    "less": "^2.7.3",
+    "less-loader": "^4.1.0",
+    "rimraf": "^2.6.2",
+    "semantic-ui-less": "^2.3.1",
+    "style-loader": "^0.19.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.2"
+  },
+  "dependencies": {
+    "react": "15.4.2",
+    "react-dom": "15.4.2",
+    "semantic-ui-react": "^0.79.1",
+    "uuid": "^3.2.1"
+  },
+  "bugs": {
+    "url": "https://github.com/popnfresh234/chatty/issues"
+  },
+  "homepage": "https://github.com/popnfresh234/chatty#readme",
+  "main": "server.js"
+}
