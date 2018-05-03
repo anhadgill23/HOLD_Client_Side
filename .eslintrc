@@ -2,6 +2,7 @@
   "extends": "airbnb",
   "globals": { "fetch": false },
   "rules": {
-    "space-in-parens": ["error", "always"]
+    "space-in-parens": ["error", "always"],
+    "react/prefer-stateless-function": [0, { "ignorePureComponents": true }]
   }
 }
