@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import { Button } from 'semantic-ui-react'
 
-
-
 class App extends Component {
   render() {
     return (
@@ -15,8 +13,7 @@ class App extends Component {
         <p className="App-intro">
           To a started, edit <code>src/App.js</code> and save to reload WHAT?  REALLY.
         </p>
-  <Button>Click Here!</Button>
-
+        <Button>Click Here!</Button>
       </div>
     );
   }
