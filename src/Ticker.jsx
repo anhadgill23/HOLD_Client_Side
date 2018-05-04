@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import socketIOClient from 'socket.io-client';
 
 class Ticker extends Component {
   componentDidMount() {
@@ -10,7 +11,7 @@ class Ticker extends Component {
       transports: ['websocket'],
     };
 
-    const socket = io.connect( 'https://streamer.cryptocompare.com/', connectionOptions );
+    const socket = socketIOClient.connect( 'https://streamer.cryptocompare.com/', connectionOptions );
     const subscription = ['5~CCCAGG~BTC~USD', '5~CCCAGG~ETH~USD', '11~BTC', '11~ETH'];
     socket.emit( 'SubAdd', { subs: subscription } );
     socket.on( 'm', ( message ) => {
