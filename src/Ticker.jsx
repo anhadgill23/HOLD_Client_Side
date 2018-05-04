@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { Table } from 'semantic-ui-react';
 import socketIOClient from 'socket.io-client';
 import { getChanges } from './websocket_utils';
-
 
 class Ticker extends Component {
   static getColor( flag ) {
@@ -55,17 +55,30 @@ class Ticker extends Component {
       price = <span>{this.state.Price}</span>;
     }
     return (
-      <div>
-        <dl>
-          <dt><span>{this.state.From} ~ {this.state.To} </span></dt>
-          <dd><span style={Ticker.getColor( this.state.Flag )}>{this.state.Price}</span></dd>
-          <dt><span>Last Market: </span></dt>
-          <dd><span>{this.state.LastMarket}</span></dd>
-          <dt><span>Open Day: </span></dt><dd><span>{this.state.Open24Hour}</span></dd>
-          <dt><span>High Day: </span></dt><dd><span>{this.state.High24Hour}</span></dd>
-          <dt><span>Low Day: </span></dt><dd><span>{this.state.Low24Hour}</span></dd>
-        </dl>
-      </div>
+      <Table padded collapsing>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell><span>{this.state.From} ~ {this.state.To} </span></Table.Cell>
+            <Table.Cell><span style={Ticker.getColor( this.state.Flag )}>{this.state.Price}</span></Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell><span>Last Market: </span></Table.Cell>
+            <Table.Cell><span>{this.state.LastMarket}</span></Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell><span>Open Day: </span></Table.Cell>
+            <Table.Cell><span>{this.state.Open24Hour}</span></Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell><span>High Day: </span></Table.Cell>
+            <Table.Cell><span>{this.state.High24Hour}</span></Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell><span>Low Day: </span></Table.Cell>
+            <Table.Cell><span>{this.state.Low24Hour}</span></Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
     );
   }
 }
