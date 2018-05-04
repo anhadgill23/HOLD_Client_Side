@@ -9,36 +9,6 @@ class Register extends Component {
 
     render() {
     const { active } = this.state  
-    const registerForm = (
-        <Form.Field>
-            <label>Enter Email</label>
-            <Input type='email' />
-            <label>Enter Password</label>
-            <Input type='password' />
-            <label>Confirmation Password</label>
-            <Input type='password' />
-            <Button type="submit">Submit</Button>
-        </Form.Field>
-    )
-    const loginForm = (
-        <Form.Field>
-            <label>Your Email</label>
-            <Input type='email' />
-            <label>Enter Password</label>
-            <Input type='password' />
-            <Button type="submit">Login</Button>
-        </Form.Field>
-    )
-
-    function handleRegisterClick(e) {
-        e.preventDefault();
-        return (registerForm);
-    }
-      function handleLoginClick(e) {
-        e.preventDefault();
-        return (loginForm);
-    }
-    
         return (
             <div className="buttons">
                 <Button type="button" className="register" onClick={this.handleOpen} size="huge" inverted color="olive">Register</Button>
@@ -47,15 +17,12 @@ class Register extends Component {
                 onClickOutside={this.handleClose}
                 page
                 >
-                <Form.Field>
-                    <label>Enter Email</label>
-                    <Input type='email' />
-                    <label>Enter Password</label>
-                    <Input type='password' />
-                    <label>Confirmation Password</label>
-                    <Input type='password' />
-                    <Button type="submit">Submit</Button>
-                </Form.Field>
+                <Form>
+                    <Form.Input label='Enter Email' placeholder='Email' type='email' width={6} />
+                    <Form.Input label='Enter Password' placeholder='Password' type='password' width={6} />
+                    <Form.Input label='Confirm Password' placeholder='Confirm Password' type='password' width={6} />
+                    <Form.Button type="button" inverted>Register</Form.Button> 
+                </Form>
                 </Dimmer>
             </div>
         );
