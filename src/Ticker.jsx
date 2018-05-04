@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
 
 class Ticker extends Component {
+
+    constructor()
+
   componentDidMount() {
     const connectionOptions = {
       'force new connection': true,
