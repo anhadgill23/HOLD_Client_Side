@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import Ticker from './Ticker.jsx';
 
 
 class App extends Component {
