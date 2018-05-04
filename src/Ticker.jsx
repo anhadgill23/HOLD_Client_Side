@@ -38,8 +38,9 @@ class Ticker extends Component {
           const stateObj = { [key]: changes[key] };
           this.setState( stateObj );
         }
-        console.log( this.state );
       } else if ( messageType === CCC.STATIC.TYPE.FULLVOLUME ) {
+        const volData = CCC.FULLVOLUME.unpack( message );
+        console.log( volData );
       }
     } );
   }
@@ -55,9 +56,15 @@ class Ticker extends Component {
     }
     return (
       <div>
-        <span>{this.state.From} ~ {this.state.To} </span><span style={Ticker.getColor( this.state.Flag )}>{this.state.Price}</span>;
-        <br />
-        <span>Last Market: </span><span>{this.state.LastMarket}</span>
+        <dl>
+          <dt><span>{this.state.From} ~ {this.state.To} </span></dt>
+          <dd><span style={Ticker.getColor( this.state.Flag )}>{this.state.Price}</span></dd>
+          <dt><span>Last Market: </span></dt>
+          <dd><span>{this.state.LastMarket}</span></dd>
+          <dt><span>Open Day: </span></dt><dd><span>{this.state.Open24Hour}</span></dd>
+          <dt><span>High Day: </span></dt><dd><span>{this.state.High24Hour}</span></dd>
+          <dt><span>Low Day: </span></dt><dd><span>{this.state.Low24Hour}</span></dd>
+        </dl>
       </div>
     );
   }
