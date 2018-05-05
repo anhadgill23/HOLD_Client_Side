@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Dimmer, Header, Icon, Form, Field, Input } from 'semantic-ui-react';
+import { Button, Dimmer, Header, Icon, Form, Field, Input, Grid } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,7 +9,6 @@ import {
 } from 'react-router-dom';
 
 class Login extends Component {
-  // state = {}
   constructor( props ) {
     super( props );
 
@@ -22,11 +21,8 @@ class Login extends Component {
 
   onSubmit( e ) {
     e.preventDefault();
-
     const { email, password } = this.state;
-
     this.setState( { error: false } );
-
     if ( !( email === 'george@1' && password === 'foreman' ) ) {
       return this.setState( { error: true } );
     }
@@ -34,19 +30,11 @@ class Login extends Component {
     store.set( 'loggedIn', true );
   }
 
-  // handleOpen = () => this.setState({ active: true })
-  // handleClose = () => this.setState({ active: false })
-
   render() {
-    // const { active } = this.state
 
     return (
+
       <div className="loginForm">
-        {/* <Dimmer
-                active={active}
-                onClickOutside={this.handleClose}
-                page
-                > */}
         <Form onSubmit={this.onSubmit}>
           {/* {error && <Message
                         error={error}
@@ -56,8 +44,8 @@ class Login extends Component {
           <Form.Input label="Enter Password" placeholder="Password" type="password" width={6} required />
           <Form.Button type="submit" inverted >Login</Form.Button>
         </Form>
-        {/* </Dimmer> */}
       </div>
+
     );
   }
 }

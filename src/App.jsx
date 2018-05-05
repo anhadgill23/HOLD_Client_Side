@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Dimmer, Header, Icon, Form, Field, Input } from 'semantic-ui-react';
+import { Button, Dimmer, Header, Icon, Form, Field, Input, Sidebar } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,10 +9,11 @@ import {
 } from 'react-router-dom';
 import Register from './Register.jsx';
 import Login from './Login.jsx';
+import Ticker from './Modules/ticker/Ticker.jsx';
 
 class App extends Component {
   state = {}
-  handleOpen = () => this.setState({ active: true })   
+  handleOpen = () => this.setState({ active: true })
   handleClose = () => this.setState({ active: false })
   // constructor( props ) {
   //   super( props );
@@ -21,13 +22,15 @@ class App extends Component {
   //   };
   // }
   render() {
-    const { active } = this.state 
+    const { active } = this.state
     return (
 
       <div className="App">
-        
-        <div className="buttons-container">
-        
+      {/*<Sidebar visible="true">
+      <Ticker />
+      </Sidebar>*/}
+        <div className="buttons-container" center aligned grid >
+
           <Link to="/register">
             <Button type="button" className="register" size="huge" inverted color="olive">Register</Button>
           </Link>
@@ -36,7 +39,7 @@ class App extends Component {
           </Link>
 
         </div>
-        
+
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
 
