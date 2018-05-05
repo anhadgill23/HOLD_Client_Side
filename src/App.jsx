@@ -10,7 +10,6 @@ import {
 import Register from './Register.jsx';
 import Login from './Login.jsx';
 
-
 class App extends Component {
   state = {}
   handleOpen = () => this.setState({ active: true })   
