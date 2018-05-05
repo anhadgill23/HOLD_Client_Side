@@ -1,8 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-require('../styles/application.scss');
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter,
+} from 'react-router-dom';
 import App from './App.jsx';
 import 'semantic-ui-less/semantic.less';
 
+require( '../styles/application.scss' );
 
-ReactDOM.render(<App />, document.getElementById('react-root'));
+
+ReactDOM.render( <Router>
+  <App />
+</Router>, document.getElementById( 'react-root' ) );
