@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, List, Image, Divider } from 'semantic-ui-react';
+import { List, Image } from 'semantic-ui-react';
 
 class Transaction extends Component {
   constructor( props ) {
