@@ -11,39 +11,61 @@ import {
 class Login extends Component {
   constructor( props ) {
     super( props );
-
     this.state = {
       email: '',
-      password: '',
-      error: false,
+      password: ''
     };
   }
+  onChange = (e) => {
+    const state = this.state
+    state[e.target.name] = e.target.value;
+    this.setState(state);
+  }
 
-  onSubmit( e ) {
+  onSubmit = ( e ) => {
     e.preventDefault();
     const { email, password } = this.state;
-    this.setState( { error: false } );
-    if ( !( email === 'george@1' && password === 'foreman' ) ) {
-      return this.setState( { error: true } );
-    }
-    console.log( "you're logged in. yay!" );
-    store.set( 'loggedIn', true );
+    console.log(this.state);
+    fetch("/api/login", {
+            method: 'POST',
+            body: JSON.stringify(this.state),
+            headers: new Headers({
+              'Content-Type': 'application/json'
+            })
+          })
+          .then(function(response) {
+            console.log('response is', response)
+          })
+          .catch(error=>console.log('Error',error));
   }
+
 
   render() {
 
     return (
 
       <div className="loginForm">
-        <Form onSubmit={this.onSubmit}>
-          {/* {error && <Message
-                        error={error}
-                        content="That username/password is incorrect. Try again!"
-                    />} */}
-          <Form.Input label="Enter Email" placeholder="Email" type="email" width={6} required />
-          <Form.Input label="Enter Password" placeholder="Password" type="password" width={6} required />
-          <Form.Button type="submit" inverted >Login</Form.Button>
-        </Form>
+        <Grid>
+          <Grid.Row centered>
+            <Grid.Column width={6}>
+              <Header>Login</Header>
+              <Form onSubmit={this.onSubmit}>
+                {/* {error && <Message
+                              error={error}
+                              content="That username/password is incorrect. Try again!"
+                          />} */}
+                <Form.Input label="Enter Email" placeholder="Email" name="email" type="email" onChange={this.onChange} required />
+                <Form.Input label="Enter Password" placeholder="Password" name="password" type="password" onChange={this.onChange} required />
+                <Form.Button type="submit" inverted >Login</Form.Button>
+              </Form>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Button.Group>
+          <Link to="/"><Button inverted >Back</Button></Link>
+          <Button.Or />
+          <Link to="/register"><Button inverted >Register Page</Button></Link>
+        </Button.Group>
       </div>
 
     );

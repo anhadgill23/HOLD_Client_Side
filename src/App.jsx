@@ -5,6 +5,7 @@ import {
   Route,
   Link,
   Redirect,
+  Switch,
   withRouter,
 } from 'react-router-dom';
 import Register from './Register.jsx';
@@ -29,7 +30,7 @@ class App extends Component {
       {/*<Sidebar visible="true">
       <Ticker />
       </Sidebar>*/}
-        <div className="buttons-container" center aligned grid >
+        <div className="buttons-container" >
 
           <Link to="/register">
             <Button type="button" className="register" size="huge" inverted color="olive">Register</Button>
@@ -39,10 +40,10 @@ class App extends Component {
           </Link>
 
         </div>
-
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
-
+        <Switch>
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+        </Switch>
       </div>
 
 
