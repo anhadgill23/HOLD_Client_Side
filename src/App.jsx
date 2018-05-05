@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+
 import logo from './Modules/logo.svg';
 import NavBar from './Modules/NavBar.jsx';
 
