@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
-// import logo from './logo.svg';
-// import '../styles/navbar.scss'
+import { Header, Icon } from 'semantic-ui-react';
+import logo2 from './logo2.png';
 
 class NavBar extends Component {
   render() {
@@ -9,7 +9,7 @@ class NavBar extends Component {
       <Menu>
         <Menu.Menu>
           <Menu.Item>
-            My Crypto Tracker
+              <img src={logo2} />My Crypto Tracker
           </Menu.Item>
         </Menu.Menu>
       </Menu>
