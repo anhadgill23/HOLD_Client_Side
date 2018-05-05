@@ -11,8 +11,8 @@ class NavBar extends Component {
               <img src={logo2} /> HOLD
           </Menu.Item>
 
-          <Menu.Item>
-            <Button> Log Out</Button>
+        <Menu.Item className='ui right floated button'>
+            <Button secondary> Log Out</Button>
           </Menu.Item>
       </Menu>
     );
