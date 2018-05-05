@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
+import { List, Grid, Segment } from 'semantic-ui-react';
 import logo from './logo.svg';
+import Transaction from './Modules/transaction/Transaction.jsx';
 
 class App extends Component {
   render() {
@@ -13,6 +15,19 @@ class App extends Component {
         <p className="App-intro">
           To a started, edit <code>src/App.js</code> and save to reload WHAT?  REALLY.
         </p>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={5} />
+            <Grid.Column width={11}>
+              <div style={{ maxWidth: '30vw', margin: 'auto' }}>
+                <List celled verticalAlign="middle">
+                  <Transaction />
+                  <Transaction />
+                </List>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
     );
   }
