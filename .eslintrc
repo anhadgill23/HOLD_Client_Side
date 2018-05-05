@@ -1,4 +1,11 @@
 {
   "extends": "airbnb",
-  "globals": { "fetch": false }
+  "globals": { "fetch": false },
+  "rules": {
+    "space-in-parens": ["error", "always"],
+    "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
+    "import/no-extraneous-dependencies": ["warning", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}],
+    "import/extensions": [0],
+    "no-console": [0]
+  }
 }

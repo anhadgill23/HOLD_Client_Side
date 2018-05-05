@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Simple and lightweight Boilerplate for ReactJS projects",
   "scripts": {
-    "lint": "eslint --ext .jsx,.js src",
+    "lint": "eslint --ext .jsx,.js src --fix",
     "start": "node server.js"
   },
   "repository": {
@@ -59,9 +59,12 @@
     "webpack-dev-server": "^2.11.2"
   },
   "dependencies": {
+    "moment": "^2.22.1",
     "react": "15.4.2",
+    "react-datepicker": "^1.4.1",
     "react-dom": "15.4.2",
     "semantic-ui-react": "^0.79.1",
+    "socket.io-client": "^2.1.0",
     "uuid": "^3.2.1"
   },
   "bugs": {
