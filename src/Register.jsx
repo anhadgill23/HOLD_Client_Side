@@ -13,7 +13,6 @@ class Register extends Component {
   }
   onSubmit = (e) => {
     e.preventDefault();
-    console.log( e );
     const { name, email, password, confirmPassword } = this.state;
     this.setState( { error: false } );
     if ( this.state.password !== this.state.confirmPassword ) {
