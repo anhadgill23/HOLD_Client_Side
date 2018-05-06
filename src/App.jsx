@@ -11,11 +11,11 @@ import {
 import Register from './Register.jsx';
 import Login from './Login.jsx';
 import Ticker from './Modules/ticker/Ticker.jsx';
+import PieChart from './Modules/piechart/PieChart.jsx';
+
 
 class App extends Component {
-  state = {}
-  handleOpen = () => this.setState({ active: true })
-  handleClose = () => this.setState({ active: false })
+
   // constructor( props ) {
   //   super( props );
   //   this.state = {
@@ -23,7 +23,7 @@ class App extends Component {
   //   };
   // }
   render() {
-    const { active } = this.state
+
     return (
 
       <div className="App">
@@ -40,6 +40,7 @@ class App extends Component {
           </Link>
 
         </div>
+        <PieChart />
         <Switch>
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
