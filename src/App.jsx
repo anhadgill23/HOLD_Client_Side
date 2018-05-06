@@ -1,10 +1,16 @@
 
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { List, Grid, Header, Divider } from 'semantic-ui-react';
 import logo from './logo.svg';
 import Ticker from './Modules/ticker/Ticker.jsx';
 import Transaction from './Modules/transaction/Transaction.jsx';
 import AddCoinModal from './Modules/add_coin_modal/AddCoinModal.jsx';
+=======
+
+import logo from './Modules/logo.svg';
+import NavBar from './Modules/NavBar.jsx';
+>>>>>>> master
 
 class App extends Component {
   render() {
