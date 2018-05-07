@@ -40,7 +40,7 @@ class Transaction extends Component {
                 <Table.Cell />
                 <Table.Cell>{this.props.transaction.transactionCost}</Table.Cell>
                 <Table.Cell>{this.props.transaction.currentWorth}</Table.Cell>
-                <Table.Cell style={{ color: 'green' }}>{this.props.transaction.buy ? this.props.transaction.profit : ''}</Table.Cell>
+                <Table.Cell className="percentChange">{this.props.transaction.buy ? this.props.transaction.profit : ''}</Table.Cell>
               </Table.Row>
             </Table.Body>
           </Table>

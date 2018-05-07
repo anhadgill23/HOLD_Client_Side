@@ -70,7 +70,7 @@ class SingleCurrencyPage extends Component {
             </Grid.Column>
             <Grid.Column width={11}>
               <div style={{ maxWidth: '30vw', margin: 'auto' }}>
-                <List celled verticalAlign="middle">
+                <List verticalAlign="middle">
                   {transactions}
                 </List>
               </div>
