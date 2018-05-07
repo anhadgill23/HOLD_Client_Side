@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { List, Image, Table } from 'semantic-ui-react';
+import { List, Image, Table, Button, Icon } from 'semantic-ui-react';
 
 
 class Transaction extends Component {
@@ -37,7 +37,14 @@ class Transaction extends Component {
                 <Table.Cell>% Change</Table.Cell>
               </Table.Row>
               <Table.Row>
-                <Table.Cell />
+                <Table.Cell>
+                  <Button color="red" inverted animated="vertical">
+                    <Button.Content hidden>Delete</Button.Content>
+                    <Button.Content visible>
+                      <Icon name="trash" />
+                    </Button.Content>
+                  </Button>
+                </Table.Cell>
                 <Table.Cell>{this.props.transaction.transactionCost}</Table.Cell>
                 <Table.Cell>{this.props.transaction.currentWorth}</Table.Cell>
                 <Table.Cell className="percentChange">{this.props.transaction.buy ? this.props.transaction.profit : ''}</Table.Cell>
