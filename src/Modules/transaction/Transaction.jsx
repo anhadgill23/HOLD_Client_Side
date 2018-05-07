@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { List, Image } from 'semantic-ui-react';
+import { List, Image, Table, Button, Icon } from 'semantic-ui-react';
 
 
 class Transaction extends Component {
@@ -11,34 +11,46 @@ class Transaction extends Component {
     return (
 
       <List.Item>
-        <List.Content floated="left">
-          <Image src={this.props.transaction.image_url} size="mini" circular />
-        </List.Content>
-        <List.Content>
 
-          <table>
-            <tr>
-              <th>{buyOrSell}</th>
-              <th>Trading Pair</th>
-              <th>Amount {amountBoughtOrSoldHeader}</th>
-            </tr>
-            <tr className="spacingRow">
-              <td>{this.props.transaction.price}</td>
-              <td>{this.props.transaction.tradingPair}</td>
-              <td>{this.props.transaction.amount}</td>
-            </tr>
-            <tr>
+        <List.Content floated="right">
 
-              <td>{transactionType}</td>
-              <td>Worth</td>
-              <td>% Change</td>
-            </tr>
-            <tr>
-              <td>{this.props.transaction.transactionCost}</td>
-              <td>{this.props.transaction.currentWorth}</td>
-              <td className="percentChange">{this.props.transaction.buy ? this.props.transaction.profit : ''}</td>
-            </tr>
-          </table>
+          <Table celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell><Image src={this.props.transaction.image_url} size="mini" circular /></Table.HeaderCell>
+                <Table.HeaderCell>{buyOrSell}</Table.HeaderCell>
+                <Table.HeaderCell>Trading Pair</Table.HeaderCell>
+                <Table.HeaderCell>Amount {amountBoughtOrSoldHeader}</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell />
+                <Table.Cell>{this.props.transaction.price}</Table.Cell>
+                <Table.Cell>{this.props.transaction.tradingPair}</Table.Cell>
+                <Table.Cell>{this.props.transaction.amount}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell />
+                <Table.Cell>{transactionType}</Table.Cell>
+                <Table.Cell>Worth</Table.Cell>
+                <Table.Cell>% Change</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>
+                  <Button color="red" inverted animated="vertical">
+                    <Button.Content hidden>Delete</Button.Content>
+                    <Button.Content visible>
+                      <Icon name="trash" />
+                    </Button.Content>
+                  </Button>
+                </Table.Cell>
+                <Table.Cell>{this.props.transaction.transactionCost}</Table.Cell>
+                <Table.Cell>{this.props.transaction.currentWorth}</Table.Cell>
+                <Table.Cell className="percentChange">{this.props.transaction.buy ? this.props.transaction.profit : ''}</Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
         </List.Content>
       </List.Item>
     );
@@ -46,7 +58,17 @@ class Transaction extends Component {
 }
 
 Transaction.propTypes = {
-  transaction: PropTypes.shape,
+  transaction: PropTypes.shape( {
+    symbol: PropTypes.string,
+    price: PropTypes.string,
+    tradingPair: PropTypes.string,
+    amount: PropTypes.string,
+    transactionCost: PropTypes.string,
+    image_url: PropTypes.string,
+    currentWorth: PropTypes.string,
+    profit: PropTypes.string,
+    buy: PropTypes.bool,
+  } ),
 };
 
 Transaction.defaultProps = {
