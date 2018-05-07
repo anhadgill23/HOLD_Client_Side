@@ -113,7 +113,7 @@ class App extends Component {
               <Input size="small" error={this.state.amount_error} placeholder={this.state.sell ? 'Amount sold' : 'Amount bought'} onChange={this.handleAmountInput} />
               <Divider />
 
-              <Button inverted color={this.state.buy ? 'green' : 'red'} onClick>Add transaction</Button>
+              <Button inverted color={this.state.buy ? 'green' : 'red'}>Add transaction</Button>
             </Modal.Description>
           </Modal.Content>
         </Modal>

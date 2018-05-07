@@ -17,27 +17,31 @@ class Transaction extends Component {
         <List.Content>
 
           <table>
-            <tr>
-              <th>{buyOrSell}</th>
-              <th>Trading Pair</th>
-              <th>Amount {amountBoughtOrSoldHeader}</th>
-            </tr>
-            <tr className="spacingRow">
-              <td>{this.props.transaction.price}</td>
-              <td>{this.props.transaction.tradingPair}</td>
-              <td>{this.props.transaction.amount}</td>
-            </tr>
-            <tr>
+            <thead>
+              <tr>
+                <th>{buyOrSell}</th>
+                <th>Trading Pair</th>
+                <th>Amount {amountBoughtOrSoldHeader}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="spacingRow">
+                <td>{this.props.transaction.price}</td>
+                <td>{this.props.transaction.tradingPair}</td>
+                <td>{this.props.transaction.amount}</td>
+              </tr>
+              <tr>
 
-              <td>{transactionType}</td>
-              <td>Worth</td>
-              <td>% Change</td>
-            </tr>
-            <tr>
-              <td>{this.props.transaction.transactionCost}</td>
-              <td>{this.props.transaction.currentWorth}</td>
-              <td className="percentChange">{this.props.transaction.buy ? this.props.transaction.profit : ''}</td>
-            </tr>
+                <td>{transactionType}</td>
+                <td>Worth</td>
+                <td>% Change</td>
+              </tr>
+              <tr>
+                <td>{this.props.transaction.transactionCost}</td>
+                <td>{this.props.transaction.currentWorth}</td>
+                <td className="percentChange">{this.props.transaction.buy ? this.props.transaction.profit : ''}</td>
+              </tr>
+            </tbody>
           </table>
         </List.Content>
       </List.Item>
@@ -46,7 +50,17 @@ class Transaction extends Component {
 }
 
 Transaction.propTypes = {
-  transaction: PropTypes.shape,
+  transaction: PropTypes.shape( {
+    symbol: PropTypes.string,
+    price: PropTypes.string,
+    tradingPair: PropTypes.string,
+    amount: PropTypes.string,
+    transactionCost: PropTypes.string,
+    image_url: PropTypes.string,
+    currentWorth: PropTypes.string,
+    profit: PropTypes.string,
+    buy: PropTypes.bool,
+  } ),
 };
 
 Transaction.defaultProps = {
