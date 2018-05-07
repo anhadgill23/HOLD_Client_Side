@@ -13,35 +13,39 @@ class SingleCurrencyPage extends Component {
     };
     this.dummyData = [
       {
+        id: 1,
         symbol: 'BTC',
         price: '128.80',
         tradingPair: 'BTC/USD',
         amount: '10.0000',
         transactionCost: '1288.00',
         image_url: 'https://www.cryptocompare.com/media/19633/btc.png',
-        currentWorth: '93243.50',
-        profit: '7139.40',
+        currentWorth: '93780.60',
+        profit: '7181.10',
         buy: true,
       }, {
+
+        id: 2,
         symbol: 'BTC',
         price: '10.80',
         tradingPair: 'BTC/USD',
         amount: '1.0000',
         transactionCost: '10.80',
         image_url: 'https://www.cryptocompare.com/media/19633/btc.png',
-        currentWorth: '9338.44',
-        profit: '86367.04',
+        currentWorth: '9376.77',
+        profit: '86721.94',
         buy: true,
       },
       {
+        id: 3,
         symbol: 'BTC',
         price: '10.80',
         tradingPair: 'BTC/USD',
         amount: '5.5000',
         transactionCost: '59.40',
         image_url: 'https://www.cryptocompare.com/media/19633/btc.png',
-        currentWorth: '51377.75',
-        profit: '86394.53',
+        currentWorth: '51572.68',
+        profit: '86722.69',
         buy: false,
       },
     ];
@@ -54,7 +58,7 @@ class SingleCurrencyPage extends Component {
 
   render() {
     const transactions =
-    this.dummyData.map( transaction => <Transaction transaction={transaction} /> );
+    this.dummyData.map( transaction => <Transaction key={transaction} transaction={transaction} /> );
     return (
       <div style={{ padding: '2em' }}>
         <Header size="huge" textAlign="center">Bitcoin BTC</Header>
