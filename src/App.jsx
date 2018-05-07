@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { Button, Dimmer, Header, Icon, Form, Field, Input, Sidebar } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
@@ -12,6 +13,7 @@ import Register from './Register.jsx';
 import Login from './Login.jsx';
 import Ticker from './Modules/ticker/Ticker.jsx';
 import PieChart from './Modules/piechart/PieChart.jsx';
+import SingleCurrencyPage from './Modules/single_curency_page/SingleCurrencyPage.jsx';
 
 
 class App extends Component {
@@ -25,6 +27,7 @@ class App extends Component {
   render() {
 
     return (
+
 
       <div className="App">
       {/*<Sidebar visible="true">
@@ -45,6 +48,10 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
         </Switch>
+
+      <div>
+        <SingleCurrencyPage />
+
       </div>
 
 

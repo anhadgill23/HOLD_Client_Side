@@ -40,7 +40,7 @@ class Ticker extends Component {
         }
       } else if ( messageType === CCC.STATIC.TYPE.FULLVOLUME ) {
         const volData = CCC.FULLVOLUME.unpack( message );
-        console.log( volData );
+        // onsole.log( volData );
       }
     } );
   }
