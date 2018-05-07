@@ -12,7 +12,7 @@ class Transaction extends Component {
 
       <List.Item>
         <List.Content floated="left">
-          <Image src={this.props.transaction.imageUrl} size="mini" circular />
+          <Image src={this.props.transaction.image_url} size="mini" circular />
         </List.Content>
         <List.Content>
 
