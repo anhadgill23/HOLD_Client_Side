@@ -17,9 +17,10 @@ class Login extends Component {
     };
   }
   onChange = (e) => {
-    const state = this.state
-    state[e.target.name] = e.target.value;
-    this.setState(state);
+    this.setState({
+      [e.target.name]: e.target.value,
+      // error: false
+    });
   }
 
   onSubmit = ( e ) => {
@@ -36,6 +37,11 @@ class Login extends Component {
           .then(function(response) {
             console.log('response is', response)
           })
+          .then((data) => {
+               // const user = data[0];
+               console.log(data);
+               this.props.history.push(`/portfolio`); //${user.id}`)
+            })
           .catch(error=>console.log('Error',error));
   }
 

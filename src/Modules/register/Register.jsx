@@ -11,22 +11,24 @@ import {
 class Register extends Component {
   constructor( props ) {
     super( props );
-    this.state = { name: '', email: '', password: '', confirmPassword:'', error: false };
+    this.state = { name: '',
+                   email: '',
+                   password: '',
+                   confirmPassword:'',
+                   error: false };
   }
   onChange = (e) => {
-    const state = this.state
-    state[e.target.name] = e.target.value;
-    this.setState(state);
+    this.setState({
+      [e.target.name]: e.target.value,
+      error: false
+    });
   }
   onSubmit = (e) => {
     e.preventDefault();
     const { name, email, password, confirmPassword } = this.state;
-    this.setState( { error: false } );
     if ( this.state.password !== this.state.confirmPassword ) {
       this.setState( { error: true } );
-    }
-    console.log(this.state);
-    if (!this.state.error) {
+    } else {
       fetch("/api/register", {
               method: 'POST',
               body: JSON.stringify(this.state),
@@ -34,8 +36,14 @@ class Register extends Component {
                 'Content-Type': 'application/json'
               })
             })
-            .then(function(response) {
-              console.log('response is', response)
+            .then((response) => {
+              console.log('response is', response.json)
+              return response.json()
+            })
+            .then((data) => {
+               const user = data[0];
+               console.log(user);
+               this.props.history.push(`/portfolio`); //${user.id}`)
             })
             .catch(error=>console.log('Error',error));
       }
@@ -54,6 +62,7 @@ class Register extends Component {
                 {this.state.error && <Message
                   content="Your passwords don't match. Try again!"
                 />}
+                {/*{error && <Message content="This email address already exist, please try again."/>}*/}
                 <Form.Input label="Enter Name" placeholder="Name" name="name" onChange={this.onChange} required />
                 <Form.Input label="Enter Email" placeholder="Email" name="email" onChange={this.onChange} type="email" required />
                 <Form.Input label="Enter Password" placeholder="Password" name="password" onChange={this.onChange} type="password" required />
