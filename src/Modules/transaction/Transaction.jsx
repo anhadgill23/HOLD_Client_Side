@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { List, Image, Table, Grid } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { List, Image } from 'semantic-ui-react';
+
 
 class Transaction extends Component {
   render() {
@@ -42,5 +44,14 @@ class Transaction extends Component {
     );
   }
 }
+
+Transaction.propTypes = {
+  transaction: PropTypes.shape,
+};
+
+Transaction.defaultProps = {
+  transaction: {},
+};
+
 
 export default Transaction;

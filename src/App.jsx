@@ -1,8 +1,6 @@
 
-import SingleCurrencyPage from './Modules/single_curency_page/SingleCurrencyPage.jsx';
-
 import React, { Component } from 'react';
-
+import SingleCurrencyPage from './Modules/single_curency_page/SingleCurrencyPage.jsx';
 
 class App extends Component {
   render() {
