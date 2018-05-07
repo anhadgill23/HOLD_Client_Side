@@ -95,14 +95,10 @@ class App extends Component {
         <Modal dimmer="blurring" trigger={<Button>Add Transaction</Button>}>
           <Modal.Content>
             <Modal.Description>
+
               <Button inverted color="green" active={this.state.buy} onClick={() => this.handleBuyState( this.state.buy )}>Buy</Button>
               <Button inverted color="red" active={this.state.sell} onClick={() => this.handleSellState( this.state.sell )}>Sell</Button>
-              <Divider />
-              <Dropdown placeholder="Select Currency" fluid search selection options={this.state.currencies} />
-              <Divider />
-              <Input size="small" error={this.state.purchase_error} placeholder="Purchase price.." onChange={this.handlePurchaseInput} />
-              <Divider />
-              <Input size="small" error={this.state.amount_error} placeholder={this.state.sell ? 'Amount sold' : 'Amount bought'} onChange={this.handleAmountInput} />
+
               <Divider />
               <DatePicker
                 class="ui small input"
@@ -110,6 +106,13 @@ class App extends Component {
                 onChange={this.handleChange}
               />
               <Divider />
+              <Dropdown placeholder="Select Currency" fluid search selection options={this.state.currencies} />
+              <Divider />
+              <Input size="small" error={this.state.purchase_error} placeholder="Purchase price.." onChange={this.handlePurchaseInput} />
+              <Divider />
+              <Input size="small" error={this.state.amount_error} placeholder={this.state.sell ? 'Amount sold' : 'Amount bought'} onChange={this.handleAmountInput} />
+              <Divider />
+
               <Button inverted color={this.state.buy ? 'green' : 'red'} onClick>Add transaction</Button>
             </Modal.Description>
           </Modal.Content>
