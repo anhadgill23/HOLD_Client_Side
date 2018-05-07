@@ -59,11 +59,20 @@
     "webpack-dev-server": "^2.11.2"
   },
   "dependencies": {
+    "@vx/curve": "0.0.161",
+    "@vx/event": "0.0.161",
+    "@vx/scale": "0.0.161",
+    "@vx/shape": "0.0.162",
+    "@vx/tooltip": "0.0.161",
+    "d3-array": "^1.2.1",
+    "d3-time-format": "^2.1.1",
     "moment": "^2.22.1",
     "react": "15.4.2",
     "react-datepicker": "^1.4.1",
     "react-dom": "15.4.2",
+    "react-scripts": "^1.1.4",
     "semantic-ui-react": "^0.79.1",
+    "serve": "^6.5.6",
     "socket.io-client": "^2.1.0",
     "uuid": "^3.2.1"
   },
