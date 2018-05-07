@@ -8,6 +8,9 @@ import AddCoinModal from '../add_coin_modal/AddCoinModal.jsx';
 class SingleCurrencyPage extends Component {
   constructor( props ) {
     super( props );
+    this.state = {
+      symbol: 'BTC',
+    };
     this.dummyData = [
       {
         symbol: 'BTC',
@@ -16,8 +19,9 @@ class SingleCurrencyPage extends Component {
         amount: '10.0000',
         transactionCost: '1288.00',
         imageUrl: 'https://www.cryptocompare.com/media/19633/btc.png',
-        currentWorth: '93345.30',
-        profit: '7147.31',
+        currentWorth: '93243.50',
+        profit: '7139.40',
+        buy: true,
       }, {
         symbol: 'BTC',
         price: '10.80',
@@ -27,16 +31,18 @@ class SingleCurrencyPage extends Component {
         imageUrl: 'https://www.cryptocompare.com/media/19633/btc.png',
         currentWorth: '9338.44',
         profit: '86367.04',
+        buy: true,
       },
       {
         symbol: 'BTC',
         price: '10.80',
         tradingPair: 'BTC/USD',
-        amount: '-5.5000',
-        transactionCost: '-59.40',
+        amount: '5.5000',
+        transactionCost: '59.40',
         imageUrl: 'https://www.cryptocompare.com/media/19633/btc.png',
-        currentWorth: '-51377.75',
+        currentWorth: '51377.75',
         profit: '86394.53',
+        buy: false,
       },
     ];
   }
@@ -47,7 +53,7 @@ class SingleCurrencyPage extends Component {
 
 
   render() {
-    const coins = this.dummyData.map( coin => <Transaction coin={coin} /> );
+    const transactions = this.dummyData.map( transaction => <Transaction transaction={transaction} /> );
     return (
       <div style={{ padding: '2em' }}>
         <Header size="huge" textAlign="center">Bitcoin BTC</Header>
@@ -55,12 +61,12 @@ class SingleCurrencyPage extends Component {
         <Grid>
           <Grid.Row>
             <Grid.Column width={5}>
-              <Ticker currency="BTC" />
+              <Ticker currency={this.state.symbol} />
             </Grid.Column>
             <Grid.Column width={11}>
               <div style={{ maxWidth: '30vw', margin: 'auto' }}>
                 <List celled verticalAlign="middle">
-                  {coins}
+                  {transactions}
                 </List>
               </div>
               <AddCoinModal />

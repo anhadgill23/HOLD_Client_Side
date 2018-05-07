@@ -3,15 +3,14 @@ import { List, Image, Table, Grid } from 'semantic-ui-react';
 
 class Transaction extends Component {
   render() {
-    const buy = this.props.coin.amount > 1;
-    const transactionType = buy ? 'Cost' : 'Proceeds';
-    const buyOrSell = buy ? `${this.props.coin.symbol} Buy Price` : `${this.props.coin.symbol} Sell Price`;
-    const amountBoughtOrSoldHeader = buy ? 'Bought' : 'Sold';
+    const transactionType = this.props.transaction.buy ? 'Cost' : 'Proceeds';
+    const buyOrSell = this.props.transaction.buy ? `${this.props.transaction.symbol} Buy Price` : `${this.props.transaction.symbol} Sell Price`;
+    const amountBoughtOrSoldHeader = this.props.transaction.buy ? 'Bought' : 'Sold';
     return (
 
       <List.Item>
         <List.Content floated="left">
-          <Image src={this.props.coin.imageUrl} size="mini" circular />
+          <Image src={this.props.transaction.imageUrl} size="mini" circular />
         </List.Content>
         <List.Content>
 
@@ -22,9 +21,9 @@ class Transaction extends Component {
               <th>Amount {amountBoughtOrSoldHeader}</th>
             </tr>
             <tr className="spacingRow">
-              <td>{this.props.coin.price}</td>
-              <td>{this.props.coin.tradingPair}</td>
-              <td>{this.props.coin.amount}</td>
+              <td>{this.props.transaction.price}</td>
+              <td>{this.props.transaction.tradingPair}</td>
+              <td>{this.props.transaction.amount}</td>
             </tr>
             <tr>
 
@@ -33,9 +32,9 @@ class Transaction extends Component {
               <td>% Change</td>
             </tr>
             <tr>
-              <td>{this.props.coin.transactionCost}</td>
-              <td>{this.props.coin.currentWorth}</td>
-              <td className="percentChange">{buy ? this.props.coin.profit : ''}</td>
+              <td>{this.props.transaction.transactionCost}</td>
+              <td>{this.props.transaction.currentWorth}</td>
+              <td className="percentChange">{this.props.transaction.buy ? this.props.transaction.profit : ''}</td>
             </tr>
           </table>
         </List.Content>
