@@ -40,7 +40,7 @@ class App extends Component {
           </Link>
 
         </div>
-        <PieChart />
+        {/*<PieChart />*/}
         <Switch>
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
