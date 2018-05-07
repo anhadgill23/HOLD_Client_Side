@@ -58,7 +58,7 @@ class SingleCurrencyPage extends Component {
 
   render() {
     const transactions =
-    this.dummyData.map( transaction => <Transaction key={transaction} transaction={transaction} /> );
+    this.dummyData.map( transaction => <Transaction key={transaction.id} transaction={transaction} /> );
     return (
       <div style={{ padding: '2em' }}>
         <Header size="huge" textAlign="center">Bitcoin BTC</Header>
