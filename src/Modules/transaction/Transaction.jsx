@@ -4,6 +4,17 @@ import { List, Image, Table, Button, Icon } from 'semantic-ui-react';
 
 
 class Transaction extends Component {
+  constructor( props ) {
+    super( props );
+    this.handleDeleteButton = this.handleDeleteButton.bind( this );
+  }
+
+  handleDeleteButton( ) {
+    console.log( this.props.transaction.id );
+    // Handle deleting here
+  }
+
+
   render() {
     const transactionType = this.props.transaction.buy ? 'Cost' : 'Proceeds';
     const buyOrSell = this.props.transaction.buy ? `${this.props.transaction.symbol} Buy Price` : `${this.props.transaction.symbol} Sell Price`;
@@ -14,10 +25,10 @@ class Transaction extends Component {
 
         <List.Content floated="right">
 
-          <Table celled>
+          <Table color={this.props.transaction.buy ? 'green' : 'red'} celled>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell><Image src={this.props.transaction.image_url} size="mini" circular /></Table.HeaderCell>
+                <Table.HeaderCell textAlign="center"><Image src={this.props.transaction.image_url} size="mini" circular /></Table.HeaderCell>
                 <Table.HeaderCell>{buyOrSell}</Table.HeaderCell>
                 <Table.HeaderCell>Trading Pair</Table.HeaderCell>
                 <Table.HeaderCell>Amount {amountBoughtOrSoldHeader}</Table.HeaderCell>
@@ -30,15 +41,19 @@ class Transaction extends Component {
                 <Table.Cell>{this.props.transaction.tradingPair}</Table.Cell>
                 <Table.Cell>{this.props.transaction.amount}</Table.Cell>
               </Table.Row>
+            </Table.Body>
+            <Table.Header>
               <Table.Row>
-                <Table.Cell />
-                <Table.Cell>{transactionType}</Table.Cell>
-                <Table.Cell>Worth</Table.Cell>
-                <Table.Cell>% Change</Table.Cell>
+                <Table.HeaderCell />
+                <Table.HeaderCell>{transactionType}</Table.HeaderCell>
+                <Table.HeaderCell>Worth</Table.HeaderCell>
+                <Table.HeaderCell>% Change</Table.HeaderCell>
               </Table.Row>
+            </Table.Header>
+            <Table.Body>
               <Table.Row>
                 <Table.Cell>
-                  <Button color="red" inverted animated="vertical">
+                  <Button color="red" inverted animated="vertical" onClick={this.handleDeleteButton}>
                     <Button.Content hidden>Delete</Button.Content>
                     <Button.Content visible>
                       <Icon name="trash" />
@@ -68,6 +83,7 @@ Transaction.propTypes = {
     currentWorth: PropTypes.string,
     profit: PropTypes.string,
     buy: PropTypes.bool,
+    id: PropTypes.number,
   } ),
 };
 
