@@ -15,6 +15,7 @@ class Register extends Component {
                    email: '',
                    password: '',
                    confirmPassword:'',
+                   id: '',
                    error: false };
   }
   onChange = (e) => {
@@ -41,9 +42,9 @@ class Register extends Component {
               return response.json()
             })
             .then((data) => {
-              data = JSON.parse(data);
-               this.props.history.push(`/portfolio/${data.id}`);
-               this.props.handleAuth(true);
+                this.setState({ id: data.id });
+                this.props.history.push(`/portfolio/${data.id}`);
+                this.props.handleAuth(true);
             })
             .catch(error=>console.log('Error',error));
       }
