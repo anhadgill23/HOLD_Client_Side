@@ -17,6 +17,9 @@ class NavBar extends Component {
       } );
   }
   render() {
+    if ( !this.props.isAuthorized ) {
+      return <Redirect to="/" />;
+    }
     return (
       <Menu>
         <Link to="/">
@@ -29,5 +32,4 @@ class NavBar extends Component {
     );
   }
 }
-
 export default NavBar;
