@@ -20,7 +20,7 @@ class App extends Component {
     super( props );
     this.state = {
       isLoggedIn: false,
-      userId: ''
+      userId: '',
     };
     this.setLoggedin = this.setLoggedin.bind( this );
   }

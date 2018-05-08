@@ -37,7 +37,6 @@ class Login extends Component {
             credentials: 'same-origin'
           })
           .then(function(response) {
-            console.log('response is', response)
             return response.json();
           })
           .then((data) => {
