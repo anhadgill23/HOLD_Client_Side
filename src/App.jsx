@@ -39,7 +39,7 @@ class App extends Component {
 
       <div className="App">
 
-        <NavBar />
+        <NavBar isAuthorized={this.state.isLoggedIn} />
         <Grid>
 
         <Switch>
