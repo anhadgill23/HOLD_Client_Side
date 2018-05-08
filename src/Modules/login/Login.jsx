@@ -50,8 +50,8 @@ class Login extends Component {
   render() {
 
     return (
-
-      <div className="loginForm">
+      <Grid.Row>
+        <Grid.Column width={16}>
         <Grid>
           <Grid.Row centered>
             <Grid.Column width={6}>
@@ -73,8 +73,8 @@ class Login extends Component {
           <Button.Or />
           <Link to="/register"><Button inverted >Register Page</Button></Link>
         </Button.Group>
-      </div>
-
+        </Grid.Column>
+      </Grid.Row>
     );
   }
 }
