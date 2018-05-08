@@ -13,7 +13,8 @@ class Login extends Component {
     super( props );
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      id: ''
     };
   }
   onChange = (e) => {
@@ -39,7 +40,7 @@ class Login extends Component {
             return response.json();
           })
           .then((data) => {
-               console.log(data);
+               this.setState({ id: data.id });
                this.props.history.push(`/portfolio/${data.id}`);
                this.props.handleAuth(true);
             })
