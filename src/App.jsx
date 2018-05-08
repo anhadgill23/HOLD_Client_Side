@@ -39,7 +39,7 @@ class App extends Component {
 
       <div className="App">
 
-        <NavBar isAuthorized={this.state.isLoggedIn} />
+        <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={() => this.setLoggedin} />
         <div style={{ padding: '2em' }}>
 
           <Grid>

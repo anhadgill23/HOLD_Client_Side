@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { Menu, Button } from 'semantic-ui-react';
 import logo2 from './logo2.png';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class NavBar extends Component {
   constructor( props ){
     super ( props )
+    this.handleLogout = this.handleLogout.bind(this);
+
+  }
+  handleLogout() {
+    fetch("/api/logout", {
+              method: 'POST',
+          })
+    this.props.handleAuth(false);
   }
   render() {
     return (
@@ -16,7 +24,7 @@ class NavBar extends Component {
           </Menu.Item>
         </Link>
         {this.props.isAuthorized && <Menu.Item className="ui right floated button">
-          <Button secondary> Log Out</Button>
+          <Button secondary onClick={this.handleLogout} > Log Out</Button>
         </Menu.Item>}
       </Menu>
     );
