@@ -12,14 +12,15 @@ class SingleCurrencyPage extends Component {
       symbol: 'BTC',
       transactions: [],
     };
+    this.handleDeleteTransaction = this.handleDeleteTransaction.bind( this );
   }
 
   componentDidMount() {
     this.fetchTransactions( 2, 'BTC' );
   }
 
-  fetchTransactions( id, symbol ) {
-    fetch( `/api/${id}/transactions/${symbol}`, {
+  fetchTransactions( userId, symbol ) {
+    fetch( `/api/${userId}/transactions/${symbol}`, {
       // method: ''
       credentials: 'same-origin',
     } )
@@ -30,11 +31,25 @@ class SingleCurrencyPage extends Component {
       } );
   }
 
+  handleDeleteTransaction( transactionId ) {
+    console.log( transactionId );
+    fetch( `/api/transactions/${transactionId}`, {
+      method: 'POST',
+      body: JSON.stringify( this.state ),
+      headers: new Headers( {
+        'Content-Type': 'application/json',
+      } ),
+      credentials: 'same-origin',
+    } )
+      .then( response => response.json() );
+    this.fetchTransactions( 2, 'BTC' );
+  }
+
 
   render() {
     const transactions =
     this.state.transactions.map( transaction =>
-      <Transaction key={transaction.id} transaction={transaction} /> );
+      <Transaction key={transaction.id} transaction={transaction} handleDelete={this.handleDeleteTransaction} /> );
     return (
       <Grid.Row>
         <Grid.Column width={5}>

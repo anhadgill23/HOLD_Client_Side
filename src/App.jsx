@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { Grid } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
@@ -46,7 +45,7 @@ class App extends Component {
                 path="/login"
                 render={props => <Login {...props} handleAuth={this.setLoggedin} />}
               />
-              <Route path="/portfolio" component={Portfolio} />
+              <Route path="/portfolio" component={SingleCurrencyPage} />
               <Route path="/" component={WelcomePage} />
             </Switch>
           </Grid>

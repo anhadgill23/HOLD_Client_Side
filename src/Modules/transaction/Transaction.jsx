@@ -10,8 +10,7 @@ class Transaction extends Component {
   }
 
   handleDeleteButton( ) {
-    console.log( this.props.transaction.id );
-    // Handle deleting here
+    this.props.handleDelete( this.props.transaction.id );
   }
 
 
