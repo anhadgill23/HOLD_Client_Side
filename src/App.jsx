@@ -15,26 +15,24 @@ import Ticker from './Modules/ticker/Ticker.jsx';
 import PieChart from './Modules/piechart/PieChart.jsx';
 import NavBar from './Modules/navbar/NavBar.jsx';
 import Portfolio from './Modules/portfolio_page/Portfolio.jsx';
-import WelcomePage from './Modules/welcome/WelcomePage.jsx'
+import WelcomePage from './Modules/welcome/WelcomePage.jsx';
 import SingleCurrencyPage from './Modules/single_curency_page/SingleCurrencyPage.jsx';
 
 
 class App extends Component {
-
   constructor( props ) {
     super( props );
     this.state = {
-      isLoggedIn: false
-    }
-    this.setLoggedin = this.setLoggedin.bind(this);
+      isLoggedIn: false,
+    };
+    this.setLoggedin = this.setLoggedin.bind( this );
   }
 
   setLoggedin( loggedIn ) {
-    this.setState({ isLoggedIn: loggedIn});
-    console.log(this.state);
+    this.setState( { isLoggedIn: loggedIn } );
+    console.log( this.state );
   }
   render() {
-
     return (
 
       <div className="App">
@@ -44,15 +42,19 @@ class App extends Component {
 
           <Grid>
 
-          <Switch>
-            <Route path="/register" render={(props) => <Register {...props} handleAuth={this.setLoggedin} /> }
-            />
-            <Route path="/login" render={(props) => <Login {...props} handleAuth={this.setLoggedin} /> }
-            />
-            <Route path="/portfolio" component={SingleCurrencyPage} />
-            <Route path="/" component={WelcomePage} />
+            <Switch>
+              <Route
+                path="/register"
+                render={props => <Register {...props} handleAuth={this.setLoggedin} />}
+              />
+              <Route
+                path="/login"
+                render={props => <Login {...props} handleAuth={this.setLoggedin} />}
+              />
+              <Route path="/portfolio" component={SingleCurrencyPage} />
+              <Route path="/" component={WelcomePage} />
 
-          </Switch>
+            </Switch>
 
           </Grid>
         </div>
