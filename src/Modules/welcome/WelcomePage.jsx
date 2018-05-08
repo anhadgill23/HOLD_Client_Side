@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Grid } from 'semantic-ui-react';
+import Graph from '../graph/src/Graph';
 import {
   Link,
   Redirect,
@@ -14,15 +15,16 @@ class WelcomePage extends Component {
   render() {
     return (
       <Grid.Row>
-      <Grid.Column width={5}>
+      <Grid.Column width={7}>
+        <Graph />
       </Grid.Column>
-      <Grid.Column width={11}>
+      <Grid.Column width={9}>
         <div className="buttons-container" >
           <Link to="/register">
-            <Button type="button" className="register" size="huge" inverted color="olive">Register</Button>
+            <Button type="button" className="register" size="huge">Register</Button>
           </Link>
           <Link to="/login">
-            <Button type="button" className="login" size="huge" inverted color="violet">Login</Button>
+            <Button type="button" className="login" size="huge">Login</Button>
           </Link>
         </div>
       </Grid.Column>
