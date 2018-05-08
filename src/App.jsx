@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
 
-import { Button, Grid } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
-  Redirect,
+
   Switch,
-  withRouter,
 } from 'react-router-dom';
 import Register from './Modules/register/Register.jsx';
 import Login from './Modules/login/Login.jsx';
-import Ticker from './Modules/ticker/Ticker.jsx';
-import PieChart from './Modules/piechart/PieChart.jsx';
 import NavBar from './Modules/navbar/NavBar.jsx';
-import Portfolio from './Modules/portfolio_page/Portfolio.jsx';
 import WelcomePage from './Modules/welcome/WelcomePage.jsx';
 import SingleCurrencyPage from './Modules/single_curency_page/SingleCurrencyPage.jsx';
 
