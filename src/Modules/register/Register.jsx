@@ -38,12 +38,14 @@ class Register extends Component {
             })
             .then((response) => {
               console.log('response is', response.json)
+
               return response.json()
             })
             .then((data) => {
                const user = data[0];
                console.log(user);
-               this.props.history.push(`/portfolio`); //${user.id}`)
+               this.props.history.push(`/portfolio/${user.id}`);
+               this.props.handleAuth(true);
             })
             .catch(error=>console.log('Error',error));
       }
