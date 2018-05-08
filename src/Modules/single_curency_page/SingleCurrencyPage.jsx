@@ -61,19 +61,19 @@ class SingleCurrencyPage extends Component {
     this.dummyData.map( transaction =>
       <Transaction key={transaction.id} transaction={transaction} /> );
     return (
-          <Grid.Row>
-            <Grid.Column width={5}>
-              <Ticker currency={this.state.symbol} />
-            </Grid.Column>
-            <Grid.Column width={11}>
-              <div style={{ maxWidth: '30vw', margin: 'auto' }}>
-                <List verticalAlign="middle">
-                  {transactions}
-                </List>
-              </div>
-              <AddCoinModal />
-            </Grid.Column>
-          </Grid.Row>
+      <Grid.Row>
+        <Grid.Column width={5}>
+          <Ticker currency={this.state.symbol} />
+        </Grid.Column>
+        <Grid.Column width={11}>
+          <div className="transaction-list">
+            <List verticalAlign="middle">
+              {transactions}
+            </List>
+          </div>
+          <AddCoinModal />
+        </Grid.Column>
+      </Grid.Row>
 
     );
   }
