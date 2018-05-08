@@ -25,7 +25,7 @@ class Transaction extends Component {
 
         <List.Content floated="right">
 
-          <Table color={this.props.transaction.buy ? 'green' : 'red'} celled>
+          <Table fixed unstackable color={this.props.transaction.buy ? 'green' : 'red'} celled>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell textAlign="center"><Image src={this.props.transaction.image_url} size="mini" circular /></Table.HeaderCell>

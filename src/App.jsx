@@ -34,7 +34,7 @@ class App extends Component {
       <div className="App">
         <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
         <div style={{ padding: '2em' }}>
-          <Grid>
+          <Grid stackable>
             <Switch>
               <Route
                 path="/register"
