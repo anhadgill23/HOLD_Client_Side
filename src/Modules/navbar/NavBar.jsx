@@ -13,7 +13,7 @@ class NavBar extends Component {
       method: 'POST',
     } )
       .then( ( result ) => {
-        this.props.handleAuth( false );
+        this.props.handleAuth( false, null );
       } );
   }
   render() {

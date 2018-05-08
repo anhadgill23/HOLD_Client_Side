@@ -33,7 +33,8 @@ class Login extends Component {
             body: JSON.stringify(this.state),
             headers: new Headers({
               'Content-Type': 'application/json'
-            })
+            }),
+            credentials: 'same-origin'
           })
           .then(function(response) {
             console.log('response is', response)
@@ -43,7 +44,7 @@ class Login extends Component {
                this.setState({ id: data.id });
                console.log(this.state);
                this.props.history.push(`/portfolio/${data.id}`);
-               this.props.handleAuth(true);
+               this.props.handleAuth(true, this.state.id);
             })
           .catch(error=>console.log('Error',error));
   }

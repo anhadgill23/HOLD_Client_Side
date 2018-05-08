@@ -3,10 +3,16 @@ import { Button, Dimmer, Header, Icon, Form, Field, Input, Sidebar } from 'seman
 import PieChart from '../piechart/PieChart.jsx'
 
 class Portfolio extends Component {
+  constructor ( props ) {
+    super ( props )
+    this.state = {
+      currentUserId: '',
+    }
+  }
   componentDidMount() {
-    fetch("/api/13", {
-            // method: 'POST'
-
+    fetch("/api/transactions/2", {
+            // method: ''
+            credentials: 'same-origin'
             })
     .then(function(response) {
             console.log('response is', response)
@@ -14,6 +20,7 @@ class Portfolio extends Component {
           })
   }
   render() {
+    const { currentUserId } = this.state
     return (
       <div>
       <Header>

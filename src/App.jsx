@@ -20,12 +20,13 @@ class App extends Component {
     super( props );
     this.state = {
       isLoggedIn: false,
+      userId: ''
     };
     this.setLoggedin = this.setLoggedin.bind( this );
   }
 
-  setLoggedin( loggedIn ) {
-    this.setState( { isLoggedIn: loggedIn } );
+  setLoggedin( loggedIn, id ) {
+    this.setState( { isLoggedIn: loggedIn, userId: id } );
     console.log( this.state );
   }
 
