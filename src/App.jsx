@@ -31,12 +31,9 @@ class App extends Component {
     return (
 
       <div className="App">
-
         <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={() => this.setLoggedin} />
         <div style={{ padding: '2em' }}>
-
           <Grid>
-
             <Switch>
               <Route
                 path="/register"
@@ -48,9 +45,7 @@ class App extends Component {
               />
               <Route path="/portfolio" component={SingleCurrencyPage} />
               <Route path="/" component={WelcomePage} />
-
             </Switch>
-
           </Grid>
         </div>
       </div>
