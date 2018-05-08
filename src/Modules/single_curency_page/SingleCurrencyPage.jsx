@@ -61,10 +61,6 @@ class SingleCurrencyPage extends Component {
     this.dummyData.map( transaction =>
       <Transaction key={transaction.id} transaction={transaction} /> );
     return (
-      <div style={{ padding: '2em' }}>
-        <Header size="huge" textAlign="center">Bitcoin BTC</Header>
-        <Divider hidden />
-        <Grid>
           <Grid.Row>
             <Grid.Column width={5}>
               <Ticker currency={this.state.symbol} />
@@ -78,8 +74,7 @@ class SingleCurrencyPage extends Component {
               <AddCoinModal />
             </Grid.Column>
           </Grid.Row>
-        </Grid>
-      </div>
+
     );
   }
 }

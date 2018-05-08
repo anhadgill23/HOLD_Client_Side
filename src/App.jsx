@@ -40,20 +40,22 @@ class App extends Component {
       <div className="App">
 
         <NavBar isAuthorized={this.state.isLoggedIn} />
-        <Grid>
+        <div style={{ padding: '2em' }}>
 
-        <Switch>
-          <Route path="/register" render={(props) => <Register {...props} handleAuth={this.setLoggedin} /> }
-          />
-          <Route path="/login" render={(props) => <Login {...props} handleAuth={this.setLoggedin} /> }
-          />
-          <Route path="/portfolio" component={SingleCurrencyPage} />
-          <Route path="/" component={WelcomePage} />
+          <Grid>
 
-        </Switch>
+          <Switch>
+            <Route path="/register" render={(props) => <Register {...props} handleAuth={this.setLoggedin} /> }
+            />
+            <Route path="/login" render={(props) => <Login {...props} handleAuth={this.setLoggedin} /> }
+            />
+            <Route path="/portfolio" component={SingleCurrencyPage} />
+            <Route path="/" component={WelcomePage} />
 
-        </Grid>
+          </Switch>
 
+          </Grid>
+        </div>
       </div>
 
 
