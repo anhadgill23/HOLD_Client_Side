@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Dimmer, Header, Icon, Form, Field, Input, Message, Grid } from 'semantic-ui-react';
 import { Doughnut } from 'react-chartjs-2';
 
+
 const data = {
   labels: [
     'Red',
@@ -25,11 +26,17 @@ const data = {
 
 
 class PieChart extends Component {
+  constructor ( props ) {
+    super ( props )
+    this.state = {
+      data: data
+    }
+  }
   render() {
     return (
       <div className="piechart">
         <Doughnut
-          data={data}
+          data={this.state.data}
         />
       </div>
     )

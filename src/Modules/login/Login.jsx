@@ -41,6 +41,7 @@ class Login extends Component {
           })
           .then((data) => {
                this.setState({ id: data.id });
+               console.log(this.state);
                this.props.history.push(`/portfolio/${data.id}`);
                this.props.handleAuth(true);
             })
