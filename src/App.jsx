@@ -27,11 +27,12 @@ class App extends Component {
     this.setState( { isLoggedIn: loggedIn } );
     console.log( this.state );
   }
+
   render() {
     return (
 
       <div className="App">
-        <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={() => this.setLoggedin} />
+        <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
         <div style={{ padding: '2em' }}>
           <Grid>
             <Switch>

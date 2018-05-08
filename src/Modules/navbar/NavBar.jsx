@@ -11,8 +11,10 @@ class NavBar extends Component {
   handleLogout() {
     fetch( '/api/logout', {
       method: 'POST',
-    } );
-    this.props.handleAuth( false );
+    } )
+      .then( ( result ) => {
+        this.props.handleAuth( false );
+      } );
   }
   render() {
     return (
