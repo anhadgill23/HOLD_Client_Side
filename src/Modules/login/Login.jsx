@@ -36,11 +36,12 @@ class Login extends Component {
           })
           .then(function(response) {
             console.log('response is', response)
+            return response.json();
           })
           .then((data) => {
-               // const user = data[0];
                console.log(data);
-               this.props.history.push(`/portfolio`); //${user.id}`)
+               this.props.history.push(`/portfolio/${data.id}`);
+               this.props.handleAuth(true);
             })
           .catch(error=>console.log('Error',error));
   }
