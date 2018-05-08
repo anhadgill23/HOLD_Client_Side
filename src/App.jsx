@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Button, Dimmer, Header, Icon, Form, Field, Input, Sidebar } from 'semantic-ui-react';
+import { Button, Grid } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
   Route,
@@ -13,8 +13,9 @@ import Register from './Modules/register/Register.jsx';
 import Login from './Modules/login/Login.jsx';
 import Ticker from './Modules/ticker/Ticker.jsx';
 import PieChart from './Modules/piechart/PieChart.jsx';
-// import NavBar from './Modules/navbar/NavBar.jsx';
+import NavBar from './Modules/navbar/NavBar.jsx';
 import Portfolio from './Modules/portfolio_page/Portfolio.jsx';
+import WelcomePage from './Modules/welcome/WelcomePage.jsx'
 import SingleCurrencyPage from './Modules/single_curency_page/SingleCurrencyPage.jsx';
 
 
@@ -36,34 +37,22 @@ class App extends Component {
 
     return (
 
-
       <div className="App">
-      {/*<NavBar />*/}
-      {/*<Sidebar visible="true" >
-      <Ticker />
-      </Sidebar>*/}
-        <div className="buttons-container" >
 
-          <Link to="/register">
-            <Button type="button" className="register" size="huge" inverted color="olive">Register</Button>
-          </Link>
-          <Link to="/login">
-            <Button type="button" className="login" size="huge" inverted color="violet">Login</Button>
-          </Link>
+        <NavBar />
+        <Grid>
 
-        </div>
-        {/*<PieChart />*/}
         <Switch>
           <Route path="/register" render={(props) => <Register {...props} handleAuth={this.setLoggedin} /> }
           />
           <Route path="/login" render={(props) => <Login {...props} handleAuth={this.setLoggedin} /> }
           />
           <Route path="/portfolio" component={SingleCurrencyPage} />
+          <Route path="/" component={WelcomePage} />
+
         </Switch>
 
-      <div>
-        {/*<SingleCurrencyPage />*/}
-      </div>
+        </Grid>
 
       </div>
 
