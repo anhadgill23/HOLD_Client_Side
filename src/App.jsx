@@ -51,7 +51,11 @@ class App extends Component {
                   (<Portfolio {...props} userName={this.state.userName} userId={this.state.userId} />) :
                   (<Redirect to='/login' />)
                   )} />
-              <Route path="/singlecurrency" render={props => <SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} />} />
+              <Route path="/singlecurrency" render={(props) => (
+                this.state.isLoggedIn ?
+                (<SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} />) :
+                (<Redirect to='/login' />)
+                )} />
               <Route path="/" exact component={WelcomePage} />
             </Switch>
           </Grid>
