@@ -8,39 +8,42 @@ class Portfolio extends Component {
     console.log(this.props)
     this.state = {
       currentUserId: this.props.userId,
-      data: []
+      labels:[],
+      remainingData: []
     }
   }
   componentDidMount() {
-    fetch("/api/2", {
-            // method: ''
+    fetch("/api/2/transactions", {
             credentials: 'same-origin'
             })
     .then(function(response) {
             console.log('response is', response)
-            // console.log(this.state);
             return response.json();
           })
-    // .then((datas) => {
+    .then((datas) => {
+              const labels = this.state.labels;
+              const remainingData = this.state.remainingData
+              datas.forEach((indiv) => {
+                let number = Number(indiv.remaining)
+                labels.push(indiv.symbol);
+                remainingData.push(number)
+              })
 
-    //           let updateData = datas.forEach(function(indiv) {
-    //             this.state.data.concat(indiv.remaining)
-    //           })
-    //           this.setState({ data: updateData });
-    //           console.log(datas);
-    //           console.log(this.state);
-    //            // this.props.history.push(`/portfolio/${data.id}`);
-    //            // this.props.handleAuth(true, this.state.id);
-    //         })
+              this.setState({
+                labels: labels,
+                remainingData: remainingData
+              }, () => console.log(this.state))
+            })
   }
   render() {
+    console.log('rerender')
     const { currentUserId } = this.state.currentUserId
     return (
       <div>
       <Header>
         Hello, user! {currentUserId}
       </Header>
-      <PieChart />
+      <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
       </div>
     )
   }
