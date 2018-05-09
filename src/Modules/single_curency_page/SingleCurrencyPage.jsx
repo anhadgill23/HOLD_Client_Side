@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { List, Grid, Header, Divider } from 'semantic-ui-react';
+import { List, Grid } from 'semantic-ui-react';
 import Ticker from '../ticker/Ticker.jsx';
 import Transaction from '../transaction/Transaction.jsx';
 import AddCoinModal from '../add_coin_modal/AddCoinModal.jsx';
@@ -10,56 +10,46 @@ class SingleCurrencyPage extends Component {
     super( props );
     this.state = {
       symbol: 'BTC',
+      transactions: [],
     };
-    this.dummyData = [
-      {
-        id: 1,
-        symbol: 'BTC',
-        price: '128.80',
-        tradingPair: 'BTC/USD',
-        amount: '10.0000',
-        transactionCost: '1288.00',
-        image_url: 'https://www.cryptocompare.com/media/19633/btc.png',
-        currentWorth: '93780.60',
-        profit: '7181.10',
-        buy: true,
-      }, {
-
-        id: 2,
-        symbol: 'BTC',
-        price: '10.80',
-        tradingPair: 'BTC/USD',
-        amount: '1.0000',
-        transactionCost: '10.80',
-        image_url: 'https://www.cryptocompare.com/media/19633/btc.png',
-        currentWorth: '9376.77',
-        profit: '86721.94',
-        buy: true,
-      },
-      {
-        id: 3,
-        symbol: 'BTC',
-        price: '10.80',
-        tradingPair: 'BTC/USD',
-        amount: '5.5000',
-        transactionCost: '59.40',
-        image_url: 'https://www.cryptocompare.com/media/19633/btc.png',
-        currentWorth: '51572.68',
-        profit: '86722.69',
-        buy: false,
-      },
-    ];
+    this.handleDeleteTransaction = this.handleDeleteTransaction.bind( this );
   }
 
   componentDidMount() {
-    this.test = true;
+    this.fetchTransactions( 2, 'BTC' );
+  }
+
+  fetchTransactions( userId, symbol ) {
+    fetch( `/api/${userId}/transactions/${symbol}`, {
+      // method: ''
+      credentials: 'same-origin',
+    } )
+      .then( response => response.json() )
+      .then( transactions => this.setState( { transactions } ) )
+      .catch( ( error ) => {
+        console.error( error );
+      } );
+  }
+
+  handleDeleteTransaction( transactionId ) {
+    console.log( transactionId );
+    fetch( `/api/transactions/${transactionId}`, {
+      method: 'POST',
+      body: JSON.stringify( this.state ),
+      headers: new Headers( {
+        'Content-Type': 'application/json',
+      } ),
+      credentials: 'same-origin',
+    } )
+      .then( response => response.json() );
+    this.fetchTransactions( 2, 'BTC' );
   }
 
 
   render() {
     const transactions =
-    this.dummyData.map( transaction =>
-      <Transaction key={transaction.id} transaction={transaction} /> );
+    this.state.transactions.map( transaction =>
+      <Transaction key={transaction.id} transaction={transaction} handleDelete={this.handleDeleteTransaction} /> );
     return (
       <Grid.Row>
         <Grid.Column width={5}>

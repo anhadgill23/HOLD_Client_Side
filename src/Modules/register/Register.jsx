@@ -35,7 +35,8 @@ class Register extends Component {
               body: JSON.stringify(this.state),
               headers: new Headers({
                 'Content-Type': 'application/json'
-              })
+              }),
+              credentials: 'same-origin'
             })
             .then((response) => {
 
@@ -44,7 +45,7 @@ class Register extends Component {
             .then((data) => {
                 this.setState({ id: data.id });
                 this.props.history.push(`/portfolio/${data.id}`);
-                this.props.handleAuth(true);
+                this.props.handleAuth(true, this.state.id);
             })
             .catch(error=>console.log('Error',error));
       }

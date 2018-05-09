@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { Grid } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
@@ -11,6 +10,7 @@ import Register from './Modules/register/Register.jsx';
 import Login from './Modules/login/Login.jsx';
 import NavBar from './Modules/navbar/NavBar.jsx';
 import WelcomePage from './Modules/welcome/WelcomePage.jsx';
+import Portfolio from './Modules/portfolio_page/Portfolio.jsx';
 import SingleCurrencyPage from './Modules/single_curency_page/SingleCurrencyPage.jsx';
 
 
@@ -19,12 +19,13 @@ class App extends Component {
     super( props );
     this.state = {
       isLoggedIn: false,
+      userId: '',
     };
     this.setLoggedin = this.setLoggedin.bind( this );
   }
 
-  setLoggedin( loggedIn ) {
-    this.setState( { isLoggedIn: loggedIn } );
+  setLoggedin( loggedIn, id ) {
+    this.setState( { isLoggedIn: loggedIn, userId: id } );
     console.log( this.state );
   }
 
