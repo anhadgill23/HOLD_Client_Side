@@ -21,10 +21,10 @@ class WelcomePage extends Component {
       <Grid.Column width={9}>
         <div className="buttons-container" >
           <Link to="/register">
-            <Button type="button" className="register" size="huge">Register</Button>
+            <Button type="button" className="register" size="huge" inverted >Register</Button>
           </Link>
           <Link to="/login">
-            <Button type="button" className="login" size="huge">Login</Button>
+            <Button type="button" className="login" size="huge" inverted >Login</Button>
           </Link>
         </div>
       </Grid.Column>
