@@ -46,7 +46,7 @@ class App extends Component {
               />
               <Route path="/portfolio" render={props => <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} />} />
 
-              <Route path="/" component={WelcomePage} />
+              <Route path="/" exact component={WelcomePage} />
             </Switch>
           </Grid>
         </div>
