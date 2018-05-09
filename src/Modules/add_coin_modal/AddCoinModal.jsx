@@ -3,8 +3,8 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-// 9 | BTC    |  10.8 |      1 | https://www.cryptocompare.com/media/19633/btc.png           | t   |        2
-//
+
+
 class App extends Component {
   constructor() {
     super();
@@ -14,8 +14,11 @@ class App extends Component {
     this.handleChange = this.handleDateInput.bind( this );
     this.handleCurrencyInput = this.handleCurrencyInput.bind( this );
     this.handleSubmit = this.handleSubmit.bind( this );
+    this.postTransaction = this.postTransaction.bind( this );
+    this.handleOpen = this.handleOpen.bind( this );
 
     this.state = {
+      modalOpen: false,
       startDate: moment(),
       buy: true,
       amount_error: true,
@@ -40,6 +43,12 @@ class App extends Component {
       .catch( ( error ) => {
         this.console.error( error );
       } );
+  }
+
+  handleOpen() {
+    this.setState( {
+      modalOpen: true,
+    } );
   }
 
   handlePriceInput( event ) {
@@ -103,10 +112,31 @@ class App extends Component {
         price: this.state.price,
         amount: this.state.amount,
       };
+      this.postTransaction( transaction );
+      this.setState( {
+        modalOpen: false,
+      } );
       console.log( transaction );
     } else {
       console.log( 'BAD INPUT' );
     }
+  }
+
+  postTransaction( transaciton ) {
+    fetch( '/api/transactions', {
+      method: 'POST',
+      body: JSON.stringify( transaciton ),
+      headers: new Headers( {
+        'Content-Type': 'application/json',
+      } ),
+      credentials: 'same-origin',
+    } ).then( ( result ) => {
+      this.setState( {
+        amount_error: true,
+        price_error: true,
+        symbol_error: true,
+      } );
+    } );
   }
 
   render() {
@@ -116,7 +146,7 @@ class App extends Component {
         <br />
         <br />
         <br />
-        <Modal dimmer="blurring" trigger={<Button>Add Transaction</Button>}>
+        <Modal open={this.state.modalOpen} dimmer="blurring" trigger={<Button onClick={this.handleOpen}>Add Transaction</Button>}>
           <Modal.Content>
             <Modal.Description>
 
