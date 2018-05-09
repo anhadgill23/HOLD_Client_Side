@@ -27,7 +27,6 @@ class Login extends Component {
   onSubmit = ( e ) => {
     e.preventDefault();
     const { email, password } = this.state;
-    console.log(this.state);
     fetch("/api/login", {
             method: 'POST',
             body: JSON.stringify(this.state),
@@ -41,9 +40,9 @@ class Login extends Component {
           })
           .then((data) => {
                this.setState({ id: data.id });
-               console.log(this.state);
-               this.props.history.push(`/portfolio/${data.id}`);
                this.props.handleAuth(true, this.state.id);
+               this.props.history.push(`/portfolio/${data.id}`);
+
             })
           .catch(error=>console.log('Error',error));
   }

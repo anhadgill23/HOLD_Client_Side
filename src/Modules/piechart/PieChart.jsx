@@ -3,40 +3,34 @@ import { Button, Dimmer, Header, Icon, Form, Field, Input, Message, Grid } from 
 import { Doughnut } from 'react-chartjs-2';
 
 
-const data = {
-  labels: [
-    'Red',
-    'Green',
-    'Yellow'
-  ],
-  datasets: [{
-    data: [300, 50, 100],
-    backgroundColor: [
-    '#FF6384',
-    '#36A2EB',
-    '#FFCE56'
-    ],
-    hoverBackgroundColor: [
-    '#FF6384',
-    '#36A2EB',
-    '#FFCE56'
-    ]
-  }]
-};
-
-
 class PieChart extends Component {
   constructor ( props ) {
     super ( props )
-    this.state = {
-      data: data
-    }
+
   }
+
   render() {
+    console.log(this.props)
+    console.log(this.props.labels, this.props.remaining)
+    const data = {
+        labels: this.props.labels,
+        datasets: [{
+          data: this.props.remaining,
+          backgroundColor: [
+          '#FF6384',
+          '#36A2EB'],
+          hoverBackgroundColor: [
+          '#FF6384',
+          '#36A2EB']
+        }]
+
+      };
+
     return (
       <div className="piechart">
         <Doughnut
-          data={this.state.data}
+          data={data}
+          redraw
         />
       </div>
     )
