@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Dimmer, Header, Icon, Form, Field, Input, Sidebar } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
-// import Portfolio_left from '../portfolio_left/Portfolio_left'
+import Portfolio_left from '../portfolio_left/Portfolio_left.jsx';
 
 class Portfolio extends Component {
   constructor( props ) {
@@ -53,7 +53,7 @@ class Portfolio extends Component {
         Hello, {this.state.currentUserName}!
       </Header>
       <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
-
+      <Portfolio_left currentValuesFromAllCoins={this.state.currentValuesFromAllCoins} gainsFromAllCoins={this.state.gainsFromAllCoins} />
       </div>
     );
   }
