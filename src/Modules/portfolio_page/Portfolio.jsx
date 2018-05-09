@@ -7,13 +7,14 @@ class Portfolio extends Component {
     super ( props )
     console.log(this.props)
     this.state = {
+      currentUserName: this.props.userName,
       currentUserId: this.props.userId,
       labels:[],
       remainingData: []
     }
   }
   componentDidMount() {
-    fetch("/api/2/transactions", {
+    fetch(`/api/${this.props.userId}/transactions`, {
             credentials: 'same-origin'
             })
     .then(function(response) {
@@ -28,7 +29,6 @@ class Portfolio extends Component {
                 labels.push(indiv.symbol);
                 remainingData.push(number)
               })
-
               this.setState({
                 labels: labels,
                 remainingData: remainingData
@@ -36,12 +36,10 @@ class Portfolio extends Component {
             })
   }
   render() {
-    console.log('rerender')
-    const { currentUserId } = this.state.currentUserId
     return (
       <div>
       <Header>
-        Hello, user! {currentUserId}
+        Hello, {this.state.currentUserName}!
       </Header>
 
       <PieChart labels={this.state.labels} remaining={this.state.remainingData} />

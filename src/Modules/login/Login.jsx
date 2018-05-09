@@ -39,10 +39,10 @@ class Login extends Component {
             return response.json();
           })
           .then((data) => {
+              console.log(data)
                this.setState({ id: data.id });
-               this.props.handleAuth(true, this.state.id);
+               this.props.handleAuth(true, this.state.id, data.name);
                this.props.history.push(`/portfolio/${data.id}`);
-
             })
           .catch(error=>console.log('Error',error));
   }
