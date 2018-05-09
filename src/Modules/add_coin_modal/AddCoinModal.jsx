@@ -11,12 +11,16 @@ class App extends Component {
 
     this.handlePurchaseInput = this.handlePurchaseInput.bind( this );
     this.handleAmountInput = this.handleAmountInput.bind( this );
-    this.handleChange = this.handleChange.bind( this );
+    this.handleChange = this.handleDateInput.bind( this );
+    this.handleCurrencyInput = this.handleCurrencyInput.bind( this );
+    this.handleSubmit = this.handleSubmit.bind( this );
 
     this.state = {
       startDate: moment(),
       buy: true,
-      sell: false,
+      amount_error: true,
+      purchase_error: true,
+      symbol_error: true,
       coins: [],
     };
 
@@ -39,7 +43,7 @@ class App extends Component {
   }
 
   handlePurchaseInput( event ) {
-    if ( !event.target.value.match( /^[+-]?\d+(\.\d+)?$/ ) && event.target.value.length > 0 ) {
+    if ( !event.target.value.match( /^[+-]?\d+(\.\d+)?$/ ) && event.target.value.length >= 0 ) {
       this.setState( {
         purchase_error: true,
       } );
@@ -51,7 +55,7 @@ class App extends Component {
   }
 
   handleAmountInput( event ) {
-    if ( !event.target.value.match( /^[+-]?\d+(\.\d+)?$/ ) && event.target.value.length > 0 ) {
+    if ( !event.target.value.match( /^[+-]?\d+(\.\d+)?$/ ) && event.target.value.length >= 0 ) {
       this.setState( {
         amount_error: true,
       } );
@@ -64,24 +68,38 @@ class App extends Component {
 
   handleBuyState( state ) {
     this.setState( {
-      buy: !state,
-      sell: false,
+      buy: state,
     } );
   }
 
-  handleSellState( state ) {
-    this.setState( {
-      sell: !state,
-      buy: false,
-    } );
-  }
 
-  handleChange( date ) {
+  handleDateInput( date ) {
     this.setState( {
       startDate: date,
     } );
   }
 
+  handleCurrencyInput( event, data ) {
+    console.log( data.value );
+    if ( data.value ) {
+      this.setState( {
+        symbol_error: false,
+        symbol: data.value,
+      } );
+    } else {
+      this.setState( {
+        symbol_error: true,
+      } );
+    }
+  }
+
+  handleSubmit() {
+    if ( !this.state.amount_error && !this.state.purchase_error && !this.state.symbol_error ) {
+      console.log( 'GOOD INPUT' );
+    } else {
+      console.log( 'BAD INPUT' );
+    }
+  }
 
   render() {
     return (
@@ -94,24 +112,24 @@ class App extends Component {
           <Modal.Content>
             <Modal.Description>
 
-              <Button inverted color="green" active={this.state.buy} onClick={() => this.handleBuyState( this.state.buy )}>Buy</Button>
-              <Button inverted color="red" active={this.state.sell} onClick={() => this.handleSellState( this.state.sell )}>Sell</Button>
+              <Button inverted color="green" active={this.state.buy} onClick={() => this.handleBuyState( true )}>Buy</Button>
+              <Button inverted color="red" active={this.state.sell} onClick={() => this.handleBuyState( false )}>Sell</Button>
 
               <Divider />
               <DatePicker
                 class="ui small input"
                 selected={this.state.startDate}
-                onChange={this.handleChange}
+                onChange={this.handleDateInput}
               />
               <Divider />
-              <Dropdown placeholder="Select Currency" fluid search selection options={this.state.coins} />
+              <Dropdown placeholder="Select Currency" fluid search selection options={this.state.coins} error={this.state.symbol_error} onChange={this.handleCurrencyInput} />
               <Divider />
               <Input size="small" error={this.state.purchase_error} placeholder="Purchase price.." onChange={this.handlePurchaseInput} />
               <Divider />
               <Input size="small" error={this.state.amount_error} placeholder={this.state.sell ? 'Amount sold' : 'Amount bought'} onChange={this.handleAmountInput} />
               <Divider />
 
-              <Button inverted color={this.state.buy ? 'green' : 'red'}>Add transaction</Button>
+              <Button inverted color={this.state.buy ? 'green' : 'red'}onClick={this.handleSubmit}>Add transaction</Button>
             </Modal.Description>
           </Modal.Content>
         </Modal>
