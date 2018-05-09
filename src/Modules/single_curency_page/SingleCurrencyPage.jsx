@@ -55,7 +55,7 @@ class SingleCurrencyPage extends Component {
     return (
       <Grid.Row>
         <Grid.Column width={5}>
-          <Ticker currency={this.state.symbol} />
+          <Ticker symbol={this.state.symbol} />
         </Grid.Column>
         <Grid.Column width={11}>
           <div className="transaction-list">
