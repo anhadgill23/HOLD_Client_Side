@@ -3,7 +3,8 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-
+// 9 | BTC    |  10.8 |      1 | https://www.cryptocompare.com/media/19633/btc.png           | t   |        2
+//
 class App extends Component {
   constructor() {
     super();
@@ -16,24 +17,21 @@ class App extends Component {
       startDate: moment(),
       buy: true,
       sell: false,
-      currencies: [{
-        key: 'btc', value: 'btc', text: 'Bitcoin',
-      },
-      {
-        key: 'ltc', value: 'ltc', text: 'Litecoin',
-      },
-      {
-        key: 'bch', value: 'bch', text: 'Bitecoin Cash',
-      },
-      ],
+      coins: [],
     };
+
+    this.fetchCoins();
   }
 
-  getTestData() {
-    return fetch( 'http://localhost:8080/test' )
+  fetchCoins() {
+    fetch( '/api/coins', {
+      // method: ''
+      credentials: 'same-origin',
+    } )
       .then( response => response.json() )
-      .then( ( responseJson ) => {
-        this.console.log( responseJson );
+      .then( ( coins ) => {
+        const parsedCoins = coins.map( coin => ( { key: coin.Symbol, value: coin.Symbol, text: coin.FullName } ) );
+        this.setState( { coins: parsedCoins } );
       } )
       .catch( ( error ) => {
         this.console.error( error );
@@ -106,7 +104,7 @@ class App extends Component {
                 onChange={this.handleChange}
               />
               <Divider />
-              <Dropdown placeholder="Select Currency" fluid search selection options={this.state.currencies} />
+              <Dropdown placeholder="Select Currency" fluid search selection options={this.state.coins} />
               <Divider />
               <Input size="small" error={this.state.purchase_error} placeholder="Purchase price.." onChange={this.handlePurchaseInput} />
               <Divider />
