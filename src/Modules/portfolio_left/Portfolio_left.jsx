@@ -2,43 +2,43 @@ import React, { Component } from 'react';
 import logo2 from '../logo2.png';
 
 class DashboardSidebar extends Component {
-  constructor( props ) {
-    super( props ) {
-      this.state = {
-        totalCurrentValue: '',
-        totalgain: ''
-      };
-    }
-    this.dummyData = this.dummyData.bind(this);
-  }
+  // constructor( props ) {
+  //   super( props ) {
+  //     this.state = {
+  //       totalCurrentValue: '',
+  //       totalgain: ''
+  //     };
+  //   }
+  //   this.dummyData = this.dummyData.bind(this);
+  // }
 
-  dummyData = [
-      {
-        "symbol": "ETH",
-        "remaining": "100.0000",
-        "currentValue": "74615.00",
-        "originalValue": "1200.00",
-        "gain": "73415.00",
-        "percentageGain": "6017.92"
-      },
-      {
-        "symbol": "LTC",
-        "remaining": "23.0000",
-        "currentValue": "3629.63",
-        "originalValue": "2259.00",
-        "gain": "1370.63",
-        "percentageGain": "-39.33"
-      }
-    ];
+  // dummyData = [
+  //     {
+  //       "symbol": "ETH",
+  //       "remaining": "100.0000",
+  //       "currentValue": "74615.00",
+  //       "originalValue": "1200.00",
+  //       "gain": "73415.00",
+  //       "percentageGain": "6017.92"
+  //     },
+  //     {
+  //       "symbol": "LTC",
+  //       "remaining": "23.0000",
+  //       "currentValue": "3629.63",
+  //       "originalValue": "2259.00",
+  //       "gain": "1370.63",
+  //       "percentageGain": "-39.33"
+  //     }
+  //   ];
 
-  currentValue (arr) {
-    const sumCurrentValue = 0;
-    const sumGain = 0;
-    dummyData.forEach(element => {
-      sumGain += element.gain;
-      sumCurrentValue += element.currentValue;
-    }
-  };
+  // currentValue (arr) {
+  //   const sumCurrentValue = 0;
+  //   const sumGain = 0;
+  //   dummyData.forEach(element => {
+  //     sumGain += element.gain;
+  //     sumCurrentValue += element.currentValue;
+  //   }
+  // };
 
   render() {
     return (

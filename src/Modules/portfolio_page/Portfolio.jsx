@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Dimmer, Header, Icon, Form, Field, Input, Sidebar } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
+// import Portfolio_left from '../portfolio_left/Portfolio_left'
 
 class Portfolio extends Component {
   constructor ( props ) {
@@ -9,7 +10,9 @@ class Portfolio extends Component {
     this.state = {
       currentUserId: this.props.userId,
       labels:[],
-      remainingData: []
+      remainingData: [],
+      currentValuesFromAllCoins: [],
+      gainsFromAllCoins: []
     }
   }
   componentDidMount() {
@@ -21,17 +24,24 @@ class Portfolio extends Component {
             return response.json();
           })
     .then((datas) => {
-              const labels = this.state.labels;
-              const remainingData = this.state.remainingData
+              const { labels, remainingData, currentValuesFromAllCoins, gainsFromAllCoins } = this.state;
+
               datas.forEach((indiv) => {
-                let number = Number(indiv.remaining)
+                let number = Number(indiv.remaining);
+                let numCurrentValueFromACoin = Number(indiv.currentValue);
+                let numGainFromACoin = Number(indiv.gain);
+
                 labels.push(indiv.symbol);
-                remainingData.push(number)
+                remainingData.push(number);
+                currentValuesFromAllCoins.push(numCurrentValueFromACoin);
+                gainsFromAllCoins.push(numGainFromACoin);
               })
 
               this.setState({
                 labels: labels,
-                remainingData: remainingData
+                remainingData: remainingData,
+                currentValuesFromAllCoins: currentValuesFromAllCoins,
+                gainsFromAllCoins: gainsFromAllCoins
               }, () => console.log(this.state))
             })
   }
@@ -43,7 +53,6 @@ class Portfolio extends Component {
       <Header>
         Hello, user! {currentUserId}
       </Header>
-
       <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
 
       </div>
