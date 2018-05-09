@@ -45,7 +45,7 @@ class App extends Component {
                 render={props => <Login {...props} handleAuth={this.setLoggedin} />}
               />
               <Route path="/portfolio" render={props => <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} />} />
-
+              <Route path="/singlecurrency" render={props => <SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} />} />
               <Route path="/" component={WelcomePage} />
             </Switch>
           </Grid>

@@ -48,7 +48,7 @@ class Portfolio extends Component {
   render() {
     const transactions =
     this.state.transactions.map( transaction =>
-      <PortfolioMain key={transaction.id} singleTransaction={transaction} /> );
+      <PortfolioMain key={transaction.id} singleTransaction={transaction} userName={this.statecurrentUserName} userId={this.state.currentUserId} /> );
     return (
 
       <Grid.Row>
