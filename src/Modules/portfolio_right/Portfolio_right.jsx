@@ -15,7 +15,7 @@ class PortfolioRight extends Component {
     const color = parseFloat( singleTransaction.gain ) > 0 ? 'green' : 'red';
     const arrow = parseFloat( singleTransaction.gain ) > 0 ? 'caret up' : 'caret down';
     return (
-      <List.Item>
+      <List.Item onClick={this.props.setSymbol( 'BTC' )}>
         <Link to="/singlecurrency">
           <List.Content>
             <Table fixed unstackable>
