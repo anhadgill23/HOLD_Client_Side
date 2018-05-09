@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Dimmer, Header, Icon, Form, Field, Input, Grid } from 'semantic-ui-react';
+import { Button, Dimmer, Header, Icon, Form, Field, Input, Grid, Message } from 'semantic-ui-react';
 import {
-  BrowserRouter as Router,
   Route,
   Link,
   Redirect,
-  withRouter,
 } from 'react-router-dom';
 
 class Login extends Component {
@@ -14,20 +12,20 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      id: ''
+      id: '',
+      error: '',
     };
-  }
+  };
   onChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-      // error: false
     });
   }
 
   onSubmit = ( e ) => {
     e.preventDefault();
     const { email, password } = this.state;
-    fetch("/api/login", {
+    fetch('/api/login', {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers: new Headers({
@@ -39,41 +37,41 @@ class Login extends Component {
             return response.json();
           })
           .then((data) => {
-              console.log(data)
-               this.setState({ id: data.id });
-               this.props.handleAuth(true, this.state.id, data.name);
-               this.props.history.push(`/portfolio/${data.id}`);
+              if (data.err === 'Email or password incorrect') {
+                  this.setState({ error: 'Your email or password is incorrect, please try again.'})
+              } else {
+                this.setState({ id: data.id });
+                this.props.handleAuth(true, this.state.id, data.name);
+                this.props.history.push(`/portfolio/${data.id}`);
+              }
             })
-          .catch(error=>console.log('Error',error));
   }
 
 
   render() {
-
     return (
       <Grid.Row>
         <Grid.Column width={16}>
-        <Grid>
-          <Grid.Row centered>
-            <Grid.Column width={6}>
-              <Header>Login</Header>
-              <Form onSubmit={this.onSubmit}>
-                {/* {error && <Message
-                              error={error}
-                              content="That username/password is incorrect. Try again!"
-                          />} */}
-                <Form.Input label="Enter Email" placeholder="Email" name="email" type="email" onChange={this.onChange} required />
-                <Form.Input label="Enter Password" placeholder="Password" name="password" type="password" onChange={this.onChange} required />
-                <Form.Button type="submit" inverted >Login</Form.Button>
-              </Form>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-        <Button.Group>
-          <Link to="/"><Button inverted >Back</Button></Link>
-          <Button.Or />
-          <Link to="/register"><Button inverted >Register Page</Button></Link>
-        </Button.Group>
+          <Grid>
+            <Grid.Row centered>
+              <Grid.Column width={6}>
+                <Header>Login</Header>
+                <Form onSubmit={this.onSubmit}>
+                  {this.state.error && <Message
+                    content={this.state.error}
+                  />}
+                  <Form.Input label="Enter Email" placeholder="Email" name="email" type="email" onChange={this.onChange} required />
+                  <Form.Input label="Enter Password" placeholder="Password" name="password" type="password" onChange={this.onChange} required />
+                  <Form.Button type="submit" inverted >Login</Form.Button>
+                </Form>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+          <Button.Group>
+            <Link to="/"><Button inverted >Back</Button></Link>
+            <Button.Or />
+            <Link to="/register"><Button inverted >Register Page</Button></Link>
+          </Button.Group>
         </Grid.Column>
       </Grid.Row>
     );

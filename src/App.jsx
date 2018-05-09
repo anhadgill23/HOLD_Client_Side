@@ -17,15 +17,16 @@ class App extends Component {
   constructor( props ) {
     super( props );
     this.state = {
+      symbol: 'BTC', // Hardcoded for now
       isLoggedIn: false,
       userId: '',
-      userName: ''
+      userName: '',
     };
     this.setLoggedin = this.setLoggedin.bind( this );
   }
 
   setLoggedin( loggedIn, id, userName ) {
-    this.setState( { isLoggedIn: loggedIn, userId: id, userName: userName } );
+    this.setState( { isLoggedIn: loggedIn, userId: id, userName } );
   }
 
   render() {
@@ -44,15 +45,15 @@ class App extends Component {
                 path="/login"
                 render={props => <Login {...props} handleAuth={this.setLoggedin} />}
               />
-              <Route path="/portfolio" render={props => <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} />} />
+              {/* <Route path="/portfolio" render={props => <SingleCurrencyPage {...props} userName={this.state.userName} symbol={this.state.symbol} userId={this.state.userId} />} /> */}
 
-              <Route path="/" component={WelcomePage} />
+              <Route path="/portfolio" render={props => <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} />} />
+              <Route path="/singlecurrency" render={props => <SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} />} />
+              <Route path="/" exact component={WelcomePage} />
             </Switch>
           </Grid>
         </div>
       </div>
-
-
     );
   }
 }
