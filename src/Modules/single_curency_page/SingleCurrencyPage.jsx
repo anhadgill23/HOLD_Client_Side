@@ -13,6 +13,7 @@ class SingleCurrencyPage extends Component {
       transactions: [],
     };
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind( this );
+    this.handleInsertTransaction = this.handleInsertTransaction.bind( this );
   }
 
   componentDidMount() {
@@ -45,6 +46,20 @@ class SingleCurrencyPage extends Component {
     this.fetchTransactions( 2, 'BTC' );
   }
 
+  handleInsertTransaction( transaction ) {
+    console.log( transaction );
+    fetch( '/api/transactions/', {
+      method: 'POST',
+      body: JSON.stringify( transaction ),
+      headers: new Headers( {
+        'Content-Type': 'application/json',
+      } ),
+      credentials: 'same-origin',
+    } )
+      .then( response => response.json() );
+    this.fetchTransactions( 2, 'BTC' );
+  }
+
 
   render() {
     const transactions =
@@ -61,7 +76,7 @@ class SingleCurrencyPage extends Component {
               {transactions}
             </List>
           </div>
-          <AddCoinModal />
+          <AddCoinModal handleInsert={this.handleInsertTransaction} />
         </Grid.Column>
       </Grid.Row>
 
