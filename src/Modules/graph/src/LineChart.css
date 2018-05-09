@@ -17,17 +17,17 @@
 
 .linechart_area {
   padding: 8px;
-  fill: #64B5F6;
+  fill: #315a7d;
   stroke: none;
   opacity: .4;
 }
 
 .linechart_label {
- fill: #64B5F6;
+ fill: #8AB7E2;
  font-weight: 700;
 }
 
 .hoverLine {
-  stroke: #7D95B6;
+  stroke: white;
   stroke-width: 1;
 }

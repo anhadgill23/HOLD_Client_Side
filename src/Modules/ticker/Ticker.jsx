@@ -9,28 +9,26 @@ class Ticker extends Component {
       return { color: 'red' };
     } else if ( flag === '2' ) {
       return { color: 'green' };
-    } return {};
+    } return { color: 'orange' };
   }
 
   constructor( props ) {
     super( props );
+    this.socket = socketIOClient.connect( 'https://streamer.cryptocompare.com/', {
+      'force new connection': true,
+      reconnectionAttempts: 'Infinity',
+      timeout: 10000,
+      transports: ['websocket'],
+    } );
     this.state = {
       currency: props.currency,
     };
   }
 
   componentDidMount() {
-    const connectionOptions = {
-      'force new connection': true,
-      reconnectionAttempts: 'Infinity',
-      timeout: 10000,
-      transports: ['websocket'],
-    };
-
-    const socket = socketIOClient.connect( 'https://streamer.cryptocompare.com/', connectionOptions );
     const subscription = [`5~CCCAGG~${this.state.currency}~USD`, `11~${this.state.currency}`];
-    socket.emit( 'SubAdd', { subs: subscription } );
-    socket.on( 'm', ( message ) => {
+    this.socket.emit( 'SubAdd', { subs: subscription } );
+    this.socket.on( 'm', ( message ) => {
       const messageType = message.substring( 0, message.indexOf( '~' ) );
       if ( messageType === CCC.STATIC.TYPE.CURRENTAGG ) {
         const changes = ( getChanges( message ) );
@@ -43,6 +41,10 @@ class Ticker extends Component {
         // onsole.log( volData );
       }
     } );
+  }
+
+  componentWillUnmount() {
+    this.socket.disconnect();
   }
 
   render() {

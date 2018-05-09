@@ -189,7 +189,7 @@ class LineChart extends Component {
 // DEFAULT PROPS
 LineChart.defaultProps = {
   data: [],
-  color: '#2196F3',
+  color: '#485d6e',
   pointRadius: 5,
   svgHeight: 300,
   svgWidth: 900,
