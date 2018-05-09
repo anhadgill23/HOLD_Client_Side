@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Dimmer, Header, Icon, Form, Field, Input, Sidebar } from 'semantic-ui-react';
-import PieChart from '../piechart/PieChart.jsx'
+import PieChart from '../piechart/PieChart.jsx';
 
 class Portfolio extends Component {
   constructor ( props ) {
@@ -41,8 +41,9 @@ class Portfolio extends Component {
         Hello, user! {currentUserId}
       </Header>
       <PieChart />
+
       </div>
-    )
+    );
   }
 }
 
