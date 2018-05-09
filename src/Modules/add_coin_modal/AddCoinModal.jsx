@@ -16,8 +16,10 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind( this );
     this.postTransaction = this.postTransaction.bind( this );
     this.handleOpen = this.handleOpen.bind( this );
+    this.handleClose = this.handleClose.bind( this );
 
     this.state = {
+      userId: 3,
       modalOpen: false,
       startDate: moment(),
       buy: true,
@@ -32,7 +34,6 @@ class App extends Component {
 
   fetchCoins() {
     fetch( '/api/coins', {
-      // method: ''
       credentials: 'same-origin',
     } )
       .then( response => response.json() )
@@ -48,6 +49,12 @@ class App extends Component {
   handleOpen() {
     this.setState( {
       modalOpen: true,
+    } );
+  }
+
+  handleClose() {
+    this.setState( {
+      modalOpen: false,
     } );
   }
 
@@ -108,14 +115,14 @@ class App extends Component {
     if ( !this.state.amount_error && !this.state.price_error && !this.state.symbol_error ) {
       const transaction =
       {
+        users_id: this.state.userId,
         symbol: this.state.symbol,
         price: this.state.price,
         amount: this.state.amount,
+        buy: this.state.buy,
       };
       this.postTransaction( transaction );
-      this.setState( {
-        modalOpen: false,
-      } );
+      this.handleClose();
       console.log( transaction );
     } else {
       console.log( 'BAD INPUT' );
@@ -167,7 +174,7 @@ class App extends Component {
               <Input size="small" error={this.state.amount_error} placeholder={this.state.sell ? 'Amount sold' : 'Amount bought'} onChange={this.handleAmountInput} />
               <Divider />
 
-              <Button inverted color={this.state.buy ? 'green' : 'red'}onClick={this.handleSubmit}>Add transaction</Button>
+              <Button inverted color={this.state.buy ? 'green' : 'red'}onClick={this.handleSubmit}>Add transaction</Button> <Button inverted onClick={this.handleClose}>Cancel</Button>
             </Modal.Description>
           </Modal.Content>
         </Modal>
