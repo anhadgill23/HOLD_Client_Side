@@ -18,6 +18,8 @@ class Portfolio extends Component {
     };
   }
   componentDidMount() {
+  }
+
   fetchTransactions() {
     fetch( `/api/${this.state.currentUserId}/transactions`, {
       credentials: 'same-origin',
