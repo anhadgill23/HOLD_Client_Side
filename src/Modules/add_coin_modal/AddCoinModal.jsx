@@ -5,10 +5,10 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 
 
-class App extends Component {
-  constructor() {
-    super();
-
+class AddCoinModal extends Component {
+  constructor( props ) {
+    super( props );
+    console.log( 'ADD COIN MODAL USER ID', this.props.userId );
     this.handlePriceInput = this.handlePriceInput.bind( this );
     this.handleAmountInput = this.handleAmountInput.bind( this );
     this.handleChange = this.handleDateInput.bind( this );
@@ -19,7 +19,7 @@ class App extends Component {
     this.handleClose = this.handleClose.bind( this );
 
     this.state = {
-      userId: 3,
+      userId: this.props.userId,
       modalOpen: false,
       startDate: moment(),
       buy: true,
@@ -138,6 +138,7 @@ class App extends Component {
       } ),
       credentials: 'same-origin',
     } ).then( ( result ) => {
+      this.props.fetchTransactions();
       this.setState( {
         amount_error: true,
         price_error: true,
@@ -183,4 +184,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default AddCoinModal;

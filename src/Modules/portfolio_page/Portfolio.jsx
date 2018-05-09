@@ -3,48 +3,48 @@ import { Button, Dimmer, Header, Icon, Form, Field, Input, Sidebar } from 'seman
 import PieChart from '../piechart/PieChart.jsx';
 
 class Portfolio extends Component {
-  constructor ( props ) {
-    super ( props )
-    console.log(this.props)
+  constructor( props ) {
+    super( props );
+    console.log( this.props );
     this.state = {
       currentUserId: this.props.userId,
-      labels:[],
-      remainingData: []
-    }
+      labels: [],
+      remainingData: [],
+    };
   }
   componentDidMount() {
-    fetch("/api/2/transactions", {
-            credentials: 'same-origin'
-            })
-    .then(function(response) {
-            console.log('response is', response)
-            return response.json();
-          })
-    .then((datas) => {
-              const labels = this.state.labels;
-              const remainingData = this.state.remainingData
-              datas.forEach((indiv) => {
-                let number = Number(indiv.remaining)
-                labels.push(indiv.symbol);
-                remainingData.push(number)
-              })
+    fetch( '/api/3/transactions', {
+      credentials: 'same-origin',
+    } )
+      .then( ( response ) => {
+        console.log( 'response is', response );
+        return response.json();
+      } )
+      .then( ( datas ) => {
+        const labels = this.state.labels;
+        const remainingData = this.state.remainingData;
+        datas.forEach( ( indiv ) => {
+          const number = Number( indiv.remaining );
+          labels.push( indiv.symbol );
+          remainingData.push( number );
+        } );
 
-              this.setState({
-                labels: labels,
-                remainingData: remainingData
-              }, () => console.log(this.state))
-            })
+        this.setState( {
+          labels,
+          remainingData,
+        }, () => console.log( this.state ) );
+      } );
   }
   render() {
-    console.log('rerender')
-    const { currentUserId } = this.state.currentUserId
+    console.log( 'rerender' );
+    const { currentUserId } = this.state.currentUserId;
     return (
       <div>
-      <Header>
+        <Header>
         Hello, user! {currentUserId}
-      </Header>
+        </Header>
 
-      <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
+        <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
 
       </div>
     );
