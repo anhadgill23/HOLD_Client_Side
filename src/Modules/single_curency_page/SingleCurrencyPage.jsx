@@ -10,7 +10,7 @@ class SingleCurrencyPage extends Component {
     super( props );
     this.state = {
       userId: this.props.userId,
-      symbol: 'BTC',
+      symbol: this.props.symbol,
       transactions: [],
     };
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind( this );
@@ -48,23 +48,6 @@ class SingleCurrencyPage extends Component {
     this.fetchTransactions();
   }
 
-  // handleInsertTransaction( transaction ) {
-  //   console.log( transaction );
-  //   fetch( '/api/transactions/', {
-  //     method: 'POST',
-  //     body: JSON.stringify( transaction ),
-  //     headers: new Headers( {
-  //       'Content-Type': 'application/json',
-  //     } ),
-  //     credentials: 'same-origin',
-  //   } )
-  //     .then( ( response ) => {
-  //       console.log( response );
-  //       this.fetchTransactions( this.state.userId, this.state.symbol );
-  //     } );
-  // }
-
-
   render() {
     const transactions =
     this.state.transactions.map( transaction =>
@@ -80,7 +63,7 @@ class SingleCurrencyPage extends Component {
               {transactions}
             </List>
           </div>
-          <AddCoinModal userId={this.state.userId} fetchTransactions={this.fetchTransactions} />
+          <AddCoinModal symbol={this.state.symbol} userId={this.state.userId} fetchTransactions={this.fetchTransactions} />
         </Grid.Column>
       </Grid.Row>
 

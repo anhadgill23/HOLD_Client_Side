@@ -14,34 +14,35 @@ class Portfolio extends Component {
     };
   }
   componentDidMount() {
-
-    fetch(`/api/${this.props.userId}/transactions`, {
-            credentials: 'same-origin'
-            })
-    .then(function(response) {
-            console.log('response is', response)
-            return response.json();
-          })
-    .then((datas) => {
-              const labels = this.state.labels;
-              const remainingData = this.state.remainingData
-              datas.forEach((indiv) => {
-                let number = Number(indiv.remaining)
-                labels.push(indiv.symbol);
-                remainingData.push(number)
-              })
-              this.setState({
-                labels: labels,
-                remainingData: remainingData
-              }, () => console.log(this.state))
-            })
+    fetch( `/api/${this.props.userId}/transactions`, {
+      credentials: 'same-origin',
+    } )
+      .then( ( response ) => {
+        console.log( 'response is', response );
+        return response.json();
+      } )
+      .then( ( datas ) => {
+        const labels = this.state.labels;
+        const remainingData = this.state.remainingData;
+        datas.forEach( ( indiv ) => {
+          if ( !Number( indiv.remaining ) <= 0 ) {
+            const number = Number( indiv.remaining );
+            labels.push( indiv.symbol );
+            remainingData.push( number );
+          }
+        } );
+        this.setState( {
+          labels,
+          remainingData,
+        }, () => console.log( this.state ) );
+      } );
   }
   render() {
     return (
       <div>
-      <Header>
+        <Header>
         Hello, {this.state.currentUserName}!
-      </Header>
+        </Header>
 
         <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
 
