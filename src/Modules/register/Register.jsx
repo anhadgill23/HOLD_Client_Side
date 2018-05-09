@@ -44,7 +44,7 @@ class Register extends Component {
             })
             .then((data) => {
                 this.setState({ id: data.id });
-                this.props.handleAuth(true, this.state.id);
+                this.props.handleAuth(true, this.state.id, data.name);
                 this.props.history.push(`/portfolio/${data.id}`);
             })
             .catch(error=>console.log('Error',error));

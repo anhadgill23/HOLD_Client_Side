@@ -4,10 +4,11 @@ import PieChart from '../piechart/PieChart.jsx';
 // import Portfolio_left from '../portfolio_left/Portfolio_left'
 
 class Portfolio extends Component {
-  constructor ( props ) {
-    super ( props )
-    console.log(this.props)
+  constructor( props ) {
+    super( props );
+    console.log( this.props );
     this.state = {
+      currentUserName: this.props.userName,
       currentUserId: this.props.userId,
       labels:[],
       remainingData: [],
@@ -16,7 +17,8 @@ class Portfolio extends Component {
     }
   }
   componentDidMount() {
-    fetch("/api/2/transactions", {
+
+    fetch(`/api/${this.props.userId}/transactions`, {
             credentials: 'same-origin'
             })
     .then(function(response) {
@@ -36,7 +38,6 @@ class Portfolio extends Component {
                 currentValuesFromAllCoins.push(numCurrentValueFromACoin);
                 gainsFromAllCoins.push(numGainFromACoin);
               })
-
               this.setState({
                 labels: labels,
                 remainingData: remainingData,
@@ -46,12 +47,10 @@ class Portfolio extends Component {
             })
   }
   render() {
-    console.log('rerender')
-    const { currentUserId } = this.state.currentUserId
     return (
       <div>
       <Header>
-        Hello, user! {currentUserId}
+        Hello, {this.state.currentUserName}!
       </Header>
       <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
 

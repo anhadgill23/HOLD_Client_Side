@@ -9,19 +9,21 @@ class SingleCurrencyPage extends Component {
   constructor( props ) {
     super( props );
     this.state = {
+      userId: this.props.userId,
       symbol: 'BTC',
       transactions: [],
     };
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind( this );
-    this.handleInsertTransaction = this.handleInsertTransaction.bind( this );
+    this.fetchTransactions = this.fetchTransactions.bind( this );
+    // this.handleInsertTransaction = this.handleInsertTransaction.bind( this );
   }
 
   componentDidMount() {
-    this.fetchTransactions( 2, 'BTC' );
+    this.fetchTransactions();
   }
 
-  fetchTransactions( userId, symbol ) {
-    fetch( `/api/${userId}/transactions/${symbol}`, {
+  fetchTransactions() {
+    fetch( `/api/${this.state.userId}/transactions/${this.state.symbol}`, {
       // method: ''
       credentials: 'same-origin',
     } )
@@ -43,22 +45,24 @@ class SingleCurrencyPage extends Component {
       credentials: 'same-origin',
     } )
       .then( response => response.json() );
-    this.fetchTransactions( 2, 'BTC' );
+    this.fetchTransactions();
   }
 
-  handleInsertTransaction( transaction ) {
-    console.log( transaction );
-    fetch( '/api/transactions/', {
-      method: 'POST',
-      body: JSON.stringify( transaction ),
-      headers: new Headers( {
-        'Content-Type': 'application/json',
-      } ),
-      credentials: 'same-origin',
-    } )
-      .then( response => response.json() );
-    this.fetchTransactions( 2, 'BTC' );
-  }
+  // handleInsertTransaction( transaction ) {
+  //   console.log( transaction );
+  //   fetch( '/api/transactions/', {
+  //     method: 'POST',
+  //     body: JSON.stringify( transaction ),
+  //     headers: new Headers( {
+  //       'Content-Type': 'application/json',
+  //     } ),
+  //     credentials: 'same-origin',
+  //   } )
+  //     .then( ( response ) => {
+  //       console.log( response );
+  //       this.fetchTransactions( this.state.userId, this.state.symbol );
+  //     } );
+  // }
 
 
   render() {
@@ -76,7 +80,7 @@ class SingleCurrencyPage extends Component {
               {transactions}
             </List>
           </div>
-          <AddCoinModal handleInsert={this.handleInsertTransaction} />
+          <AddCoinModal userId={this.state.userId} fetchTransactions={this.fetchTransactions} />
         </Grid.Column>
       </Grid.Row>
 

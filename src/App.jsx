@@ -3,7 +3,6 @@ import { Grid } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
   Route,
-
   Switch,
 } from 'react-router-dom';
 import Register from './Modules/register/Register.jsx';
@@ -20,13 +19,13 @@ class App extends Component {
     this.state = {
       isLoggedIn: false,
       userId: '',
+      userName: ''
     };
     this.setLoggedin = this.setLoggedin.bind( this );
   }
 
-  setLoggedin( loggedIn, id ) {
-    this.setState( { isLoggedIn: loggedIn, userId: id } );
-    console.log( this.state );
+  setLoggedin( loggedIn, id, userName ) {
+    this.setState( { isLoggedIn: loggedIn, userId: id, userName: userName } );
   }
 
   render() {
@@ -45,7 +44,7 @@ class App extends Component {
                 path="/login"
                 render={props => <Login {...props} handleAuth={this.setLoggedin} />}
               />
-              <Route path="/portfolio" render={props => <Portfolio {...props} userId={this.state.userId} />} />
+              <Route path="/portfolio" render={props => <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} />} />
 
               <Route path="/" component={WelcomePage} />
             </Switch>

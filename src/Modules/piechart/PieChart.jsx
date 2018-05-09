@@ -18,10 +18,16 @@ class PieChart extends Component {
           data: this.props.remaining,
           backgroundColor: [
           '#FF6384',
-          '#36A2EB'],
+          '#36A2EB',
+          '#1B4F64',
+          '#079186',
+          '#2EB176'],
           hoverBackgroundColor: [
           '#FF6384',
-          '#36A2EB']
+          '#36A2EB',
+          '#1B4F64',
+          '#079186',
+          '#2EB176'],
         }]
 
       };
