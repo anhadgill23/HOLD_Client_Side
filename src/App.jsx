@@ -56,6 +56,7 @@ class App extends Component {
             </Switch>
           </Grid>
         </div>
+      </div>
       );
   }
 }
