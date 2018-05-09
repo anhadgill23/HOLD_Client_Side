@@ -24,7 +24,6 @@ class SingleCurrencyPage extends Component {
 
   fetchTransactions() {
     fetch( `/api/${this.state.userId}/transactions/${this.state.symbol}`, {
-      // method: ''
       credentials: 'same-origin',
     } )
       .then( response => response.json() )
@@ -47,24 +46,6 @@ class SingleCurrencyPage extends Component {
       .then( response => response.json() );
     this.fetchTransactions();
   }
-
-  // handleInsertTransaction( transaction ) {
-  //   console.log( transaction );
-  //   fetch( '/api/transactions/', {
-  //     method: 'POST',
-  //     body: JSON.stringify( transaction ),
-  //     headers: new Headers( {
-  //       'Content-Type': 'application/json',
-  //     } ),
-  //     credentials: 'same-origin',
-  //   } )
-  //     .then( ( response ) => {
-  //       console.log( response );
-  //       this.fetchTransactions( this.state.userId, this.state.symbol );
-  //     } );
-  // }
-
-
   render() {
     const transactions =
     this.state.transactions.map( transaction =>

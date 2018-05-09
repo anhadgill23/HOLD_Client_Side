@@ -19,13 +19,13 @@ class App extends Component {
     this.state = {
       isLoggedIn: false,
       userId: '',
-      userName: ''
+      userName: '',
     };
     this.setLoggedin = this.setLoggedin.bind( this );
   }
 
   setLoggedin( loggedIn, id, userName ) {
-    this.setState( { isLoggedIn: loggedIn, userId: id, userName: userName } );
+    this.setState( { isLoggedIn: loggedIn, userId: id, userName } );
   }
 
   render() {

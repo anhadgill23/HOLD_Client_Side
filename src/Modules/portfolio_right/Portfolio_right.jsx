@@ -1,41 +1,42 @@
 import React, { Component } from 'react';
-import { List, Table, Icon } from 'semantic-ui-react';
+import { List, Table, Icon, Divider } from 'semantic-ui-react';
 import SingleCurrencyPage from '../single_curency_page/SingleCurrencyPage.jsx';
 import {
   Route,
   Link,
 } from 'react-router-dom';
-// import PARENT PAGE WITH PROPS from '---';
+import Portfolio from '../portfolio_page/Portfolio.jsx';
 
 class PortfolioRight extends Component {
   render() {
     // Make sure prop name is correct
-    const { transaction } = this.props;
-    const value = transaction.currentValue * transaction.remaining;
-    const color = parseFloat( transaction.gain ) > 0 ? 'green' : 'red';
-    const arrow = parseFloat( transaction.gain ) > 0 ? 'caret up' : 'caret down';
+    const { singleTransaction } = this.props;
+    const value = singleTransaction.currentValue * singleTransaction.remaining;
+    const color = parseFloat( singleTransaction.gain ) > 0 ? 'green' : 'red';
+    const arrow = parseFloat( singleTransaction.gain ) > 0 ? 'caret up' : 'caret down';
     return (
       <List.Item>
         <Link to="/singletransaction">
           <List.Content>
-            <Table>
+            <Table fixed unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>{transaction.symbol}</Table.HeaderCell>
-                  <Table.HeaderCell style={{ color }}><Icon name={arrow} size="large" />${transaction.gain}</Table.HeaderCell>
+                  <Table.HeaderCell>{singleTransaction.symbol}</Table.HeaderCell>
+                  <Table.HeaderCell style={{ color }}><Icon name={arrow} size="large" />${singleTransaction.gain}</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
                 <Table.Row>
-                  <Table.Cell>QTY: {transaction.remaining} (${value})</Table.Cell>
-                  <Table.Cell>${transaction.currentValue}</Table.Cell>
+                  <Table.Cell>QTY: {singleTransaction.remaining} (${value})</Table.Cell>
+                  <Table.Cell>${singleTransaction.currentValue}</Table.Cell>
                 </Table.Row>
               </Table.Body>
             </Table>
+            <Divider hidden />
           </List.Content>
         </Link>
         {/* CONFIRM ROUTETO SINGLE CURRENCY PAGE WORKS...LINE 37 */}
-        <Route path="/login" render={props => <SingleCurrencyPage {...props} symbol={transaction.symbol} />} />
+        <Route path="/singletransaction" render={props => <SingleCurrencyPage {...props} symbol={singleTransaction.symbol} />} />
       </List.Item>
     );
   }
