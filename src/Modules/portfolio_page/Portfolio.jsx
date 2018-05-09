@@ -21,8 +21,7 @@ class Portfolio extends Component {
     this.fetchTransactions();
   }
   setSymbol( symbol ) {
-    this.props.setSymbol( event );
-    console.log( 'portfolio.jsx event', event.value );
+    this.props.setSymbol( symbol );
   }
   fetchTransactions() {
     fetch( `/api/${this.state.currentUserId}/transactions`, {
@@ -49,7 +48,7 @@ class Portfolio extends Component {
   render() {
     const transactions =
     this.state.transactions.map( transaction =>
-      <PortfolioMain key={transaction.id} singleTransaction={transaction} userName={this.statecurrentUserName} userId={this.state.currentUserId} setSymbol={() => this.setSymbol} /> );
+      <PortfolioMain key={transaction.id} singleTransaction={transaction} userName={this.statecurrentUserName} userId={this.state.currentUserId} setSymbol={this.setSymbol} /> );
     return (
 
       <Grid.Row>

@@ -32,7 +32,6 @@ class App extends Component {
 
   setSymbol( symbol ) {
     this.setState( { symbol } );
-    console.log( 'App.jsx setSymbol', symbol );
   }
 
   render() {
@@ -57,7 +56,7 @@ class App extends Component {
                   {...props}
                   userName={this.state.userName}
                   userId={this.state.userId}
-                  setSymbol={() => this.setSymbol}
+                  setSymbol={this.setSymbol}
                 /> )}
               />
               <Route
