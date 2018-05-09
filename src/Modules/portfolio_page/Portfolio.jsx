@@ -8,7 +8,6 @@ class Portfolio extends Component {
   constructor( props ) {
     super( props );
     this.fetchTransactions = this.fetchTransactions.bind( this );
-    console.log( this.props );
     this.state = {
       currentUserName: this.props.userName,
       currentUserId: this.props.userId,
@@ -16,18 +15,19 @@ class Portfolio extends Component {
       remainingData: [],
       transactions: [],
     };
+    this.setSymbol = this.setSymbol.bind( this );
   }
   componentDidMount() {
+    this.fetchTransactions();
   }
-
+  setSymbol( symbol ) {
+    this.props.setSymbol( symbol );
+  }
   fetchTransactions() {
     fetch( `/api/${this.state.currentUserId}/transactions`, {
       credentials: 'same-origin',
     } )
-      .then( ( response ) => {
-        console.log( 'response is', response );
-        return response.json();
-      } )
+      .then( response => response.json() )
       .then( ( transactions ) => {
         const labels = [];
         const remainingData = [];
@@ -40,14 +40,15 @@ class Portfolio extends Component {
           labels,
           remainingData,
           transactions,
-        }, () => console.log( this.state ) );
+        } );
       } );
   }
+
 
   render() {
     const transactions =
     this.state.transactions.map( transaction =>
-      <PortfolioMain key={transaction.id} singleTransaction={transaction} userName={this.statecurrentUserName} userId={this.state.currentUserId} /> );
+      <PortfolioMain key={transaction.id} singleTransaction={transaction} userName={this.statecurrentUserName} userId={this.state.currentUserId} setSymbol={this.setSymbol} /> );
     return (
 
       <Grid.Row>

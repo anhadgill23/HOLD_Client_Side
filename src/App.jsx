@@ -24,10 +24,15 @@ class App extends Component {
       userName: '',
     };
     this.setLoggedin = this.setLoggedin.bind( this );
+    this.setSymbol = this.setSymbol.bind( this );
   }
 
   setLoggedin( loggedIn, id, userName ) {
     this.setState( { isLoggedIn: loggedIn, userId: id, userName } );
+  }
+
+  setSymbol( symbol ) {
+    this.setState( { symbol } );
   }
 
   render() {
@@ -46,10 +51,11 @@ class App extends Component {
                 path="/login"
                 render={props => <Login {...props} handleAuth={this.setLoggedin} />}
               />
+
               <Route path="/portfolio" render={(props) => (
                   this.state.isLoggedIn ?
-                  (<Portfolio {...props} userName={this.state.userName} userId={this.state.userId} />) :
-                  (<Redirect to='/login' />)
+                  (<Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol}/>) :
+                  (<Redirect to='/login' />)        
                   )} />
               <Route path="/singlecurrency" render={(props) => (
                 this.state.isLoggedIn ?

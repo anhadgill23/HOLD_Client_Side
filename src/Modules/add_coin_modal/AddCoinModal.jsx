@@ -8,7 +8,6 @@ import DatePicker from 'react-datepicker';
 class AddCoinModal extends Component {
   constructor( props ) {
     super( props );
-    console.log( 'ADD COIN MODAL USER ID', this.props.userId );
     this.handlePriceInput = this.handlePriceInput.bind( this );
     this.handleAmountInput = this.handleAmountInput.bind( this );
     this.handleChange = this.handleDateInput.bind( this );
@@ -98,7 +97,6 @@ class AddCoinModal extends Component {
   }
 
   handleCurrencyInput( event, data ) {
-    console.log( data.value );
     if ( data.value ) {
       this.setState( {
         symbol_error: false,
@@ -123,7 +121,6 @@ class AddCoinModal extends Component {
       };
       this.postTransaction( transaction );
       this.handleClose();
-      console.log( transaction );
     } else {
       console.log( 'BAD INPUT' );
     }
