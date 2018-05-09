@@ -48,7 +48,7 @@ class App extends Component {
               {/* <Route path="/portfolio" render={props => <SingleCurrencyPage {...props} userName={this.state.userName} symbol={this.state.symbol} userId={this.state.userId} />} /> */}
 
               <Route path="/portfolio" render={props => <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} />} />
-
+              <Route path="/singlecurrency" render={props => <SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} />} />
               <Route path="/" exact component={WelcomePage} />
             </Switch>
           </Grid>

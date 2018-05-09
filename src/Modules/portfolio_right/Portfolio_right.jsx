@@ -16,7 +16,7 @@ class PortfolioRight extends Component {
     const arrow = parseFloat( singleTransaction.gain ) > 0 ? 'caret up' : 'caret down';
     return (
       <List.Item>
-        <Link to="/singletransaction">
+        <Link to="/singlecurrency">
           <List.Content>
             <Table fixed unstackable>
               <Table.Header>
@@ -35,8 +35,6 @@ class PortfolioRight extends Component {
             <Divider hidden />
           </List.Content>
         </Link>
-        {/* CONFIRM ROUTETO SINGLE CURRENCY PAGE WORKS...LINE 37 */}
-        <Route path="/singletransaction" render={props => <SingleCurrencyPage {...props} symbol={singleTransaction.symbol} />} />
       </List.Item>
     );
   }
