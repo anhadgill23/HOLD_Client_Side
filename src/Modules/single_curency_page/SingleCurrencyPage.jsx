@@ -24,7 +24,6 @@ class SingleCurrencyPage extends Component {
 
   fetchTransactions() {
     fetch( `/api/${this.state.userId}/transactions/${this.state.symbol}`, {
-      // method: ''
       credentials: 'same-origin',
     } )
       .then( response => response.json() )
@@ -47,7 +46,7 @@ class SingleCurrencyPage extends Component {
       .then( response => response.json() );
     this.fetchTransactions();
   }
-
+  
   render() {
     const transactions =
     this.state.transactions.map( transaction =>
