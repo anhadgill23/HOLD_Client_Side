@@ -9,7 +9,7 @@ class App extends Component {
   constructor() {
     super();
 
-    this.handlePurchaseInput = this.handlePurchaseInput.bind( this );
+    this.handlePriceInput = this.handlePriceInput.bind( this );
     this.handleAmountInput = this.handleAmountInput.bind( this );
     this.handleChange = this.handleDateInput.bind( this );
     this.handleCurrencyInput = this.handleCurrencyInput.bind( this );
@@ -19,7 +19,7 @@ class App extends Component {
       startDate: moment(),
       buy: true,
       amount_error: true,
-      purchase_error: true,
+      price_error: true,
       symbol_error: true,
       coins: [],
     };
@@ -42,14 +42,15 @@ class App extends Component {
       } );
   }
 
-  handlePurchaseInput( event ) {
+  handlePriceInput( event ) {
     if ( !event.target.value.match( /^[+-]?\d+(\.\d+)?$/ ) && event.target.value.length >= 0 ) {
       this.setState( {
-        purchase_error: true,
+        price_error: true,
       } );
     } else {
       this.setState( {
-        purchase_error: false,
+        price: event.target.value,
+        price_error: false,
       } );
     }
   }
@@ -62,6 +63,7 @@ class App extends Component {
     } else {
       this.setState( {
         amount_error: false,
+        amount: event.target.value,
       } );
     }
   }
@@ -94,8 +96,14 @@ class App extends Component {
   }
 
   handleSubmit() {
-    if ( !this.state.amount_error && !this.state.purchase_error && !this.state.symbol_error ) {
-      console.log( 'GOOD INPUT' );
+    if ( !this.state.amount_error && !this.state.price_error && !this.state.symbol_error ) {
+      const transaction =
+      {
+        symbol: this.state.symbol,
+        price: this.state.price,
+        amount: this.state.amount,
+      };
+      console.log( transaction );
     } else {
       console.log( 'BAD INPUT' );
     }
@@ -124,7 +132,7 @@ class App extends Component {
               <Divider />
               <Dropdown placeholder="Select Currency" fluid search selection options={this.state.coins} error={this.state.symbol_error} onChange={this.handleCurrencyInput} />
               <Divider />
-              <Input size="small" error={this.state.purchase_error} placeholder="Purchase price.." onChange={this.handlePurchaseInput} />
+              <Input size="small" error={this.state.price_error} placeholder="Purchase price.." onChange={this.handlePriceInput} />
               <Divider />
               <Input size="small" error={this.state.amount_error} placeholder={this.state.sell ? 'Amount sold' : 'Amount bought'} onChange={this.handleAmountInput} />
               <Divider />
