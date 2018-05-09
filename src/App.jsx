@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
+  Redirect
 } from 'react-router-dom';
 import Register from './Modules/register/Register.jsx';
 import Login from './Modules/login/Login.jsx';
@@ -30,31 +31,35 @@ class App extends Component {
   }
 
   render() {
-    return (
+      return (
 
-      <div className="App">
-        <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
-        <div style={{ padding: '2em' }}>
-          <Grid stackable>
-            <Switch>
-              <Route
-                path="/register"
-                render={props => <Register {...props} handleAuth={this.setLoggedin} />}
-              />
-              <Route
-                path="/login"
-                render={props => <Login {...props} handleAuth={this.setLoggedin} />}
-              />
-              {/* <Route path="/portfolio" render={props => <SingleCurrencyPage {...props} userName={this.state.userName} symbol={this.state.symbol} userId={this.state.userId} />} /> */}
+        <div className="App">
+          <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
+          <div style={{ padding: '2em' }}>
+            <Grid stackable>
+              <Switch>
+                <Route
+                  path="/register"
+                  render={props => <Register {...props} handleAuth={this.setLoggedin} />}
+                />
+                <Route
+                  path="/login"
+                  render={props => <Login {...props} handleAuth={this.setLoggedin} />}
+                />
+                {/* <Route path="/portfolio" render={props => <SingleCurrencyPage {...props} userName={this.state.userName} symbol={this.state.symbol} userId={this.state.userId} />} /> */}
 
-              <Route path="/portfolio" render={props => <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} />} />
+                <Route path="/portfolio" render={(props) => (
+                  this.state.isLoggedIn ?
+                  (<Portfolio {...props} userName={this.state.userName} userId={this.state.userId} />) :
+                  (<Redirect to='/login' />)
+                  )} />
 
-              <Route path="/" exact component={WelcomePage} />
-            </Switch>
-          </Grid>
+                <Route path="/" exact component={WelcomePage} />
+              </Switch>
+            </Grid>
+          </div>
         </div>
-      </div>
-    );
+      );
   }
 }
 

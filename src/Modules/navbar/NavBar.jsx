@@ -11,6 +11,7 @@ class NavBar extends Component {
   handleLogout() {
     fetch( '/api/logout', {
       method: 'POST',
+      credentials: 'same-origin'
     } )
       .then( ( result ) => {
         this.props.handleAuth( false, null, null );
@@ -24,7 +25,7 @@ class NavBar extends Component {
             <img src={logo2} alt="cross logo" /> HOLD
           </Menu.Item>
         </Link>
-        {this.props.isAuthorized && <Menu.Item className="ui right floated button"> <Button secondary onClick={this.handleLogout} > Log Out</Button></Menu.Item>}
+        {this.props.isAuthorized && <Menu.Item className="ui right floated button"> <Link to='/'><Button secondary onClick={this.handleLogout} > Log Out</Button></Link></Menu.Item>}
       </Menu>
     );
   }
