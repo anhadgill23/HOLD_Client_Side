@@ -4,86 +4,148 @@ import 'react-datepicker/dist/react-datepicker.css';
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 
-class App extends Component {
-  constructor() {
-    super();
 
-    this.handlePurchaseInput = this.handlePurchaseInput.bind( this );
+class AddCoinModal extends Component {
+  constructor( props ) {
+    super( props );
+    console.log( 'ADD COIN MODAL USER ID', this.props.userId );
+    this.handlePriceInput = this.handlePriceInput.bind( this );
     this.handleAmountInput = this.handleAmountInput.bind( this );
-    this.handleChange = this.handleChange.bind( this );
+    this.handleChange = this.handleDateInput.bind( this );
+    this.handleCurrencyInput = this.handleCurrencyInput.bind( this );
+    this.handleSubmit = this.handleSubmit.bind( this );
+    this.postTransaction = this.postTransaction.bind( this );
+    this.handleOpen = this.handleOpen.bind( this );
+    this.handleClose = this.handleClose.bind( this );
 
     this.state = {
+      userId: this.props.userId,
+      modalOpen: false,
       startDate: moment(),
       buy: true,
-      sell: false,
-      currencies: [{
-        key: 'btc', value: 'btc', text: 'Bitcoin',
-      },
-      {
-        key: 'ltc', value: 'ltc', text: 'Litecoin',
-      },
-      {
-        key: 'bch', value: 'bch', text: 'Bitecoin Cash',
-      },
-      ],
+      amount_error: true,
+      price_error: true,
+      symbol_error: true,
+      coins: [],
     };
+
+    this.fetchCoins();
   }
 
-  getTestData() {
-    return fetch( 'http://localhost:8080/test' )
+  fetchCoins() {
+    fetch( '/api/coins', {
+      credentials: 'same-origin',
+    } )
       .then( response => response.json() )
-      .then( ( responseJson ) => {
-        this.console.log( responseJson );
+      .then( ( coins ) => {
+        const parsedCoins = coins.map( coin => ( { key: coin.Symbol, value: coin.Symbol, text: coin.FullName } ) );
+        this.setState( { coins: parsedCoins } );
       } )
       .catch( ( error ) => {
         this.console.error( error );
       } );
   }
 
-  handlePurchaseInput( event ) {
-    if ( !event.target.value.match( /^[+-]?\d+(\.\d+)?$/ ) && event.target.value.length > 0 ) {
+  handleOpen() {
+    this.setState( {
+      modalOpen: true,
+    } );
+  }
+
+  handleClose() {
+    this.setState( {
+      modalOpen: false,
+    } );
+  }
+
+  handlePriceInput( event ) {
+    if ( !event.target.value.match( /^[+-]?\d+(\.\d+)?$/ ) && event.target.value.length >= 0 ) {
       this.setState( {
-        purchase_error: true,
+        price_error: true,
       } );
     } else {
       this.setState( {
-        purchase_error: false,
+        price: event.target.value,
+        price_error: false,
       } );
     }
   }
 
   handleAmountInput( event ) {
-    if ( !event.target.value.match( /^[+-]?\d+(\.\d+)?$/ ) && event.target.value.length > 0 ) {
+    if ( !event.target.value.match( /^[+-]?\d+(\.\d+)?$/ ) && event.target.value.length >= 0 ) {
       this.setState( {
         amount_error: true,
       } );
     } else {
       this.setState( {
         amount_error: false,
+        amount: event.target.value,
       } );
     }
   }
 
   handleBuyState( state ) {
     this.setState( {
-      buy: !state,
-      sell: false,
+      buy: state,
     } );
   }
 
-  handleSellState( state ) {
-    this.setState( {
-      sell: !state,
-      buy: false,
-    } );
-  }
 
-  handleChange( date ) {
+  handleDateInput( date ) {
     this.setState( {
       startDate: date,
     } );
   }
 
+  handleCurrencyInput( event, data ) {
+    console.log( data.value );
+    if ( data.value ) {
+      this.setState( {
+        symbol_error: false,
+        symbol: data.value,
+      } );
+    } else {
+      this.setState( {
+        symbol_error: true,
+      } );
+    }
+  }
+
+  handleSubmit() {
+    if ( !this.state.amount_error && !this.state.price_error && !this.state.symbol_error ) {
+      const transaction =
+      {
+        users_id: this.state.userId,
+        symbol: this.state.symbol,
+        price: this.state.price,
+        amount: this.state.amount,
+        buy: this.state.buy,
+      };
+      this.postTransaction( transaction );
+      this.handleClose();
+      console.log( transaction );
+    } else {
+      console.log( 'BAD INPUT' );
+    }
+  }
+
+  postTransaction( transaciton ) {
+    fetch( '/api/transactions', {
+      method: 'POST',
+      body: JSON.stringify( transaciton ),
+      headers: new Headers( {
+        'Content-Type': 'application/json',
+      } ),
+      credentials: 'same-origin',
+    } ).then( ( result ) => {
+      this.props.fetchTransactions();
+      this.setState( {
+        amount_error: true,
+        price_error: true,
+        symbol_error: true,
+      } );
+    } );
+  }
 
   render() {
     return (
@@ -92,28 +154,28 @@ class App extends Component {
         <br />
         <br />
         <br />
-        <Modal dimmer="blurring" trigger={<Button>Add Transaction</Button>}>
+        <Modal open={this.state.modalOpen} dimmer="blurring" trigger={<Button onClick={this.handleOpen}>Add Transaction</Button>}>
           <Modal.Content>
             <Modal.Description>
 
-              <Button inverted color="green" active={this.state.buy} onClick={() => this.handleBuyState( this.state.buy )}>Buy</Button>
-              <Button inverted color="red" active={this.state.sell} onClick={() => this.handleSellState( this.state.sell )}>Sell</Button>
+              <Button inverted color="green" active={this.state.buy} onClick={() => this.handleBuyState( true )}>Buy</Button>
+              <Button inverted color="red" active={this.state.sell} onClick={() => this.handleBuyState( false )}>Sell</Button>
 
               <Divider />
               <DatePicker
                 class="ui small input"
                 selected={this.state.startDate}
-                onChange={this.handleChange}
+                onChange={this.handleDateInput}
               />
               <Divider />
-              <Dropdown placeholder="Select Currency" fluid search selection options={this.state.currencies} />
+              <Dropdown placeholder="Select Currency" fluid search selection options={this.state.coins} error={this.state.symbol_error} onChange={this.handleCurrencyInput} />
               <Divider />
-              <Input size="small" error={this.state.purchase_error} placeholder="Purchase price.." onChange={this.handlePurchaseInput} />
+              <Input size="small" error={this.state.price_error} placeholder="Purchase price.." onChange={this.handlePriceInput} />
               <Divider />
               <Input size="small" error={this.state.amount_error} placeholder={this.state.sell ? 'Amount sold' : 'Amount bought'} onChange={this.handleAmountInput} />
               <Divider />
 
-              <Button inverted color={this.state.buy ? 'green' : 'red'}>Add transaction</Button>
+              <Button inverted color={this.state.buy ? 'green' : 'red'}onClick={this.handleSubmit}>Add transaction</Button> <Button inverted onClick={this.handleClose}>Cancel</Button>
             </Modal.Description>
           </Modal.Content>
         </Modal>
@@ -122,4 +184,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default AddCoinModal;

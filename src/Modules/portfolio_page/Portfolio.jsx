@@ -3,17 +3,18 @@ import { Button, Dimmer, Header, Icon, Form, Field, Input, Sidebar } from 'seman
 import PieChart from '../piechart/PieChart.jsx';
 
 class Portfolio extends Component {
-  constructor ( props ) {
-    super ( props )
-    console.log(this.props)
+  constructor( props ) {
+    super( props );
+    console.log( this.props );
     this.state = {
       currentUserName: this.props.userName,
       currentUserId: this.props.userId,
-      labels:[],
-      remainingData: []
-    }
+      labels: [],
+      remainingData: [],
+    };
   }
   componentDidMount() {
+
     fetch(`/api/${this.props.userId}/transactions`, {
             credentials: 'same-origin'
             })
@@ -42,7 +43,7 @@ class Portfolio extends Component {
         Hello, {this.state.currentUserName}!
       </Header>
 
-      <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
+        <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
 
       </div>
     );
