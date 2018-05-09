@@ -21,12 +21,12 @@ class Ticker extends Component {
       transports: ['websocket'],
     } );
     this.state = {
-      currency: props.currency,
+      symbol: props.symbol,
     };
   }
 
   componentDidMount() {
-    const subscription = [`5~CCCAGG~${this.state.currency}~USD`, `11~${this.state.currency}`];
+    const subscription = [`5~CCCAGG~${this.state.symbol}~USD`, `11~${this.state.symbol}`];
     this.socket.emit( 'SubAdd', { subs: subscription } );
     this.socket.on( 'm', ( message ) => {
       const messageType = message.substring( 0, message.indexOf( '~' ) );
@@ -38,7 +38,6 @@ class Ticker extends Component {
         }
       } else if ( messageType === CCC.STATIC.TYPE.FULLVOLUME ) {
         const volData = CCC.FULLVOLUME.unpack( message );
-        // onsole.log( volData );
       }
     } );
   }
@@ -48,14 +47,6 @@ class Ticker extends Component {
   }
 
   render() {
-    let price;
-    if ( this.state.Flag === '1' ) {
-      price = <span style={{ color: 'red' }}>{this.state.Price}</span>;
-    } else if ( this.state.Flag === '2' ) {
-      price = <span style={{ color: 'green' }}>{this.state.Price}</span>;
-    } else {
-      price = <span>{this.state.Price}</span>;
-    }
     return (
       <Table unstackable>
         <Table.Body>

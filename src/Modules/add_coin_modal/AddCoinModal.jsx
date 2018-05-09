@@ -19,13 +19,13 @@ class AddCoinModal extends Component {
     this.handleClose = this.handleClose.bind( this );
 
     this.state = {
+      symbol: this.props.symbol,
       userId: this.props.userId,
       modalOpen: false,
       startDate: moment(),
       buy: true,
       amount_error: true,
       price_error: true,
-      symbol_error: true,
       coins: [],
     };
 
@@ -142,7 +142,6 @@ class AddCoinModal extends Component {
       this.setState( {
         amount_error: true,
         price_error: true,
-        symbol_error: true,
       } );
     } );
   }
@@ -168,7 +167,7 @@ class AddCoinModal extends Component {
                 onChange={this.handleDateInput}
               />
               <Divider />
-              <Dropdown placeholder="Select Currency" fluid search selection options={this.state.coins} error={this.state.symbol_error} onChange={this.handleCurrencyInput} />
+              <Dropdown defaultValue={this.state.symbol} placeholder="Select Currency" fluid search selection options={this.state.coins} error={this.state.symbol_error} onChange={this.handleCurrencyInput} />
               <Divider />
               <Input size="small" error={this.state.price_error} placeholder="Purchase price.." onChange={this.handlePriceInput} />
               <Divider />

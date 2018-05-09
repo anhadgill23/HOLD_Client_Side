@@ -10,7 +10,7 @@ class SingleCurrencyPage extends Component {
     super( props );
     this.state = {
       userId: this.props.userId,
-      symbol: 'BTC',
+      symbol: this.props.symbol,
       transactions: [],
     };
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind( this );
@@ -46,6 +46,7 @@ class SingleCurrencyPage extends Component {
       .then( response => response.json() );
     this.fetchTransactions();
   }
+  
   render() {
     const transactions =
     this.state.transactions.map( transaction =>
@@ -53,7 +54,7 @@ class SingleCurrencyPage extends Component {
     return (
       <Grid.Row>
         <Grid.Column width={5}>
-          <Ticker currency={this.state.symbol} />
+          <Ticker symbol={this.state.symbol} />
         </Grid.Column>
         <Grid.Column width={11}>
           <div className="transaction-list">
@@ -61,7 +62,7 @@ class SingleCurrencyPage extends Component {
               {transactions}
             </List>
           </div>
-          <AddCoinModal userId={this.state.userId} fetchTransactions={this.fetchTransactions} />
+          <AddCoinModal symbol={this.state.symbol} userId={this.state.userId} fetchTransactions={this.fetchTransactions} />
         </Grid.Column>
       </Grid.Row>
 
