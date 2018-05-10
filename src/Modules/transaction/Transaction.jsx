@@ -21,7 +21,7 @@ class Transaction extends Component {
     const amountBoughtOrSoldHeader = transaction.buy ? 'Bought' : 'Sold';
     return (
 
-      <List.Item>
+      <List.Item color="grey">
 
         <List.Content floated="right">
 

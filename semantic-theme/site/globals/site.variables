@@ -3,7 +3,7 @@
 @gray-dark: #303030; // #333
 @gray: #464545;
 @gray-light: #999; // #999
-@gray-lighter: #ebebeb; // #eee
+@gray-lighter: #d2d2d2; // #eee
 
 @primaryColor: #375a7f;
 @positiveColor: #00bc8c;

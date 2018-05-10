@@ -18,7 +18,7 @@ class App extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: null,
       userId: '',
       userName: '',
       loading: false,
@@ -32,7 +32,9 @@ class App extends Component {
     this.setState( { isLoggedIn: loggedIn, userId: id, userName } );
     localStorage.setItem( 'isLoggedIn', loggedIn );
     localStorage.setItem( 'userId', id );
+
     localStorage.setItem( 'userName', userName );
+
   }
 
   setSymbol( symbol ) {
@@ -58,7 +60,23 @@ class App extends Component {
     } );
   }
 
+  componentWillMount() {
+    let loginStat = localStorage.getItem('isLoggedIn');
+    let id = localStorage.getItem('userId');
+    let name = localStorage.getItem('userName');
+
+    this.setState( {
+      isLoggedIn: loginStat,
+      userId: id,
+      userName: name,
+    } , function() {
+      console.log(this.state);
+    })
+    console.log(this.state);
+  }
+
   render() {
+
     return (
 
       <div className="App">
@@ -66,8 +84,8 @@ class App extends Component {
           <Loader size="massive" />
         </Dimmer>
         <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
-        <div style={{ padding: '2em' }}>
-          <Grid stackable>
+        <div>
+          <Grid stackable >
             <Switch>
               <Route
                 path="/register"
