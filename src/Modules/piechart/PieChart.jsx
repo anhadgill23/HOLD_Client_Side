@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, Dimmer, Header, Icon, Form, Field, Input, Message, Grid } from 'semantic-ui-react';
 import { Doughnut } from 'react-chartjs-2';
 
 
