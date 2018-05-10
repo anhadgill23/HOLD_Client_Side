@@ -19,6 +19,7 @@ class Portfolio_left extends Component {
           <h3 className="ui header">YOUR PORTFOLIO BALANCE</h3>
           <h1 className="ui header">${totalValue}</h1>
           <h4 className="green ui header"><i className="green caret up icon"></i>${totalGain}</h4>
+          <div className="ui divider"></div>
         </div>
       );
     }
@@ -28,6 +29,7 @@ class Portfolio_left extends Component {
         <h3 className="ui header">YOUR PORTFOLIO BALANCE</h3>
         <h1 className="ui header">${totalValue}</h1>
         <h4 className="red ui header"><i className="red caret down icon"></i>${totalGain}</h4>
+        <div className="ui divider"></div>
       </div>
     );
   }
