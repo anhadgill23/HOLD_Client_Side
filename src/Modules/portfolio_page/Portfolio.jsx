@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { List, Header, Grid } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
+import Portfolio_left from '../portfolio_left/Portfolio_left.jsx';
 import PortfolioMain from '../portfolio_right/Portfolio_right.jsx';
 import AddCoinModal from '../add_coin_modal/AddCoinModal.jsx';
 
@@ -11,8 +12,10 @@ class Portfolio extends Component {
     this.state = {
       currentUserName: this.props.userName,
       currentUserId: this.props.userId,
-      labels: [],
+      labels:[],
       remainingData: [],
+      currentValuesFromAllCoins: [],
+      gainsFromAllCoins: [],
       transactions: [],
     };
     this.setSymbol = this.setSymbol.bind( this );
@@ -29,16 +32,25 @@ class Portfolio extends Component {
     } )
       .then( response => response.json() )
       .then( ( transactions ) => {
-        const labels = [];
-        const remainingData = [];
+        const {
+          labels, remainingData, currentValuesFromAllCoins, gainsFromAllCoins,
+        } = this.state;
+
         transactions.forEach( ( indiv ) => {
           const number = Number( indiv.remaining );
+          const numCurrentValueFromACoin = Number( indiv.currentValue );
+          const numGainFromACoin = Number( indiv.gain );
+
           labels.push( indiv.symbol );
           remainingData.push( number );
+          currentValuesFromAllCoins.push( numCurrentValueFromACoin );
+          gainsFromAllCoins.push( numGainFromACoin );
         } );
         this.setState( {
           labels,
           remainingData,
+          currentValuesFromAllCoins,
+          gainsFromAllCoins,
           transactions,
         } );
       } );
@@ -51,8 +63,10 @@ class Portfolio extends Component {
       <PortfolioMain key={transaction.id} singleTransaction={transaction} userName={this.statecurrentUserName} userId={this.state.currentUserId} setSymbol={this.setSymbol} /> );
     return (
 
+
       <Grid.Row>
         <Grid.Column width={5}>
+          <Portfolio_left currentValuesFromAllCoins={this.state.currentValuesFromAllCoins} gainsFromAllCoins={this.state.gainsFromAllCoins} />
           <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
         </Grid.Column>
         <Grid.Column width={11}>
