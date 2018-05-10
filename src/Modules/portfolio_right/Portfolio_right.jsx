@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Table, Icon, Divider } from 'semantic-ui-react';
+import { List, Table, Icon, Divider, Image } from 'semantic-ui-react';
 import SingleCurrencyPage from '../single_curency_page/SingleCurrencyPage.jsx';
 import {
   Route,
@@ -28,12 +28,14 @@ class PortfolioRight extends Component {
             <Table fixed unstackable>
               <Table.Header>
                 <Table.Row>
+                  <Table.HeaderCell><Image src={singleTransaction.image_url} size="mini" circular /></Table.HeaderCell>
                   <Table.HeaderCell>{singleTransaction.symbol}</Table.HeaderCell>
                   <Table.HeaderCell style={{ color }}><Icon name={arrow} size="large" />${singleTransaction.gain}</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
                 <Table.Row>
+                  <Table.Cell />
                   <Table.Cell>QTY: {singleTransaction.remaining} (${value})</Table.Cell>
                   <Table.Cell>${singleTransaction.currentValue}</Table.Cell>
                 </Table.Row>
