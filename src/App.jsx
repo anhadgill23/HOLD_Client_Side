@@ -12,6 +12,7 @@ import NavBar from './Modules/navbar/NavBar.jsx';
 import WelcomePage from './Modules/welcome/WelcomePage.jsx';
 import Portfolio from './Modules/portfolio_page/Portfolio.jsx';
 import SingleCurrencyPage from './Modules/single_curency_page/SingleCurrencyPage.jsx';
+import Chart from './Modules/chart/Chart.jsx';
 
 
 class App extends Component {
@@ -30,7 +31,7 @@ class App extends Component {
     this.setState( { isLoggedIn: loggedIn, userId: id, userName } );
     localStorage.setItem( 'isLoggedIn', loggedIn );
     localStorage.setItem( 'userId', id );
-    localStorage.setItem( 'userName', userName )
+    localStorage.setItem( 'userName', userName );
   }
 
   setSymbol( symbol ) {
@@ -38,26 +39,25 @@ class App extends Component {
   }
 
   componentWillMount() {
-    let loginStat = localStorage.getItem('isLoggedIn');
-    let id = localStorage.getItem('userId');
-    let name = localStorage.getItem('userName');
+    const loginStat = localStorage.getItem( 'isLoggedIn' );
+    const id = localStorage.getItem( 'userId' );
+    const name = localStorage.getItem( 'userName' );
 
     this.setState( {
       isLoggedIn: loginStat,
       userId: id,
       userName: name,
-    } , function() {
-      console.log(this.state);
-    })
-    console.log(this.state);
+    }, function () {
+      console.log( this.state );
+    } );
+    console.log( this.state );
   }
 
   render() {
-
     return (
 
       <div className="App">
-        <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
+        {/* <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
         <div style={{ padding: '2em' }}>
           <Grid stackable>
             <Switch>
@@ -89,7 +89,8 @@ class App extends Component {
               <Route path="/" exact component={WelcomePage} />
             </Switch>
           </Grid>
-        </div>
+        </div> */}
+        <Chart />
       </div>
     );
   }
