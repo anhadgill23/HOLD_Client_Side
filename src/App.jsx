@@ -57,7 +57,7 @@ class App extends Component {
     return (
 
       <div className="App">
-        {/* <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
+        <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
         <div style={{ padding: '2em' }}>
           <Grid stackable>
             <Switch>
@@ -89,8 +89,7 @@ class App extends Component {
               <Route path="/" exact component={WelcomePage} />
             </Switch>
           </Grid>
-        </div> */}
-        <Chart />
+        </div>
       </div>
     );
   }
