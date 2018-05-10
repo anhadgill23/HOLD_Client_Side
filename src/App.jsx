@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
 import Register from './Modules/register/Register.jsx';
 import Login from './Modules/login/Login.jsx';
@@ -18,7 +18,6 @@ class App extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      symbol: 'BTC', // Hardcoded for now
       isLoggedIn: false,
       userId: '',
       userName: '',
@@ -52,22 +51,28 @@ class App extends Component {
                 render={props => <Login {...props} handleAuth={this.setLoggedin} />}
               />
 
-              <Route path="/portfolio" render={(props) => (
+              <Route
+                path="/portfolio"
+                render={props => (
                   this.state.isLoggedIn ?
-                  (<Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol}/>) :
-                  (<Redirect to='/login' />)        
-                  )} />
-              <Route path="/singlecurrency" render={(props) => (
+                  ( <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol} /> ) :
+                  ( <Redirect to="/login" /> )
+                  )}
+              />
+              <Route
+                path="/singlecurrency"
+                render={props => (
                 this.state.isLoggedIn ?
-                (<SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} />) :
-                (<Redirect to='/login' />)
-                )} />
+                ( <SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} symbol={this.state.symbol} /> ) :
+                ( <Redirect to="/login" /> )
+                )}
+              />
               <Route path="/" exact component={WelcomePage} />
             </Switch>
           </Grid>
         </div>
       </div>
-      );
+    );
   }
 }
 
