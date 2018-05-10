@@ -8,6 +8,13 @@ import {
 import Portfolio from '../portfolio_page/Portfolio.jsx';
 
 class PortfolioRight extends Component {
+  constructor() {
+    super();
+    this.handleOnClick = this.handleOnClick.bind( this );
+  }
+  handleOnClick() {
+    this.props.setSymbol( this.props.singleTransaction.symbol );
+  }
   render() {
     // Make sure prop name is correct
     const { singleTransaction } = this.props;
@@ -15,7 +22,7 @@ class PortfolioRight extends Component {
     const color = parseFloat( singleTransaction.gain ) > 0 ? 'green' : 'red';
     const arrow = parseFloat( singleTransaction.gain ) > 0 ? 'caret up' : 'caret down';
     return (
-      <List.Item>
+      <List.Item onClick={this.handleOnClick}>
         <Link to="/singlecurrency">
           <List.Content>
             <Table fixed unstackable>

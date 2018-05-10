@@ -4,33 +4,30 @@ import { Doughnut } from 'react-chartjs-2';
 
 
 class PieChart extends Component {
-  constructor ( props ) {
-    super ( props )
-
+  constructor( props ) {
+    super( props );
   }
 
   render() {
-    console.log(this.props)
-    console.log(this.props.labels, this.props.remaining)
     const data = {
-        labels: this.props.labels,
-        datasets: [{
-          data: this.props.remaining,
-          backgroundColor: [
+      labels: this.props.labels,
+      datasets: [{
+        data: this.props.remaining,
+        backgroundColor: [
           '#FF6384',
           '#36A2EB',
           '#1B4F64',
           '#079186',
           '#2EB176'],
-          hoverBackgroundColor: [
+        hoverBackgroundColor: [
           '#FF6384',
           '#36A2EB',
           '#1B4F64',
           '#079186',
           '#2EB176'],
-        }]
+      }],
 
-      };
+    };
 
     return (
       <div className="piechart">
@@ -39,7 +36,7 @@ class PieChart extends Component {
           redraw
         />
       </div>
-    )
+    );
   }
 }
 
