@@ -18,7 +18,7 @@ class App extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      isLoggedIn: null,
+      isLoggedIn: false,
       userId: '',
       userName: '',
       loading: false,
@@ -55,10 +55,7 @@ class App extends Component {
       isLoggedIn: loginStat,
       userId: id,
       userName: name,
-    }, function () {
-      console.log( this.state );
     } );
-    console.log( this.state );
   }
 
   render() {
