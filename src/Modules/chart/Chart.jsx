@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import {
+  XYPlot,
+  XAxis,
+  YAxis,
+  VerticalGridLines,
+  HorizontalGridLines,
+  MarkSeries,
+} from 'react-vis';
 
 class Chart extends Component {
   constructor( props ) {
@@ -29,7 +37,7 @@ class Chart extends Component {
     websocket.onmessage = ( event ) => {
       const { transactions } = this.state;
       const message = JSON.parse( event.data );
-      const id = message.x.hash;
+      const _id = message.x.hash;
       const utxOutputs = message.x.out;
       let value = 0;
       utxOutputs.forEach( ( output ) => {
@@ -37,7 +45,14 @@ class Chart extends Component {
       } );
       // convert to whole BTC
       value /= 100000000;
-      const transaction = { id, value };
+      // { x: 1, y: 10, size: 30 }
+      const x = Math.floor( ( Math.random() * 10 ) + 1 );
+      const y = Math.floor( ( Math.random() * 10 ) + 1 );
+      const colors = ['red', 'green', 'blue'];
+      const randomColor = colors[Math.floor( ( Math.random * 3 ) )];
+      const transaction = {
+        x, y, color: '#cd3b54', size: value,
+      };
       transactions.push( transaction );
       if ( transactions.length > 100 ) {
         transactions.shift();
@@ -50,7 +65,23 @@ class Chart extends Component {
   }
 
   render() {
-    return <div>{this.state.message}</div>;
+    return (
+      <XYPlot
+        width={600}
+        height={600}
+      >
+        <VerticalGridLines />
+        <HorizontalGridLines />
+        <XAxis />
+        <YAxis />
+        <MarkSeries
+          className="mark-series-example"
+          strokeWidth={2}
+          opacity="0.8"
+          sizeRange={[5, 15]}
+          data={this.state.transactions}
+        />
+      </XYPlot> );
   }
 }
 
