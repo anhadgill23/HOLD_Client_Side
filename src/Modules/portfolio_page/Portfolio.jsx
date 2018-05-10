@@ -12,7 +12,7 @@ class Portfolio extends Component {
     this.state = {
       currentUserName: this.props.userName,
       currentUserId: this.props.userId,
-      labels:[],
+      labels: [],
       remainingData: [],
       currentValuesFromAllCoins: [],
       gainsFromAllCoins: [],
@@ -73,7 +73,7 @@ class Portfolio extends Component {
           <Header>
         Hello, {this.state.currentUserName}!
           </Header>
-          <div className="transaction-list">
+          <div className="transaction-list-portfolio">
             <List>
               {transactions}
             </List>
