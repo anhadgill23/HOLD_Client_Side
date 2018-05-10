@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Loader, Dimmer } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
   Route,
@@ -21,20 +21,43 @@ class App extends Component {
       isLoggedIn: null,
       userId: '',
       userName: '',
+      loading: false,
     };
     this.setLoggedin = this.setLoggedin.bind( this );
     this.setSymbol = this.setSymbol.bind( this );
+    this.handleLoading = this.handleLoading.bind( this );
   }
 
   setLoggedin( loggedIn, id, userName ) {
     this.setState( { isLoggedIn: loggedIn, userId: id, userName } );
     localStorage.setItem( 'isLoggedIn', loggedIn );
     localStorage.setItem( 'userId', id );
-    localStorage.setItem( 'userName', userName )
+
+    localStorage.setItem( 'userName', userName );
+
   }
 
   setSymbol( symbol ) {
     this.setState( { symbol } );
+  }
+  handleLoading() {
+    if ( this.state.loading === true ) {
+      this.setState( { loading: false } );
+    } else {
+      this.setState( { loading: true } );
+    }
+  }
+
+  componentWillMount() {
+    const loginStat = localStorage.getItem( 'isLoggedIn' );
+    const id = localStorage.getItem( 'userId' );
+    const name = localStorage.getItem( 'userName' );
+
+    this.setState( {
+      isLoggedIn: loginStat,
+      userId: id,
+      userName: name,
+    } );
   }
 
   componentWillMount() {
@@ -57,6 +80,9 @@ class App extends Component {
     return (
 
       <div className="App">
+        <Dimmer active={this.state.loading} page>
+          <Loader size="massive" />
+        </Dimmer>
         <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
         <div>
           <Grid stackable >
@@ -74,7 +100,7 @@ class App extends Component {
                 path="/portfolio"
                 render={props => (
                   this.state.isLoggedIn ?
-                  ( <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol} /> ) :
+                  ( <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol} handleLoading={this.handleLoading} /> ) :
                   ( <Redirect to="/login" /> )
                   )}
               />
@@ -82,7 +108,7 @@ class App extends Component {
                 path="/singlecurrency"
                 render={props => (
                 this.state.isLoggedIn ?
-                ( <SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} symbol={this.state.symbol} /> ) :
+                ( <SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} symbol={this.state.symbol} handleLoading={this.handleLoading} /> ) :
                 ( <Redirect to="/login" /> )
                 )}
               />

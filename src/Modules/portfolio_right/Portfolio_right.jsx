@@ -28,9 +28,9 @@ class PortfolioRight extends Component {
             <Table fixed unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell><Image src={singleTransaction.image_url} size="mini" circular /></Table.HeaderCell>
-                  <Table.HeaderCell>{singleTransaction.symbol}</Table.HeaderCell>
-                  <Table.HeaderCell style={{ color }}><Icon name={arrow} size="large" />${singleTransaction.gain}</Table.HeaderCell>
+                  <Table.HeaderCell className="TableHeader"><Image src={singleTransaction.image_url} size="mini" circular /></Table.HeaderCell>
+                  <Table.HeaderCell className="TableHeader">{singleTransaction.symbol}</Table.HeaderCell>
+                  <Table.HeaderCell style={{ color }} className="TableHeader"><Icon name={arrow} size="large" />${singleTransaction.gain}</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
