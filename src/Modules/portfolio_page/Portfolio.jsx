@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Header, Grid } from 'semantic-ui-react';
+import { List, Header, Grid, Loader } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
 import Portfolio_left from '../portfolio_left/Portfolio_left.jsx';
 import PortfolioMain from '../portfolio_right/Portfolio_right.jsx';
@@ -19,6 +19,7 @@ class Portfolio extends Component {
       transactions: [],
     };
     this.setSymbol = this.setSymbol.bind( this );
+    this.handleLoading = this.handleLoading.bind( this );
   }
   componentDidMount() {
     this.fetchTransactions();
@@ -26,12 +27,17 @@ class Portfolio extends Component {
   setSymbol( symbol ) {
     this.props.setSymbol( symbol );
   }
+  handleLoading() {
+    this.props.handleLoading();
+  }
   fetchTransactions() {
+    this.handleLoading();
     fetch( `/api/${this.state.currentUserId}/transactions`, {
       credentials: 'same-origin',
     } )
       .then( response => response.json() )
       .then( ( transactions ) => {
+        this.handleLoading();
         const {
           labels, remainingData, currentValuesFromAllCoins, gainsFromAllCoins,
         } = this.state;
@@ -65,6 +71,7 @@ class Portfolio extends Component {
 
 
       <Grid.Row>
+        <Loader size="massive" active={this.props.loading} />
         <Grid.Column width={5}>
           <Portfolio_left currentValuesFromAllCoins={this.state.currentValuesFromAllCoins} gainsFromAllCoins={this.state.gainsFromAllCoins} />
           <PieChart labels={this.state.labels} remaining={this.state.remainingData} />

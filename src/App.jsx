@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Loader } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
   Route,
@@ -21,39 +21,47 @@ class App extends Component {
       isLoggedIn: null,
       userId: '',
       userName: '',
+      loading: false,
     };
     this.setLoggedin = this.setLoggedin.bind( this );
     this.setSymbol = this.setSymbol.bind( this );
+    this.handleLoading = this.handleLoading.bind( this );
   }
 
   setLoggedin( loggedIn, id, userName ) {
     this.setState( { isLoggedIn: loggedIn, userId: id, userName } );
     localStorage.setItem( 'isLoggedIn', loggedIn );
     localStorage.setItem( 'userId', id );
-    localStorage.setItem( 'userName', userName )
+    localStorage.setItem( 'userName', userName );
   }
 
   setSymbol( symbol ) {
     this.setState( { symbol } );
   }
+  handleLoading() {
+    if ( this.state.loading === true ) {
+      this.setState( { loading: false } );
+    } else {
+      this.setState( { loading: true } );
+    }
+  }
 
   componentWillMount() {
-    let loginStat = localStorage.getItem('isLoggedIn');
-    let id = localStorage.getItem('userId');
-    let name = localStorage.getItem('userName');
+    const loginStat = localStorage.getItem( 'isLoggedIn' );
+    const id = localStorage.getItem( 'userId' );
+    const name = localStorage.getItem( 'userName' );
 
     this.setState( {
       isLoggedIn: loginStat,
       userId: id,
       userName: name,
-    } , function() {
-      console.log(this.state);
-    })
-    console.log(this.state);
+    }, function () {
+      console.log( this.state );
+    } );
+    console.log( this.state );
   }
 
   render() {
-
     return (
 
       <div className="App">
@@ -74,7 +82,7 @@ class App extends Component {
                 path="/portfolio"
                 render={props => (
                   this.state.isLoggedIn ?
-                  ( <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol} /> ) :
+                  ( <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol} handleLoading={this.handleLoading} loading={this.state.loading} /> ) :
                   ( <Redirect to="/login" /> )
                   )}
               />
