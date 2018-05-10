@@ -14,17 +14,21 @@ class PieChart extends Component {
       datasets: [{
         data: this.props.remaining,
         backgroundColor: [
-          '#FF6384',
+          '#0C2E59',
           '#36A2EB',
           '#1B4F64',
           '#079186',
-          '#2EB176'],
+          '#2EB176',
+          '#345853',
+          '#99CEB5'],
         hoverBackgroundColor: [
-          '#FF6384',
+          '#0C2E59',
           '#36A2EB',
           '#1B4F64',
           '#079186',
-          '#2EB176'],
+          '#2EB176',
+          '#345853',
+          '#99CEB5'],
       }],
 
     };
