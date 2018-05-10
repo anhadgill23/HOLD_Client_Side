@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Header } from 'semantic-ui-react';
 import { Bubble } from 'react-chartjs-2';
 
 class Chart extends Component {
@@ -8,7 +8,6 @@ class Chart extends Component {
       labels: ['January'],
       datasets: [
         {
-          label: 'Bitcoin Transactions',
           scaleOverride: true,
           fill: false,
           lineTension: 0.1,
@@ -37,6 +36,9 @@ class Chart extends Component {
     super( props );
     this.state = {
       options: {
+        legend: {
+          display: false,
+        },
         scales: {
           yAxes: [{
             display: false,
@@ -107,9 +109,11 @@ class Chart extends Component {
   }
 
   render() {
-    console.log( this.state.data.datasets[0].data );
     return (
-      <Bubble data={this.state.data} options={this.state.options} />
+      <div>
+        <Header size="tiny">Realtime BTC transactions</Header>
+        <Bubble data={this.state.data} options={this.state.options} />
+      </div>
     );
   }
 }
