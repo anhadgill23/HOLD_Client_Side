@@ -18,7 +18,7 @@ class App extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: null,
       userId: '',
       userName: '',
     };
@@ -28,13 +28,32 @@ class App extends Component {
 
   setLoggedin( loggedIn, id, userName ) {
     this.setState( { isLoggedIn: loggedIn, userId: id, userName } );
+    localStorage.setItem( 'isLoggedIn', loggedIn );
+    localStorage.setItem( 'userId', id );
+    localStorage.setItem( 'userName', userName )
   }
 
   setSymbol( symbol ) {
     this.setState( { symbol } );
   }
 
+  componentWillMount() {
+    let loginStat = localStorage.getItem('isLoggedIn');
+    let id = localStorage.getItem('userId');
+    let name = localStorage.getItem('userName');
+
+    this.setState( {
+      isLoggedIn: loginStat,
+      userId: id,
+      userName: name,
+    } , function() {
+      console.log(this.state);
+    })
+    console.log(this.state);
+  }
+
   render() {
+
     return (
 
       <div className="App">
