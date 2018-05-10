@@ -2,3 +2,25 @@
 .TableHeader:hover {
     cursor: pointer !important;
   }
+
+#RowOnPortfolio .RightColumn {
+  background-color: #d2d2d2;
+}
+
+#RowOnPortfolio .WelcomeName {
+  color: Black;
+  font-size: xx-large;
+  padding-top: 20px;
+}
+
+#RowOnPortfolio {
+  padding-top: 0;
+}
+
+#RowOnSingleCurrency {
+  padding-top: 0;
+}
+
+#RowOnSingleCurrency .ColumnOnSingleCurrency {
+  background-color: #d2d2d2;
+}

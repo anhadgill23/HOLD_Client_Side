@@ -60,14 +60,16 @@ class SingleCurrencyPage extends Component {
     this.state.transactions.map( transaction =>
       <Transaction key={transaction.id} transaction={transaction} handleDelete={this.handleDeleteTransaction} /> );
     return (
-      <Grid.Row>
-        <Grid.Column width={5} style={{height: '100vh'}}>
+      <Grid.Row id="RowOnSingleCurrency">
+        <Grid.Column width={5} style={{ height: '100vh' }}>
+          <br />
           <Ticker symbol={this.state.symbol} />
           <Link to={`/portfolio/${this.props.userId}`}><Button>Back to Portfolio</Button></Link>
         </Grid.Column>
-        <Grid.Column color="grey" width={11} style={{height: '100vh'}}>
+        <Grid.Column className="ColumnOnSingleCurrency" width={11} style={{ height: '100vh' }}>
           <div className="transaction-list">
             <List verticalAlign="middle">
+              <br />
               {transactions}
             </List>
           </div>
