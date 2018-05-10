@@ -24,7 +24,9 @@ class WelcomePage extends Component {
             <Button type="button" className="login" size="huge" inverted >Login</Button>
           </Link>
         </div>
+        <br/>
         <div className="ui divider"></div>
+        <br/>
         <Graph />
       </Grid.Column>
       </Grid.Row>
