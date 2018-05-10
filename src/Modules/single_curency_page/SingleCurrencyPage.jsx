@@ -54,10 +54,10 @@ class SingleCurrencyPage extends Component {
       <Transaction key={transaction.id} transaction={transaction} handleDelete={this.handleDeleteTransaction} /> );
     return (
       <Grid.Row>
-        <Grid.Column width={5}>
+        <Grid.Column width={5} style={{height: '100vh'}}>
           <Ticker symbol={this.state.symbol} />
         </Grid.Column>
-        <Grid.Column width={11}>
+        <Grid.Column color="grey" width={11} style={{height: '100vh'}}>
           <div className="transaction-list">
             <List verticalAlign="middle">
               {transactions}

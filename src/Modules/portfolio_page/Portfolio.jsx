@@ -69,7 +69,7 @@ class Portfolio extends Component {
           <Portfolio_left currentValuesFromAllCoins={this.state.currentValuesFromAllCoins} gainsFromAllCoins={this.state.gainsFromAllCoins} />
           <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
         </Grid.Column>
-        <Grid.Column color="grey" width={11}>
+        <Grid.Column color="grey" width={11} style={{height: '100vh'}}>
           <Header>
         Hello, {this.state.currentUserName}!
           </Header>
