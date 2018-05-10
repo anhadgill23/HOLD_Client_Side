@@ -18,6 +18,7 @@ class Portfolio extends Component {
       currentValuesFromAllCoins: [],
       gainsFromAllCoins: [],
       transactions: [],
+      color: 'grey',
     };
     this.setSymbol = this.setSymbol.bind( this );
     this.handleLoading = this.handleLoading.bind( this );
@@ -72,16 +73,18 @@ class Portfolio extends Component {
     return (
 
 
-      <Grid.Row>
-        <Grid.Column width={5} style={{height: '100vh'}}>
+      <Grid.Row id="RowOnPortfolio">
+        <Grid.Column width={5} style={{ height: '100vh' }}>
           <Portfolio_left currentValuesFromAllCoins={this.state.currentValuesFromAllCoins} gainsFromAllCoins={this.state.gainsFromAllCoins} />
           <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
           <Divider />
           <Chart />
         </Grid.Column>
-        <Grid.Column color="grey" width={11} style={{height: '100vh'}}>
+        <Grid.Column className="RightColumn" width={11} style={{ height: '100vh' }}>
           <Header>
+            <p className="WelcomeName">
         Hello, {this.state.currentUserName}!
+            </p>
           </Header>
           <div className="transaction-list-portfolio">
             <List>
