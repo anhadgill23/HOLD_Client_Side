@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { List, Header, Grid, Loader } from 'semantic-ui-react';
+import { List, Header, Grid, Divider } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
 import Portfolio_left from '../portfolio_left/Portfolio_left.jsx';
 import PortfolioMain from '../portfolio_right/Portfolio_right.jsx';
 import AddCoinModal from '../add_coin_modal/AddCoinModal.jsx';
+import Chart from '../chart/Chart.jsx';
 
 class Portfolio extends Component {
   constructor( props ) {
@@ -75,6 +76,8 @@ class Portfolio extends Component {
         <Grid.Column width={5}>
           <Portfolio_left currentValuesFromAllCoins={this.state.currentValuesFromAllCoins} gainsFromAllCoins={this.state.gainsFromAllCoins} />
           <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
+          <Divider />
+          <Chart />
         </Grid.Column>
         <Grid.Column width={11}>
           <Header>

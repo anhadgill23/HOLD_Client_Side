@@ -12,7 +12,6 @@ import NavBar from './Modules/navbar/NavBar.jsx';
 import WelcomePage from './Modules/welcome/WelcomePage.jsx';
 import Portfolio from './Modules/portfolio_page/Portfolio.jsx';
 import SingleCurrencyPage from './Modules/single_curency_page/SingleCurrencyPage.jsx';
-import Chart from './Modules/chart/Chart.jsx';
 
 
 class App extends Component {
