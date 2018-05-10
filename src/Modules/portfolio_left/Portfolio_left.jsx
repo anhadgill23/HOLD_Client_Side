@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {logo2} from '../navbar/logo2.png'
+import logo2 from '../navbar/logo2.png'
 
 class Portfolio_left extends Component {
   currentValue ( arr ) {
