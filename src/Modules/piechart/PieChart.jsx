@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
+import { Header } from 'semantic-ui-react';
 import { Doughnut } from 'react-chartjs-2';
 
 
 class PieChart extends Component {
-  constructor( props ) {
-    super( props );
-  }
-
   render() {
     const data = {
       labels: this.props.labels,
@@ -34,6 +31,7 @@ class PieChart extends Component {
 
     return (
       <div className="piechart">
+        <Header size="tiny">Portfolio Distribution</Header>
         <Doughnut
           data={data}
           redraw
