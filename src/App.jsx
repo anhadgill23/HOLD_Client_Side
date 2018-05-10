@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Loader } from 'semantic-ui-react';
+import { Grid, Loader, Dimmer } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
   Route,
@@ -62,7 +62,9 @@ class App extends Component {
     return (
 
       <div className="App">
-        <Loader size="massive" active={this.state.loading} />
+        <Dimmer active={this.state.loading} page>
+          <Loader size="massive" />
+        </Dimmer>
         <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
         <div style={{ padding: '2em' }}>
           <Grid stackable>
