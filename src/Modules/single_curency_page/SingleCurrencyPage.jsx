@@ -15,11 +15,12 @@ class SingleCurrencyPage extends Component {
     };
     this.handleDeleteTransaction = this.handleDeleteTransaction.bind( this );
     this.fetchTransactions = this.fetchTransactions.bind( this );
-    // this.handleInsertTransaction = this.handleInsertTransaction.bind( this );
   }
 
   componentDidMount() {
     this.fetchTransactions();
+    console.log( 'singlecurrency page', this.props.userId );
+    console.log( 'singlecurrency page', this.props.symbol );
   }
 
   fetchTransactions() {
@@ -46,7 +47,7 @@ class SingleCurrencyPage extends Component {
       .then( response => response.json() );
     this.fetchTransactions();
   }
-  
+
   render() {
     const transactions =
     this.state.transactions.map( transaction =>
