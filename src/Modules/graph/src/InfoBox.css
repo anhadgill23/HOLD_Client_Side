@@ -15,7 +15,7 @@
 
 .heading {
   font-size: 2.5em;
-  color: white;
+  color: #757575;
 }
 
 .subtext {
@@ -28,8 +28,8 @@
 
 #middle {
   padding: 0 48px;
-  border-left: 1px solid #DAE1E9;
-  border-right: 1px solid #DAE1E9;
+  border-left: 1px solid #757575;
+  border-right: 1px solid #757575;
 }
 
 #right {

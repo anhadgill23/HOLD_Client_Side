@@ -15,10 +15,7 @@ class WelcomePage extends Component {
   render() {
     return (
       <Grid.Row>
-      <Grid.Column width={7}>
-        <Graph />
-      </Grid.Column>
-      <Grid.Column width={9}>
+      <Grid.Column>
         <div className="buttons-container" >
           <Link to="/register">
             <Button type="button" className="register" size="huge" inverted >Register</Button>
@@ -27,6 +24,10 @@ class WelcomePage extends Component {
             <Button type="button" className="login" size="huge" inverted >Login</Button>
           </Link>
         </div>
+        <br/>
+        <div className="ui divider"></div>
+        <br/>
+        <Graph />
       </Grid.Column>
       </Grid.Row>
     )
