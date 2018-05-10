@@ -65,6 +65,7 @@ class App extends Component {
     return (
 
       <div className="App">
+        <Loader size="massive" active={this.state.loading} />
         <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
         <div style={{ padding: '2em' }}>
           <Grid stackable>
@@ -82,7 +83,7 @@ class App extends Component {
                 path="/portfolio"
                 render={props => (
                   this.state.isLoggedIn ?
-                  ( <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol} handleLoading={this.handleLoading} loading={this.state.loading} /> ) :
+                  ( <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol} handleLoading={this.handleLoading} /> ) :
                   ( <Redirect to="/login" /> )
                   )}
               />
@@ -90,7 +91,7 @@ class App extends Component {
                 path="/singlecurrency"
                 render={props => (
                 this.state.isLoggedIn ?
-                ( <SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} symbol={this.state.symbol} /> ) :
+                ( <SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} symbol={this.state.symbol} handleLoading={this.handleLoading} /> ) :
                 ( <Redirect to="/login" /> )
                 )}
               />
