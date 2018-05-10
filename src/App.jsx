@@ -56,14 +56,7 @@ class App extends Component {
       isLoggedIn: loginStat,
       userId: id,
       userName: name,
-<<<<<<< HEAD
-    }, function () {
-      console.log( this.state );
     } );
-    console.log( this.state );
-=======
-    } );
->>>>>>> master
   }
 
   render() {
