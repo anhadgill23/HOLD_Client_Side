@@ -3,13 +3,6 @@ import { Header } from 'semantic-ui-react';
 import { Bubble } from 'react-chartjs-2';
 
 class Chart extends Component {
-  static scaleValue( rawValuesArray ) {
-    const xMin = Math.min.apply( null, rawValuesArray );
-    const xMax = Math.max.apply( null, rawValuesArray );
-    const x = rawValuesArray[rawValuesArray.length - 1];
-    return 1 + ( x - xMin ) * ( 60 - 1 ) / ( xMax - xMin );
-  }
-
   static reloadData( data ) {
     return {
       labels: ['January'],
@@ -39,11 +32,14 @@ class Chart extends Component {
     };
   }
 
+
   constructor( props ) {
     super( props );
+    this.scaleValue = this.scaleValue.bind( this );
+
     this.webSocket = new WebSocket( 'wss://ws.blockchain.info/inv' );
     this.state = {
-      rawValues: [],
+      rawValues: [0, 500],
       options: {
         tooltips: {
           displayColors: false,
@@ -85,6 +81,13 @@ class Chart extends Component {
     this.webSocket.close();
   }
 
+  scaleValue( rawValuesArray ) {
+    const xMin = Math.min.apply( null, rawValuesArray );
+    const xMax = Math.max.apply( null, rawValuesArray );
+    const x = rawValuesArray[rawValuesArray.length - 1];
+    return 1 + ( x - xMin ) * ( this.props.maxSize - 1 ) / ( xMax - xMin );
+  }
+
 
   init() {
     this.webSocket.onopen = () => {
@@ -111,8 +114,7 @@ class Chart extends Component {
       // convert to whole BTC
       value *= 0.00000001;
       rawValues.push( value );
-      const standardValue = Chart.scaleValue( rawValues );
-      console.log( standardValue );
+      const standardValue = this.scaleValue( rawValues );
       // { x: 1, y: 10, size: 30 }
       const x = Math.random();
       const y = Math.random();
@@ -121,10 +123,10 @@ class Chart extends Component {
       };
 
       data.push( transaction );
-      console.log( data );
+      console.log( rawValues );
       if ( rawValues.length > 400 ) {
         data = [];
-        rawValues = [];
+        rawValues = [0, 500];
       }
 
       // normalize data
