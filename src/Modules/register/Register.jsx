@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, Header, Form, Message, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
@@ -13,41 +14,40 @@ class Register extends Component {
       id: '',
       error: '',
     };
+    this.onChange = this.onChange.bind( this );
+    this.onSubmi = this.onSubmit.bind( this );
   }
-  onChange = (e) => {
-    this.setState({
+  onChange( e ) {
+    this.setState( {
       [e.target.name]: e.target.value,
-      error: ''
-    });
+      error: '',
+    } );
   }
-  onSubmit = (e) => {
+  onSubmit( e ) {
     e.preventDefault();
-    const { name, email, password, confirmPassword } = this.state;
     if ( this.state.password !== this.state.confirmPassword ) {
       this.setState( { error: 'Your passwords don\'t match, please try again.' } );
     } else {
-      fetch('/api/register', {
-              method: 'POST',
-              body: JSON.stringify(this.state),
-              headers: new Headers({
-                'Content-Type': 'application/json'
-              }),
-              credentials: 'same-origin'
-            })
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
-                console.log(data)
-                if (data.err === 'Email already taken') {
-                  this.setState({ error: 'This email is already taken.'})
-                } else {
-                  this.setState({ id: data.id });
-                  this.props.handleAuth(true, this.state.id, data.name);
-                  this.props.history.push(`/portfolio/${data.id}`);
-                }
-            })
-  }
+      fetch( '/api/register', {
+        method: 'POST',
+        body: JSON.stringify( this.state ),
+        headers: new Headers( {
+          'Content-Type': 'application/json',
+        } ),
+        credentials: 'same-origin',
+      } )
+        .then( response => response.json() )
+        .then( ( data ) => {
+          console.log( data );
+          if ( data.err === 'Email already taken' ) {
+            this.setState( { error: 'This email is already taken.' } );
+          } else {
+            this.setState( { id: data.id } );
+            this.props.handleAuth( true, this.state.id, data.name );
+            this.props.history.push( `/portfolio/${data.id}` );
+          }
+        } );
+    }
   }
 
 
@@ -85,4 +85,16 @@ class Register extends Component {
 }
 
 export default Register;
+
+Register.propTypes = {
+  handleAuth: PropTypes.func,
+  history: PropTypes.shape( {
+    push: PropTypes.func,
+  } ),
+};
+
+Register.defaultProps = {
+  history: {},
+  handleAuth: () => {},
+};
 

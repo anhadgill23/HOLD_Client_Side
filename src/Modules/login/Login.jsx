@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Dimmer, Header, Icon, Form, Field, Input, Grid, Message } from 'semantic-ui-react';
-import {
-  Route,
-  Link,
-  Redirect,
-} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Button, Header, Form, Grid, Message } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor( props ) {
@@ -15,36 +12,35 @@ class Login extends Component {
       id: '',
       error: '',
     };
-  };
-  onChange = (e) => {
-    this.setState({
+    this.onChange = this.onChange.bind( this );
+    this.onSubmit = this.onSubmit.bind( this );
+  }
+  onChange( e ) {
+    this.setState( {
       [e.target.name]: e.target.value,
-    });
+    } );
   }
 
-  onSubmit = ( e ) => {
+  onSubmit( e ) {
     e.preventDefault();
-    const { email, password } = this.state;
-    fetch('/api/login', {
-            method: 'POST',
-            body: JSON.stringify(this.state),
-            headers: new Headers({
-              'Content-Type': 'application/json'
-            }),
-            credentials: 'same-origin'
-          })
-          .then(function(response) {
-            return response.json();
-          })
-          .then((data) => {
-              if (data.err === 'Email or password incorrect') {
-                  this.setState({ error: 'Your email or password is incorrect, please try again.'})
-              } else {
-                this.setState({ id: data.id });
-                this.props.handleAuth(true, this.state.id, data.name);
-                this.props.history.push(`/portfolio/${data.id}`);
-              }
-            })
+    fetch( '/api/login', {
+      method: 'POST',
+      body: JSON.stringify( this.state ),
+      headers: new Headers( {
+        'Content-Type': 'application/json',
+      } ),
+      credentials: 'same-origin',
+    } )
+      .then( response => response.json() )
+      .then( ( data ) => {
+        if ( data.err === 'Email or password incorrect' ) {
+          this.setState( { error: 'Your email or password is incorrect, please try again.' } );
+        } else {
+          this.setState( { id: data.id } );
+          this.props.handleAuth( true, this.state.id, data.name );
+          this.props.history.push( `/portfolio/${data.id}` );
+        }
+      } );
   }
 
 
@@ -79,3 +75,16 @@ class Login extends Component {
 }
 
 export default Login;
+
+Login.propTypes = {
+  handleAuth: PropTypes.func,
+  history: PropTypes.shape( {
+    push: PropTypes.func,
+  } ),
+};
+
+Login.defaultProps = {
+  history: {},
+  handleAuth: () => {},
+};
+
