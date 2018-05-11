@@ -89,9 +89,6 @@ class Chart extends Component {
 
   init() {
     this.webSocket.onopen = () => {
-      this.setState( {
-        message: 'Connected',
-      } );
       this.webSocket.send( JSON.stringify( { op: 'unconfirmed_sub' } ) );
     };
 

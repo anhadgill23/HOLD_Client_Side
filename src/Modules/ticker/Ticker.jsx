@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 import socketIOClient from 'socket.io-client';
 import { getChanges } from './websocket_utils';
+import CCC from './ccc-streamer-utils';
+
 
 class Ticker extends Component {
   static getColor( flag ) {
@@ -32,12 +35,11 @@ class Ticker extends Component {
       const messageType = message.substring( 0, message.indexOf( '~' ) );
       if ( messageType === CCC.STATIC.TYPE.CURRENTAGG ) {
         const changes = ( getChanges( message ) );
-        for ( const key in changes ) {
+
+        Object.keys( changes ).forEach( ( key ) => {
           const stateObj = { [key]: changes[key] };
           this.setState( stateObj );
-        }
-      } else if ( messageType === CCC.STATIC.TYPE.FULLVOLUME ) {
-        const volData = CCC.FULLVOLUME.unpack( message );
+        } );
       }
     } );
   }
@@ -51,8 +53,12 @@ class Ticker extends Component {
       <Table unstackable>
         <Table.Body>
           <Table.Row>
-            <Table.Cell textAlign="right"><span>{this.state.From} ~ {this.state.To} </span></Table.Cell>
-            <Table.Cell><span style={Ticker.getColor( this.state.Flag )}>{this.state.Price}</span></Table.Cell>
+            <Table.Cell textAlign="right">
+              <span>{this.state.From} ~ {this.state.To} </span>
+            </Table.Cell>
+            <Table.Cell>
+              <span style={Ticker.getColor( this.state.Flag )}>{this.state.Price}</span>
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell textAlign="right"><span>Last Market: </span></Table.Cell>
@@ -77,3 +83,12 @@ class Ticker extends Component {
 }
 
 export default Ticker;
+
+Ticker.propTypes = {
+  symbol: PropTypes.string,
+};
+
+Ticker.defaultProps = {
+  symbol: 'BTC',
+};
+
