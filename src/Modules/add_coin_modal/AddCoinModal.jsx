@@ -28,7 +28,7 @@ class AddCoinModal extends Component {
       coins: [],
     };
     this.fetchCoins();
-    this.handleDateInput = this.handleDateInput.bind(this);
+    this.handleDateInput = this.handleDateInput.bind( this );
   }
 
   fetchCoins() {
@@ -150,7 +150,7 @@ class AddCoinModal extends Component {
         <br />
         <br />
         <br />
-        <Modal open={this.state.modalOpen} dimmer="blurring" trigger={<Button onClick={this.handleOpen}>Add Transaction</Button>}>
+        <Modal open={this.state.modalOpen} dimmer="blurring" trigger={<Button secondary onClick={this.handleOpen}>Add Transaction</Button>}>
           <Modal.Content>
             <Modal.Description>
 
