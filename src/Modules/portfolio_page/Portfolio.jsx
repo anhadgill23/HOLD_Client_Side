@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Header, Grid, Divider } from 'semantic-ui-react';
+import { Sidebar, Segment, Button, Menu, Icon, List, Header, Grid, Divider } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
 import Portfolio_left from '../portfolio_left/Portfolio_left.jsx';
 import PortfolioMain from '../portfolio_right/Portfolio_right.jsx';
@@ -19,7 +19,9 @@ class Portfolio extends Component {
       currentValuesFromAllCoins: [],
       gainsFromAllCoins: [],
       transactions: [],
+      // visible: this.props.visible,
     };
+    console.log(this.props)
     this.setSymbol = this.setSymbol.bind( this );
     this.handleLoading = this.handleLoading.bind( this );
   }
@@ -66,6 +68,8 @@ class Portfolio extends Component {
 
 
   render() {
+
+    console.log(this.state)
     const transactions =
     this.state.transactions.map( transaction =>
       <PortfolioMain key={this.state.transactions.indexOf( transaction )} singleTransaction={transaction} userName={this.statecurrentUserName} userId={this.state.currentUserId} setSymbol={this.setSymbol} /> );
@@ -83,13 +87,46 @@ class Portfolio extends Component {
           <Divider />
         </Grid.Column>
         <Grid.Column className="RightColumn" width={11}>
-          <div className="transaction-list-portfolio">
-            <List>
-              {transactions}
-            </List>
-          </div>
-          <AddCoinModal userId={this.state.currentUserId} fetchTransactions={this.fetchTransactions} />
-        </Grid.Column>
+
+        <Sidebar.Pushable as={Segment}>
+          <Sidebar
+            as={Menu}
+            animation='push'
+            width='thin'
+            direction='right'
+            visible={this.props.visible}
+            icon='labeled'
+            vertical
+            inverted
+          >
+          <Menu.Item name='home'>
+              <Icon name='home' />
+              Home
+            </Menu.Item>
+            <Menu.Item name='gamepad'>
+              <Icon name='gamepad' />
+              Games
+            </Menu.Item>
+            <Menu.Item name='camera'>
+              <Icon name='camera' />
+              Channels
+            </Menu.Item>
+          </Sidebar>
+          <Sidebar.Pusher>
+            <Segment>
+
+                <div className="transaction-list-portfolio">
+                  <List>
+                    {transactions}
+                  </List>
+                </div>
+                <AddCoinModal userId={this.state.currentUserId} fetchTransactions={this.fetchTransactions} />
+
+            </Segment>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
+      </Grid.Column>
+
       </Grid.Row>
     );
   }

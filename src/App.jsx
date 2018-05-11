@@ -23,17 +23,18 @@ class App extends Component {
       userId: '',
       userName: '',
       loading: false,
+      visible: false,
     };
     this.setLoggedin = this.setLoggedin.bind( this );
     this.setSymbol = this.setSymbol.bind( this );
     this.handleLoading = this.handleLoading.bind( this );
+    // this.toggleVisibility = this.toggleVisibility.bind(this);
   }
 
   setLoggedin( loggedIn, id, userName ) {
     this.setState( { isLoggedIn: loggedIn, userId: id, userName } );
     localStorage.setItem( 'isLoggedIn', loggedIn );
     localStorage.setItem( 'userId', id );
-
     localStorage.setItem( 'userName', userName );
   }
 
@@ -61,15 +62,20 @@ class App extends Component {
     }
   }
 
+  toggleVisibility = () => this.setState({ visible: !this.state.visible })
+  // toggleVisibility() {
+  //   this.setState({ visible: !this.state.visible })
+  // }
 
   render() {
+    console.log(this.state)
     return (
 
       <div className="App">
         <Dimmer active={this.state.loading} page>
           <Loader size="massive" />
         </Dimmer>
-        <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} userId={this.state.userId} />
+        <NavBar isAuthorized={this.state.isLoggedIn} toggleVisibility={this.toggleVisibility} handleAuth={this.setLoggedin} userId={this.state.userId} />
         <div>
           <Grid stackable >
             <Switch>
@@ -88,8 +94,8 @@ class App extends Component {
                 path="/portfolio/:userId"
                 exact
                 render={props => (
-                  this.state.isLoggedIn ?
-                  ( <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol} handleLoading={this.handleLoading} /> ) :
+                  (this.state.isLoggedIn === true || this.state.isLoggedIn === 'true') ?
+                  ( <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} visible={this.state.visible} setSymbol={this.setSymbol} handleLoading={this.handleLoading} /> ) :
                   ( <Redirect to="/" /> )
                   )}
               />
@@ -97,7 +103,7 @@ class App extends Component {
                 exact
                 path="/:userId/transactions/:symbol"
                 render={props => (
-                this.state.isLoggedIn ?
+                (this.state.isLoggedIn === true || this.state.isLoggedIn === 'true') ?
                 ( <SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} symbol={this.state.symbol} handleLoading={this.handleLoading} /> ) :
                 ( <Redirect to="/login" /> )
                 )}

@@ -4,8 +4,10 @@ import logo2 from './logo2.png';
 import { Link, Redirect } from 'react-router-dom';
 
 class NavBar extends Component {
+
   constructor( props ) {
     super( props );
+
     this.handleLogout = this.handleLogout.bind( this );
   }
   handleLogout() {
@@ -17,8 +19,8 @@ class NavBar extends Component {
         this.props.handleAuth( false, null, null );
       } );
   }
+
   render() {
-    console.log( this.props.isAuthorized );
     return (
       <Menu>
         <Link to={`/portfolio/${this.props.userId}`}>
@@ -26,6 +28,10 @@ class NavBar extends Component {
             <img src={logo2} alt="cross logo" /> HOLD
           </Menu.Item>
         </Link>
+        {( this.props.isAuthorized == true || this.props.isAuthorized == 'true' ) &&
+          <Menu.Item className="ui right floated button">
+            <Button onClick={this.props.toggleVisibility}>Toggle Visibility</Button>
+          </Menu.Item>}
         {( this.props.isAuthorized == true || this.props.isAuthorized == 'true' ) &&
           <Menu.Item className="ui right floated button">
             <Link to="/">
