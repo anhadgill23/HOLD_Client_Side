@@ -40,9 +40,8 @@ class Portfolio extends Component {
       .then( response => response.json() )
       .then( ( transactions ) => {
         this.handleLoading();
-        const {
-          currentValuesFromAllCoins, gainsFromAllCoins,
-        } = this.state;
+        const currentValuesFromAllCoins = [];
+        const gainsFromAllCoins = [];
         const labels = [];
         const remainingData = [];
         transactions.forEach( ( indiv ) => {
