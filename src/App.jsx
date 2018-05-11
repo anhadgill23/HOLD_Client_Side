@@ -34,7 +34,6 @@ class App extends Component {
     localStorage.setItem( 'userId', id );
 
     localStorage.setItem( 'userName', userName );
-
   }
 
   setSymbol( symbol ) {
@@ -61,22 +60,21 @@ class App extends Component {
   }
 
   componentWillMount() {
-    let loginStat = localStorage.getItem('isLoggedIn');
-    let id = localStorage.getItem('userId');
-    let name = localStorage.getItem('userName');
+    const loginStat = localStorage.getItem( 'isLoggedIn' );
+    const id = localStorage.getItem( 'userId' );
+    const name = localStorage.getItem( 'userName' );
 
     this.setState( {
       isLoggedIn: loginStat,
       userId: id,
       userName: name,
-    } , function() {
-      console.log(this.state);
-    })
-    console.log(this.state);
+    }, function () {
+      console.log( this.state );
+    } );
+    console.log( this.state );
   }
 
   render() {
-
     return (
 
       <div className="App">
@@ -88,16 +86,19 @@ class App extends Component {
           <Grid stackable >
             <Switch>
               <Route
+                exact
                 path="/register"
                 render={props => <Register {...props} handleAuth={this.setLoggedin} />}
               />
               <Route
+                exact
                 path="/login"
                 render={props => <Login {...props} handleAuth={this.setLoggedin} />}
               />
 
               <Route
-                path="/portfolio"
+                path="/portfolio/:userId"
+                exact
                 render={props => (
                   this.state.isLoggedIn ?
                   ( <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol} handleLoading={this.handleLoading} /> ) :
@@ -105,7 +106,8 @@ class App extends Component {
                   )}
               />
               <Route
-                path="/singlecurrency"
+                exact
+                path="/:userId/transactions/:symbol"
                 render={props => (
                 this.state.isLoggedIn ?
                 ( <SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} symbol={this.state.symbol} handleLoading={this.handleLoading} /> ) :

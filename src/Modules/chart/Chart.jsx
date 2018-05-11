@@ -34,6 +34,7 @@ class Chart extends Component {
 
   constructor( props ) {
     super( props );
+    this.webSocket = new WebSocket( 'wss://ws.blockchain.info/inv' );
     this.state = {
       options: {
         legend: {
@@ -65,23 +66,24 @@ class Chart extends Component {
     this.init();
   }
 
+  componentWillUnmount() {
+    this.webSocket.close();
+  }
+
 
   init() {
-    const websocket = new WebSocket( 'wss://ws.blockchain.info/inv' );
-    websocket.onopen = () => {
+    this.webSocket.onopen = () => {
       this.setState( {
         message: 'Connected',
       } );
-      websocket.send( JSON.stringify( { op: 'unconfirmed_sub' } ) );
+      this.webSocket.send( JSON.stringify( { op: 'unconfirmed_sub' } ) );
     };
 
 
-    websocket.onerror = ( event ) => {
-      this.setState( {
-        message: event.data,
-      } );
+    this.webSocket.onerror = ( event ) => {
+      console.log( event.data );
     };
-    websocket.onmessage = ( event ) => {
+    this.webSocket.onmessage = ( event ) => {
       let data = this.state.data.datasets[0].data.slice( 0 );
       const message = JSON.parse( event.data );
       const _id = message.x.hash;

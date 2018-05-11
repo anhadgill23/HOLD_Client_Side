@@ -19,9 +19,8 @@ class SingleCurrencyPage extends Component {
   }
 
   componentDidMount() {
+    console.log( 'MOUNT' );
     this.fetchTransactions();
-    console.log( 'singlecurrency page', this.props.userId );
-    console.log( 'singlecurrency page', this.props.symbol );
   }
   handleLoading() {
     this.props.handleLoading();
