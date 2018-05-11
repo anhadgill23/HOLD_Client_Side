@@ -83,6 +83,7 @@ class Portfolio extends Component {
           <Divider />
         </Grid.Column>
         <Grid.Column className="RightColumn" width={11}>
+          <br />
           <div className="transaction-list-portfolio">
             <List>
               {transactions}
