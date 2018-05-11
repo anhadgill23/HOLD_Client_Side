@@ -19,7 +19,7 @@ class Portfolio_left extends Component {
           <h6 className="WelcomeName">
              Hello {this.props.currentUserName}
           </h6>
-          <h3 className="ui header">YOUR PORTFOLIO BALANCE</h3>
+          <h3 className="ui header">YOUR PORTFOLIO BALANCE IS</h3>
           <h1 className="ui header">${totalValue}</h1>
           <h4 className="green ui header"><i className="green caret up icon" />${totalGain}</h4>
           <div className="ui divider" />
@@ -29,7 +29,10 @@ class Portfolio_left extends Component {
     return (
       <div>
         <img className="ui centered small image"src={logo2} alt="cross logo" />
-        <h3 className="ui header">YOUR PORTFOLIO BALANCE</h3>
+        <h6 className="WelcomeName">
+             Hello {this.props.currentUserName}
+        </h6>
+        <h3 className="ui header">YOUR PORTFOLIO BALANCE IS</h3>
         <h1 className="ui header">${totalValue}</h1>
         <h4 className="red ui header"><i className="red caret down icon" />${totalGain}</h4>
         <div className="ui divider" />

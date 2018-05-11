@@ -118,6 +118,7 @@ class AddCoinModal extends Component {
         price: this.state.price,
         amount: this.state.amount,
         buy: this.state.buy,
+        created_at: this.state.startDate,
       };
       this.postTransaction( transaction );
       this.handleClose();
@@ -147,15 +148,12 @@ class AddCoinModal extends Component {
     return (
       <div className="App">
         <br />
-        <br />
-        <br />
-        <br />
         <Modal open={this.state.modalOpen} dimmer="blurring" trigger={<Button secondary onClick={this.handleOpen}>Add Transaction</Button>}>
           <Modal.Content>
             <Modal.Description>
 
               <Button inverted color="green" active={this.state.buy} onClick={() => this.handleBuyState( true )}>Buy</Button>
-              <Button inverted color="red" active={this.state.sell} onClick={() => this.handleBuyState( false )}>Sell</Button>
+              <Button inverted color="blue" active={this.state.sell} onClick={() => this.handleBuyState( false )}>Sell</Button>
 
               <Divider />
               <DatePicker
@@ -166,12 +164,12 @@ class AddCoinModal extends Component {
               <Divider />
               <Dropdown defaultValue={this.state.symbol} placeholder="Select Currency" fluid search selection options={this.state.coins} error={this.state.symbol_error} onChange={this.handleCurrencyInput} />
               <Divider />
-              <Input size="small" error={this.state.price_error} placeholder="Purchase price.." onChange={this.handlePriceInput} />
+              <Input size="mini" error={this.state.price_error} placeholder="Purchase price.." onChange={this.handlePriceInput} />
               <Divider />
-              <Input size="small" error={this.state.amount_error} placeholder={this.state.sell ? 'Amount sold' : 'Amount bought'} onChange={this.handleAmountInput} />
+              <Input size="mini" error={this.state.amount_error} placeholder={this.state.sell ? 'Amount sold' : 'Amount bought'} onChange={this.handleAmountInput} />
               <Divider />
 
-              <Button inverted color={this.state.buy ? 'green' : 'red'}onClick={this.handleSubmit}>Add transaction</Button> <Button inverted onClick={this.handleClose}>Cancel</Button>
+              <Button inverted color={this.state.buy ? 'green' : 'blue'}onClick={this.handleSubmit}>Add transaction</Button> <Button inverted onClick={this.handleClose}>Cancel</Button>
             </Modal.Description>
           </Modal.Content>
         </Modal>

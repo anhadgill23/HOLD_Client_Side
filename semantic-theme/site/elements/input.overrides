@@ -5,3 +5,13 @@
 .ui.transparent.input .icon {
   color: @gray-lighter;
 }
+
+.ui.input.error input {
+  border-width: 2px;
+  color: black;
+  background-color: @white;
+}
+
+.ui.input.error input::placeholder{
+  color:black;
+}

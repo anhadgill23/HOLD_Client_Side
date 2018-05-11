@@ -84,7 +84,6 @@ class Portfolio extends Component {
           <Divider hidden />
         </Grid.Column>
         <Grid.Column className="RightColumn" width={11}>
-
         <Sidebar.Pushable>
           <Sidebar
             as={Menu}
@@ -111,15 +110,14 @@ class Portfolio extends Component {
           </Sidebar>
           <Sidebar.Pusher>
             <div className="transaction-list-portfolio">
+              <AddCoinModal userId={this.state.currentUserId} fetchTransactions={this.fetchTransactions} />
               <List>
                 {transactions}
               </List>
             </div>
-            <AddCoinModal userId={this.state.currentUserId} fetchTransactions={this.fetchTransactions} />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </Grid.Column>
-
       </Grid.Row>
     );
   }
