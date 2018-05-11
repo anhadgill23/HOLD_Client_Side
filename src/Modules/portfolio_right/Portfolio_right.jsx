@@ -23,7 +23,7 @@ class PortfolioRight extends Component {
     const arrow = parseFloat( singleTransaction.gain ) > 0 ? 'caret up' : 'caret down';
     return (
       <List.Item onClick={this.handleOnClick}>
-        <Link to="/singlecurrency">
+        <Link to={`/${this.props.userId}/transactions/${this.props.singleTransaction.symbol}`}>
           <List.Content>
             <Table fixed unstackable>
               <Table.Header>
