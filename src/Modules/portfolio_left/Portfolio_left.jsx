@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import logo2 from '../navbar/logo2.png';
 
-class Portfolio_left extends Component {
-  currentValue( arr ) {
+class PortfolioLeft extends Component {
+  static currentValue( arr ) {
     let total = 0;
     arr.forEach( ( element ) => {
       total += element;
     } );
     return ( Math.round( total * 100 ) / 100 );
   }
+
   render() {
-    const totalValue = this.currentValue( this.props.currentValuesFromAllCoins );
-    const totalGain = this.currentValue( this.props.gainsFromAllCoins );
+    const totalValue = PortfolioLeft.currentValue( this.props.currentValuesFromAllCoins );
+    const totalGain = PortfolioLeft.currentValue( this.props.gainsFromAllCoins );
     if ( totalGain >= 0 ) {
       return (
         <div>
@@ -41,4 +43,16 @@ class Portfolio_left extends Component {
   }
 }
 
-export default Portfolio_left;
+export default PortfolioLeft;
+
+PortfolioLeft.propTypes = {
+  currentValuesFromAllCoins: PropTypes.number,
+  currentUserName: PropTypes.string,
+  gainsFromAllCoins: PropTypes.number,
+};
+
+PortfolioLeft.defaultProps = {
+  currentValuesFromAllCoins: 0,
+  currentUserName: '',
+  gainsFromAllCoins: PropTypes.number,
+};

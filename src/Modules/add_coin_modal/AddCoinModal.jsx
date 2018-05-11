@@ -160,6 +160,7 @@ class AddCoinModal extends Component {
                 class="ui small input"
                 selected={this.state.startDate}
                 onChange={this.handleDateInput}
+                maxDate={moment().add( 0, 'day' )}
               />
               <Divider />
               <Dropdown defaultValue={this.state.symbol} placeholder="Select Currency" fluid search selection options={this.state.coins} error={this.state.symbol_error} onChange={this.handleCurrencyInput} />
