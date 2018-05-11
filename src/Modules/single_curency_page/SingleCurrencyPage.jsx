@@ -68,11 +68,11 @@ class SingleCurrencyPage extends Component {
         <Grid.Column className="ColumnOnSingleCurrency" width={11}>
           <div className="transaction-list">
             <List verticalAlign="middle">
+              <AddCoinModal symbol={this.state.symbol} userId={this.state.userId} fetchTransactions={this.fetchTransactions} />
               <br />
               {transactions}
             </List>
           </div>
-          <AddCoinModal symbol={this.state.symbol} userId={this.state.userId} fetchTransactions={this.fetchTransactions} />
         </Grid.Column>
       </Grid.Row>
 
