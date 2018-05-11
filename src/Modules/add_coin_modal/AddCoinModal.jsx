@@ -155,7 +155,7 @@ class AddCoinModal extends Component {
             <Modal.Description>
 
               <Button inverted color="green" active={this.state.buy} onClick={() => this.handleBuyState( true )}>Buy</Button>
-              <Button inverted color="red" active={this.state.sell} onClick={() => this.handleBuyState( false )}>Sell</Button>
+              <Button inverted color="blue" active={this.state.sell} onClick={() => this.handleBuyState( false )}>Sell</Button>
 
               <Divider />
               <DatePicker
@@ -171,7 +171,7 @@ class AddCoinModal extends Component {
               <Input size="mini" error={this.state.amount_error} placeholder={this.state.sell ? 'Amount sold' : 'Amount bought'} onChange={this.handleAmountInput} />
               <Divider />
 
-              <Button inverted color={this.state.buy ? 'green' : 'red'}onClick={this.handleSubmit}>Add transaction</Button> <Button inverted onClick={this.handleClose}>Cancel</Button>
+              <Button inverted color={this.state.buy ? 'green' : 'blue'}onClick={this.handleSubmit}>Add transaction</Button> <Button inverted onClick={this.handleClose}>Cancel</Button>
             </Modal.Description>
           </Modal.Content>
         </Modal>
