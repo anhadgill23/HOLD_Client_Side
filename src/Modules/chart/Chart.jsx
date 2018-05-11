@@ -3,6 +3,13 @@ import { Header } from 'semantic-ui-react';
 import { Bubble } from 'react-chartjs-2';
 
 class Chart extends Component {
+  static scaleValue( rawValuesArray ) {
+    const xMin = Math.min.apply( null, rawValuesArray );
+    const xMax = Math.max.apply( null, rawValuesArray );
+    const x = rawValuesArray[rawValuesArray.length - 1];
+    return 1 + ( x - xMin ) * ( 60 - 1 ) / ( xMax - xMin );
+  }
+
   static reloadData( data ) {
     return {
       labels: ['January'],
@@ -36,7 +43,15 @@ class Chart extends Component {
     super( props );
     this.webSocket = new WebSocket( 'wss://ws.blockchain.info/inv' );
     this.state = {
+      rawValues: [],
       options: {
+        tooltips: {
+          displayColors: false,
+          callbacks: {
+            title: ( items, data ) => data.datasets[items[0].datasetIndex].data[items[0].index].hash,
+            label: ( item, data ) => `฿ ${data.datasets[item.datasetIndex].data[item.index].value}`,
+          },
+        },
         legend: {
           display: false,
         },
@@ -59,7 +74,7 @@ class Chart extends Component {
           }],
         },
       },
-      data: Chart.reloadData( [{ x: 0.5, y: 0.5, r: 2 }] ),
+      data: Chart.reloadData( [] ),
     };
   }
   componentDidMount() {
@@ -85,30 +100,41 @@ class Chart extends Component {
     };
     this.webSocket.onmessage = ( event ) => {
       let data = this.state.data.datasets[0].data.slice( 0 );
+      let rawValues = this.state.rawValues.slice( 0 );
       const message = JSON.parse( event.data );
-      const _id = message.x.hash;
+      const { hash } = message.x;
       const utxOutputs = message.x.out;
       let value = 0;
       utxOutputs.forEach( ( output ) => {
         value += output.value;
       } );
       // convert to whole BTC
-      value /= 100000000;
+      value *= 0.00000001;
+      rawValues.push( value );
+      const standardValue = Chart.scaleValue( rawValues );
+      console.log( standardValue );
       // { x: 1, y: 10, size: 30 }
       const x = Math.random();
       const y = Math.random();
       const transaction = {
-        x, y, r: value,
+        x, y, r: standardValue, value, hash,
       };
+
       data.push( transaction );
-      if ( data.length > 400 ) {
+      console.log( data );
+      if ( rawValues.length > 400 ) {
         data = [];
+        rawValues = [];
       }
+
+      // normalize data
       this.setState( {
         data: Chart.reloadData( data ),
+        rawValues,
       } );
     };
   }
+
 
   render() {
     return (

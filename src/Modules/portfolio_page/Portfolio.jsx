@@ -77,6 +77,7 @@ class Portfolio extends Component {
           <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
           <Divider />
           <Chart />
+          <Divider />
         </Grid.Column>
         <Grid.Column className="RightColumn" width={11}>
           <Header>
