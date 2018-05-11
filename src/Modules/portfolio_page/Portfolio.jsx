@@ -85,11 +85,11 @@ class Portfolio extends Component {
         <Grid.Column className="RightColumn" width={11}>
           <br />
           <div className="transaction-list-portfolio">
+            <AddCoinModal userId={this.state.currentUserId} fetchTransactions={this.fetchTransactions} />
             <List>
               {transactions}
             </List>
           </div>
-          <AddCoinModal userId={this.state.currentUserId} fetchTransactions={this.fetchTransactions} />
         </Grid.Column>
       </Grid.Row>
     );

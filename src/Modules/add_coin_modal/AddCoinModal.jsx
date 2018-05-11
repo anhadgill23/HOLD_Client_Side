@@ -147,9 +147,6 @@ class AddCoinModal extends Component {
     return (
       <div className="App">
         <br />
-        <br />
-        <br />
-        <br />
         <Modal open={this.state.modalOpen} dimmer="blurring" trigger={<Button secondary onClick={this.handleOpen}>Add Transaction</Button>}>
           <Modal.Content>
             <Modal.Description>
