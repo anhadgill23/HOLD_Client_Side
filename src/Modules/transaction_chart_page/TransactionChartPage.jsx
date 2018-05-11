@@ -8,7 +8,7 @@ class TransactionChartPage extends Component {
     return (
       <Grid.Row>
         <Grid.Column>
-          <Chart maxSize={150} />
+          <Chart maxSize={250} />
         </Grid.Column>
       </Grid.Row>
     );
