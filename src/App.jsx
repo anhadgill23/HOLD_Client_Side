@@ -101,7 +101,7 @@ class App extends Component {
                 render={props => (
                   this.state.isLoggedIn ?
                   ( <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol} handleLoading={this.handleLoading} /> ) :
-                  ( <Redirect to="/login" /> )
+                  ( <Redirect to="/" /> )
                   )}
               />
               <Route
