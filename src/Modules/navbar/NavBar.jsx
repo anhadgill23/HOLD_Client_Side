@@ -21,7 +21,7 @@ class NavBar extends Component {
     console.log( this.props.isAuthorized );
     return (
       <Menu>
-        <Link to="/">
+        <Link to={`/portfolio/${this.props.userId}`}>
           <Menu.Item>
             <img src={logo2} alt="cross logo" /> HOLD
           </Menu.Item>
