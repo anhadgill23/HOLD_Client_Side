@@ -17,7 +17,7 @@ Add screenshots here.
 1. Fork this repository, then clone your fork of this repository.
 2. Install dependencies using the `npm install` command.
 3. Use `npm start` command to start the app.
-4. Navgate to `https://github.com/anhadgill23/HOLD_Server_Side` which is the seperate server repository and follow steps 1, 2 and 3 in a seperate terminal window.
+4. Navgate to https://github.com/anhadgill23/HOLD_Server_Side which is the seperate server repository and follow steps 1, 2 and 3 in a seperate terminal window.
 5. Visit http://localhost:3000
 
 ## Tech Stack
