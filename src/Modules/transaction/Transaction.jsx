@@ -85,10 +85,12 @@ Transaction.propTypes = {
     buy: PropTypes.bool,
     id: PropTypes.number,
   } ),
+  handleDelete: PropTypes.func,
 };
 
 Transaction.defaultProps = {
   transaction: {},
+  handleDelete: () => {},
 };
 
 
