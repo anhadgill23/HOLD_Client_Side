@@ -19,7 +19,6 @@ class Portfolio extends Component {
       currentValuesFromAllCoins: [],
       gainsFromAllCoins: [],
       transactions: [],
-      // visible: this.props.visible,
     };
     console.log(this.props)
     this.setSymbol = this.setSymbol.bind( this );
@@ -68,8 +67,6 @@ class Portfolio extends Component {
 
 
   render() {
-
-    console.log(this.state)
     const transactions =
     this.state.transactions.map( transaction =>
       <PortfolioMain key={this.state.transactions.indexOf( transaction )} singleTransaction={transaction} userName={this.statecurrentUserName} userId={this.state.currentUserId} setSymbol={this.setSymbol} /> );
@@ -84,15 +81,15 @@ class Portfolio extends Component {
           <Link to="/transactions/btc/chart">
             <Chart maxSize={60} />
           </Link>
-          <Divider />
+          <Divider hidden />
         </Grid.Column>
         <Grid.Column className="RightColumn" width={11}>
 
-        <Sidebar.Pushable as={Segment}>
+        <Sidebar.Pushable>
           <Sidebar
             as={Menu}
-            animation='push'
-            width='thin'
+            animation='overlay'
+            width='wide'
             direction='right'
             visible={this.props.visible}
             icon='labeled'
@@ -113,16 +110,12 @@ class Portfolio extends Component {
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
-            <Segment>
-
-                <div className="transaction-list-portfolio">
-                  <List>
-                    {transactions}
-                  </List>
-                </div>
-                <AddCoinModal userId={this.state.currentUserId} fetchTransactions={this.fetchTransactions} />
-
-            </Segment>
+            <div className="transaction-list-portfolio">
+              <List>
+                {transactions}
+              </List>
+            </div>
+            <AddCoinModal userId={this.state.currentUserId} fetchTransactions={this.fetchTransactions} />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </Grid.Column>

@@ -63,12 +63,9 @@ class App extends Component {
   }
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
-  // toggleVisibility() {
-  //   this.setState({ visible: !this.state.visible })
-  // }
+
 
   render() {
-    console.log(this.state)
     return (
 
       <div className="App">
