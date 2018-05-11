@@ -27,8 +27,8 @@ class AddCoinModal extends Component {
       price_error: true,
       coins: [],
     };
-
     this.fetchCoins();
+    this.handleDateInput = this.handleDateInput.bind(this);
   }
 
   fetchCoins() {
