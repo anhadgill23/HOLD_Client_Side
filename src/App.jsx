@@ -83,7 +83,7 @@ class App extends Component {
         <Dimmer active={this.state.loading} page>
           <Loader size="massive" />
         </Dimmer>
-        <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} />
+        <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} userId={this.state.userId} />
         <div>
           <Grid stackable >
             <Switch>
