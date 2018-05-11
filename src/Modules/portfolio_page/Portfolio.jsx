@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Header, Grid, Divider } from 'semantic-ui-react';
+import { Sidebar, Segment, Button, Menu, Icon, List, Header, Grid, Divider } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
 import Portfolio_left from '../portfolio_left/Portfolio_left.jsx';
 import PortfolioMain from '../portfolio_right/Portfolio_right.jsx';
@@ -20,6 +20,7 @@ class Portfolio extends Component {
       gainsFromAllCoins: [],
       transactions: [],
     };
+    console.log(this.props)
     this.setSymbol = this.setSymbol.bind( this );
     this.handleLoading = this.handleLoading.bind( this );
   }
@@ -80,17 +81,43 @@ class Portfolio extends Component {
           <Link to="/transactions/btc/chart">
             <Chart maxSize={60} />
           </Link>
-          <Divider />
+          <Divider hidden />
         </Grid.Column>
         <Grid.Column className="RightColumn" width={11}>
-          <br />
-          <div className="transaction-list-portfolio">
-            <AddCoinModal userId={this.state.currentUserId} fetchTransactions={this.fetchTransactions} />
-            <List>
-              {transactions}
-            </List>
-          </div>
-        </Grid.Column>
+        <Sidebar.Pushable>
+          <Sidebar
+            as={Menu}
+            animation='overlay'
+            width='wide'
+            direction='right'
+            visible={this.props.visible}
+            icon='labeled'
+            vertical
+            inverted
+          >
+          <Menu.Item name='home'>
+              <Icon name='home' />
+              Home
+            </Menu.Item>
+            <Menu.Item name='gamepad'>
+              <Icon name='gamepad' />
+              Games
+            </Menu.Item>
+            <Menu.Item name='camera'>
+              <Icon name='camera' />
+              Channels
+            </Menu.Item>
+          </Sidebar>
+          <Sidebar.Pusher>
+            <div className="transaction-list-portfolio">
+              <AddCoinModal userId={this.state.currentUserId} fetchTransactions={this.fetchTransactions} />
+              <List>
+                {transactions}
+              </List>
+            </div>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
+      </Grid.Column>
       </Grid.Row>
     );
   }
