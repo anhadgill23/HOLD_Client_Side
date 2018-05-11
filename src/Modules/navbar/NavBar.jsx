@@ -30,7 +30,7 @@ class NavBar extends Component {
         </Link>
         {( this.props.isAuthorized == true || this.props.isAuthorized == 'true' ) &&
           <Menu.Item className="ui right floated button">
-            <Button onClick={this.props.toggleVisibility}>Toggle Visibility</Button>
+            <Button onClick={this.props.toggleVisibility}>News</Button>
           </Menu.Item>}
         {( this.props.isAuthorized == true || this.props.isAuthorized == 'true' ) &&
           <Menu.Item className="ui right floated button">

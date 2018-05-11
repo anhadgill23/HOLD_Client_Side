@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Sidebar, Segment, Button, Menu, Icon, List, Header, Grid, Divider } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
+import News from '../news/News.jsx';
 import Portfolio_left from '../portfolio_left/Portfolio_left.jsx';
 import PortfolioMain from '../portfolio_right/Portfolio_right.jsx';
 import AddCoinModal from '../add_coin_modal/AddCoinModal.jsx';
@@ -95,7 +96,8 @@ class Portfolio extends Component {
             vertical
             inverted
           >
-          <Menu.Item name='home'>
+          <News/>
+          {/*<Menu.Item name='home'>
               <Icon name='home' />
               Home
             </Menu.Item>
@@ -106,7 +108,7 @@ class Portfolio extends Component {
             <Menu.Item name='camera'>
               <Icon name='camera' />
               Channels
-            </Menu.Item>
+            </Menu.Item>*/}
           </Sidebar>
           <Sidebar.Pusher>
             <div className="transaction-list-portfolio">
