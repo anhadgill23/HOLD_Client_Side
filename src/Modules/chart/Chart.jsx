@@ -144,7 +144,9 @@ class Chart extends Component {
           options={this.state.options}
           getElementAtEvent={( ( dataset ) => {
             const { hash } = this.state.data.datasets[0].data[dataset[0]._index];
+            if ( this.props.canRedirect ) {
             window.location = `https://blockchain.info/tx/${hash}`;
+            }
           } )}
         />
       </div>
