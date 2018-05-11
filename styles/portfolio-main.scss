@@ -8,10 +8,12 @@
   height: '100vh';
 }
 
-#RowOnPortfolio .WelcomeName {
-  color: Black;
-  font-size: xx-large;
-  padding-top: 20px;
+.WelcomeName {
+  color: white;
+  font-size: x-large;
+  margin: 0;
+  font-family: 'Heebo', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 #RowOnPortfolio {
