@@ -118,6 +118,7 @@ class AddCoinModal extends Component {
         price: this.state.price,
         amount: this.state.amount,
         buy: this.state.buy,
+        created_at: this.state.startDate,
       };
       this.postTransaction( transaction );
       this.handleClose();
