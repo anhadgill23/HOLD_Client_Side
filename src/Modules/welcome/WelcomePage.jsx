@@ -20,30 +20,33 @@ class WelcomePage extends Component {
 
   render() {
     return (
-      <Grid.Row>
-
+      <Grid.Row className="welcome-page">
         <Grid.Column>
-          <div className="intro">
-            <ReactRevealText
-              text="THE FUTURE IS NOW, TRANSCEND YOUR LIMITS"
-              show={this.state.show}
-              className="my-class-name"
-              style={{ color: '#079186', fontSize: '30px', lineHeight: '36px' }}
-            />
-
+          <div id="login-and-tagline">
+            <div id="buttons-container" >
+              <Link to="/register">
+                <Button className="ui grey button" size="huge" >Register</Button>
+              </Link>
+              <Link to="/login">
+                <Button className="ui grey button" size="huge" >Login</Button>
+              </Link>
+            </div>
+            <br />
+            <div className="intro">
+              <ReactRevealText
+                text="You make your cyptocurrency investments."
+                show={this.state.show}
+                className="my-class-name"
+                style={{ color: '#FFFFFF', fontSize: '30px', lineHeight: '36px' }}
+              />
+              <ReactRevealText
+                text="We’ll keep a track of them."
+                show={this.state.show}
+                className="my-class-name"
+                style={{ color: '#FFFFFF', fontSize: '30px', lineHeight: '36px' }}
+              />
+            </div>
           </div>
-          <br />
-          <br />
-          <br />
-          <div className="buttons-container" >
-            <Link to="/register">
-              <Button type="button" className="register" size="huge" inverted >Register</Button>
-            </Link>
-            <Link to="/login">
-              <Button type="button" className="login" size="huge" inverted >Login</Button>
-            </Link>
-          </div>
-          <br />
           <div className="ui divider" />
           <br />
           <Graph />
