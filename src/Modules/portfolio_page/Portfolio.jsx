@@ -18,7 +18,6 @@ class Portfolio extends Component {
       currentValuesFromAllCoins: [],
       gainsFromAllCoins: [],
       transactions: [],
-      color: 'grey',
     };
     this.setSymbol = this.setSymbol.bind( this );
     this.handleLoading = this.handleLoading.bind( this );
@@ -68,7 +67,7 @@ class Portfolio extends Component {
   render() {
     const transactions =
     this.state.transactions.map( transaction =>
-      <PortfolioMain key={transaction.id} singleTransaction={transaction} userName={this.statecurrentUserName} userId={this.state.currentUserId} setSymbol={this.setSymbol} /> );
+      <PortfolioMain key={this.state.transactions.indexOf( transaction )} singleTransaction={transaction} userName={this.statecurrentUserName} userId={this.state.currentUserId} setSymbol={this.setSymbol} /> );
     return (
 
 
