@@ -5,6 +5,7 @@ import Portfolio_left from '../portfolio_left/Portfolio_left.jsx';
 import PortfolioMain from '../portfolio_right/Portfolio_right.jsx';
 import AddCoinModal from '../add_coin_modal/AddCoinModal.jsx';
 import Chart from '../chart/Chart.jsx';
+import { Link, Redirect } from 'react-router-dom';
 
 class Portfolio extends Component {
   constructor( props ) {
@@ -76,7 +77,9 @@ class Portfolio extends Component {
           <Portfolio_left currentValuesFromAllCoins={this.state.currentValuesFromAllCoins} gainsFromAllCoins={this.state.gainsFromAllCoins} currentUserName={this.state.currentUserName} />
           <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
           <Divider />
-          <Chart />
+          <Link to="/transactions/btc/chart">
+            <Chart maxSize={60} />
+          </Link>
           <Divider />
         </Grid.Column>
         <Grid.Column className="RightColumn" width={11}>
