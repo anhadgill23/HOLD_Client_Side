@@ -36,7 +36,6 @@ class Chart extends Component {
   constructor( props ) {
     super( props );
     this.scaleValue = this.scaleValue.bind( this );
-
     this.webSocket = new WebSocket( 'wss://ws.blockchain.info/inv' );
     this.state = {
       rawValues: [0, 500],
@@ -88,7 +87,6 @@ class Chart extends Component {
     return 1 + ( x - xMin ) * ( this.props.maxSize - 1 ) / ( xMax - xMin );
   }
 
-
   init() {
     this.webSocket.onopen = () => {
       this.setState( {
@@ -123,7 +121,6 @@ class Chart extends Component {
       };
 
       data.push( transaction );
-      console.log( rawValues );
       if ( rawValues.length > 400 ) {
         data = [];
         rawValues = [0, 500];
@@ -142,7 +139,14 @@ class Chart extends Component {
     return (
       <div>
         <Header size="tiny">Realtime BTC transactions</Header>
-        <Bubble data={this.state.data} options={this.state.options} />
+        <Bubble
+          data={this.state.data}
+          options={this.state.options}
+          getElementAtEvent={( ( dataset ) => {
+            const { hash } = this.state.data.datasets[0].data[dataset[0]._index];
+            window.location = `https://blockchain.info/tx/${hash}`;
+          } )}
+        />
       </div>
     );
   }
