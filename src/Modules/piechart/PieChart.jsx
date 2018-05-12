@@ -34,7 +34,6 @@ class PieChart extends Component {
         <Header size="tiny">Portfolio Distribution</Header>
         <Doughnut
           data={data}
-          redraw
         />
       </div>
     );
