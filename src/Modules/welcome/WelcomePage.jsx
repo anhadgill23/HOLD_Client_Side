@@ -17,7 +17,6 @@ class WelcomePage extends Component {
     }, 700 );
   }
 
-
   render() {
     return (
       <Grid.Row className="welcome-page">
@@ -37,13 +36,13 @@ class WelcomePage extends Component {
                 text="You make your cyptocurrency investments."
                 show={this.state.show}
                 className="my-class-name"
-                style={{ color: '#FFFFFF', fontSize: '30px', lineHeight: '36px' }}
+                style={{ color: '#FFFFFF', letterSpacing: '4px', fontSize: '30px', lineHeight: '36px' }}
               />
               <ReactRevealText
                 text="We’ll keep a track of them."
                 show={this.state.show}
                 className="my-class-name"
-                style={{ color: '#FFFFFF', fontSize: '30px', lineHeight: '36px' }}
+                style={{ color: '#FFFFFF', letterSpacing: '4px', fontSize: '30px', lineHeight: '36px' }}
               />
             </div>
           </div>
