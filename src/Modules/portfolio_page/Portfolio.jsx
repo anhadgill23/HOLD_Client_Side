@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Sidebar, Segment, Button, Menu, Icon, List, Header, Grid, Divider } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Sidebar, Menu, List, Header, Grid, Divider } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
 import News from '../news/News.jsx';
-import Portfolio_left from '../portfolio_left/Portfolio_left.jsx';
-import PortfolioMain from '../portfolio_right/Portfolio_right.jsx';
+import PortfolioLeft from '../portfolio_left/PortfolioLeft.jsx';
+import PortfolioRight from '../portfolio_right/PortfolioRight.jsx';
 import AddCoinModal from '../add_coin_modal/AddCoinModal.jsx';
-import Chart from '../chart/Chart.jsx';
-import { Link, Redirect } from 'react-router-dom';
+import TransactionChart from '../transaction_chart/TransactionChart.jsx';
 
 class Portfolio extends Component {
   constructor( props ) {
@@ -21,7 +21,7 @@ class Portfolio extends Component {
       gainsFromAllCoins: [],
       transactions: [],
     };
-    console.log(this.props)
+    console.log( this.props );
     this.setSymbol = this.setSymbol.bind( this );
     this.handleLoading = this.handleLoading.bind( this );
   }
@@ -70,45 +70,61 @@ class Portfolio extends Component {
   render() {
     const transactions =
     this.state.transactions.map( transaction =>
-      <PortfolioMain key={this.state.transactions.indexOf( transaction )} singleTransaction={transaction} userName={this.statecurrentUserName} userId={this.state.currentUserId} setSymbol={this.setSymbol} /> );
+      ( <PortfolioRight
+        key={this.state.transactions.indexOf( transaction )}
+        singleTransaction={transaction}
+        userName={this.statecurrentUserName}
+        userId={this.state.currentUserId}
+        setSymbol={this.setSymbol}
+      /> ) );
     return (
 
 
       <Grid.Row id="RowOnPortfolio">
         <Grid.Column width={5}>
-          <Portfolio_left currentValuesFromAllCoins={this.state.currentValuesFromAllCoins} gainsFromAllCoins={this.state.gainsFromAllCoins} currentUserName={this.state.currentUserName} />
-          <PieChart labels={this.state.labels} remaining={this.state.remainingData} />
+          <PortfolioLeft
+            currentValuesFromAllCoins={this.state.currentValuesFromAllCoins}
+            gainsFromAllCoins={this.state.gainsFromAllCoins}
+            currentUserName={this.state.currentUserName}
+          />
+          <PieChart
+            labels={this.state.labels}
+            remaining={this.state.remainingData}
+          />
           <Divider />
           <Link to="/transactions/btc/chart">
-            <Chart maxSize={60} />
+            <TransactionChart maxSize={60} />
           </Link>
           <Divider hidden />
         </Grid.Column>
         <Grid.Column className="RightColumn" width={11}>
-        <Sidebar.Pushable>
-          <Sidebar
-            as={Menu}
-            animation='overlay'
-            width='wide'
-            direction='right'
-            visible={this.props.visible}
-            icon='labeled'
-            vertical
-            inverted
-          >
-          <Header>Crypto News</Header>
-          <News/>
-          </Sidebar>
-          <Sidebar.Pusher>
-            <div className="transaction-list-portfolio">
-              <AddCoinModal userId={this.state.currentUserId} fetchTransactions={this.fetchTransactions} />
-              <List>
-                {transactions}
-              </List>
-            </div>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-      </Grid.Column>
+          <Sidebar.Pushable>
+            <Sidebar
+              as={Menu}
+              animation="overlay"
+              width="wide"
+              direction="right"
+              visible={this.props.visible}
+              icon="labeled"
+              vertical
+              inverted
+            >
+              <Header>Crypto News</Header>
+              <News />
+            </Sidebar>
+            <Sidebar.Pusher>
+              <div className="transaction-list-portfolio">
+                <AddCoinModal
+                  userId={this.state.currentUserId}
+                  fetchTransactions={this.fetchTransactions}
+                />
+                <List>
+                  {transactions}
+                </List>
+              </div>
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
+        </Grid.Column>
       </Grid.Row>
     );
   }

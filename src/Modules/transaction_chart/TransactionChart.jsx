@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Header } from 'semantic-ui-react';
 import { Bubble } from 'react-chartjs-2';
 
-class Chart extends Component {
+class TransactionChart extends Component {
   static reloadData( data ) {
     return {
       labels: ['January'],
@@ -69,7 +69,7 @@ class Chart extends Component {
           }],
         },
       },
-      data: Chart.reloadData( [] ),
+      data: TransactionChart.reloadData( [] ),
     };
   }
   componentDidMount() {
@@ -125,7 +125,7 @@ class Chart extends Component {
 
       // normalize data
       this.setState( {
-        data: Chart.reloadData( data ),
+        data: TransactionChart.reloadData( data ),
         rawValues,
       } );
     };
@@ -151,4 +151,4 @@ class Chart extends Component {
   }
 }
 
-export default Chart;
+export default TransactionChart;

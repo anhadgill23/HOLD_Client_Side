@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Chart from '../chart/Chart.jsx';
-import { Grid, GridRow } from 'semantic-ui-react';
-
+import { Grid } from 'semantic-ui-react';
+import Chart from '../transaction_chart/TransactionChart.jsx';
 
 class TransactionChartPage extends Component {
   render() {
