@@ -165,9 +165,9 @@ class AddCoinModal extends Component {
               <Divider />
               <Dropdown defaultValue={this.state.symbol} placeholder="Select Currency" fluid search selection options={this.state.coins} error={this.state.symbol_error} onChange={this.handleCurrencyInput} />
               <Divider />
-              <Input size="mini" error={this.state.price_error} placeholder="Purchase price.." onChange={this.handlePriceInput} />
+              <Input size="mini" error={this.state.price_error} placeholder={(this.state.buy) ? 'Purchase price' : 'Sold price'} onChange={this.handlePriceInput} />
               <Divider />
-              <Input size="mini" error={this.state.amount_error} placeholder={this.state.sell ? 'Amount sold' : 'Amount bought'} onChange={this.handleAmountInput} />
+              <Input size="mini" error={this.state.amount_error} placeholder={(this.state.buy) ? 'Amount bought' : 'Amount sold'} onChange={this.handleAmountInput} />
               <Divider />
 
               <Button inverted color={this.state.buy ? 'green' : 'blue'}onClick={this.handleSubmit}>Add transaction</Button> <Button inverted onClick={this.handleClose}>Cancel</Button>
