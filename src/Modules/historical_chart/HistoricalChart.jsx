@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Line } from 'react-chartjs-2';
+import { Header, Grid } from 'semantic-ui-react';
 
 class HistoricalChart extends Component {
   constructor( props ) {
     super( props );
-    console.log( 'HISTCHART' );
     this.state = {
-      historicalData: 'Funk',
+      data: [],
     };
     this.fetchHistoricalData = this.fetchHistoricalData.bind( this );
     this.setChartData = this.setChartData.bind( this );
@@ -83,6 +83,19 @@ class HistoricalChart extends Component {
         const pointsArray = historicalData.Data.map( data => data.close );
         const timeStampArray = historicalData.Data.map( data => moment.unix( data.time ).format( 'MM/DD/YYYY' ) );
         this.setChartData( pointsArray, timeStampArray );
+        return pointsArray;
+      } ).then( ( pointsArray ) => {
+        fetch( 'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD' )
+          .then( response => response.json() )
+          .then( ( price ) => {
+            console.log( price.USD );
+            console.log( pointsArray[0] );
+            this.setState( {
+              currentPrice: price.USD,
+              priceChange: price.USD - pointsArray[0],
+              percentChange: ( price.USD - pointsArray[0] ) / pointsArray[0] / 0.01,
+            } );
+          } );
       } )
       .catch( ( error ) => {
         console.error( error );
@@ -92,6 +105,20 @@ class HistoricalChart extends Component {
   render() {
     return (
       <div style={{ maxWidth: '50vw', margin: '0 auto' }}>
+        <Header size="huge" style={{ color: '#7C7C7C' }}>30 Day Bitcoin Price Chart</Header>
+        <Grid columns="equal">
+          <Grid.Row>
+            <Grid.Column>
+              <Header>USD${this.state.currentPrice}</Header>
+            </Grid.Column>
+            <Grid.Column>
+              <Header>USD${this.state.priceChange}</Header>
+            </Grid.Column>
+            <Grid.Column>
+              <Header>{this.state.percentChange}%</Header>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         <Line data={this.state.data} options={this.state.options} />
       </div>
     );
