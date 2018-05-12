@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import TimeAgo from 'react-timeago';
 import { Line } from 'react-chartjs-2';
-import { Header, Grid } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
+import InfoBox from './InfoBox.jsx';
 
 class HistoricalChart extends Component {
   static roundNumber( num, places ) {
@@ -33,7 +33,7 @@ class HistoricalChart extends Component {
           label: 'BTC price',
           fill: true,
           lineTension: 0.1,
-          backgroundColor: 'rgba(65, 81, 128,0.2)',
+          backgroundColor: 'rgba(65, 81, 128,0.5)',
           borderColor: 'rgba(65, 81, 128,1)',
           borderCapStyle: 'butt',
           borderDash: [],
@@ -110,30 +110,12 @@ class HistoricalChart extends Component {
     return (
       <div style={{ maxWidth: '50vw', margin: '0 auto' }}>
         <Header size="huge" style={{ color: '#7C7C7C' }}>30 Day Bitcoin Price Chart</Header>
-        <Grid columns="equal" divided textAlign="center">
-          <Grid.Row style={{ paddingBottom: '0' }}>
-            <Grid.Column>
-              <Header size="huge" style={{ color: '#7C7C7C' }}>USD${this.state.currentPrice}</Header>
-            </Grid.Column>
-            <Grid.Column>
-              <Header size="huge" style={{ color: '#7C7C7C' }}>USD${this.state.priceChange}</Header>
-            </Grid.Column>
-            <Grid.Column>
-              <Header size="huge" style={{ color: '#7C7C7C' }}>{this.state.percentChange}%</Header>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row style={{ paddingTop: '0', paddingBottom: '0' }}>
-            <Grid.Column>
-              <Header size="tiny" style={{ color: '#7C7C7C' }}>Updated <TimeAgo date={this.state.timeOfPrice} /></Header>
-            </Grid.Column>
-            <Grid.Column>
-              <Header size="tiny" style={{ color: '#7C7C7C' }}>Change Since Last Month (USD)</Header>
-            </Grid.Column>
-            <Grid.Column>
-              <Header size="tiny" style={{ color: '#7C7C7C' }}>Change Since Last Month (%)</Header>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <InfoBox
+          currentPrice={this.state.currentPrice}
+          priceChange={this.state.priceChange}
+          percentChange={this.state.percentChange}
+          timeOfPrice={this.state.timeOfPrice}
+        />
         <Line data={this.state.data} options={this.state.options} />
       </div>
     );
