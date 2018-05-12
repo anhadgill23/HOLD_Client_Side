@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import TimeAgo from 'react-timeago';
 import { Line } from 'react-chartjs-2';
 import { Header, Grid } from 'semantic-ui-react';
 
 class HistoricalChart extends Component {
+  static roundNumber( num, places ) {
+    return ( Math.round( num * 100 ) / 100 ).toFixed( places );
+  }
   constructor( props ) {
     super( props );
     this.state = {
-      data: [],
+      data: {},
     };
     this.fetchHistoricalData = this.fetchHistoricalData.bind( this );
     this.setChartData = this.setChartData.bind( this );
@@ -88,12 +92,12 @@ class HistoricalChart extends Component {
         fetch( 'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD' )
           .then( response => response.json() )
           .then( ( price ) => {
-            console.log( price.USD );
-            console.log( pointsArray[0] );
+            console.log( moment().format() );
             this.setState( {
               currentPrice: price.USD,
-              priceChange: price.USD - pointsArray[0],
-              percentChange: ( price.USD - pointsArray[0] ) / pointsArray[0] / 0.01,
+              priceChange: HistoricalChart.roundNumber( price.USD - pointsArray[0], 2 ),
+              percentChange: HistoricalChart.roundNumber( ( price.USD - pointsArray[0] ) / pointsArray[0] / 0.01, 2 ),
+              timeOfPrice: moment(),
             } );
           } );
       } )
@@ -106,16 +110,27 @@ class HistoricalChart extends Component {
     return (
       <div style={{ maxWidth: '50vw', margin: '0 auto' }}>
         <Header size="huge" style={{ color: '#7C7C7C' }}>30 Day Bitcoin Price Chart</Header>
-        <Grid columns="equal">
-          <Grid.Row>
+        <Grid columns="equal" divided textAlign="center">
+          <Grid.Row style={{ paddingBottom: '0' }}>
             <Grid.Column>
-              <Header>USD${this.state.currentPrice}</Header>
+              <Header size="huge" style={{ color: '#7C7C7C' }}>USD${this.state.currentPrice}</Header>
             </Grid.Column>
             <Grid.Column>
-              <Header>USD${this.state.priceChange}</Header>
+              <Header size="huge" style={{ color: '#7C7C7C' }}>USD${this.state.priceChange}</Header>
             </Grid.Column>
             <Grid.Column>
-              <Header>{this.state.percentChange}%</Header>
+              <Header size="huge" style={{ color: '#7C7C7C' }}>{this.state.percentChange}%</Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row style={{ paddingTop: '0', paddingBottom: '0' }}>
+            <Grid.Column>
+              <Header size="tiny" style={{ color: '#7C7C7C' }}>Updated <TimeAgo date={this.state.timeOfPrice} /></Header>
+            </Grid.Column>
+            <Grid.Column>
+              <Header size="tiny" style={{ color: '#7C7C7C' }}>Change Since Last Month (USD)</Header>
+            </Grid.Column>
+            <Grid.Column>
+              <Header size="tiny" style={{ color: '#7C7C7C' }}>Change Since Last Month (%)</Header>
             </Grid.Column>
           </Grid.Row>
         </Grid>
