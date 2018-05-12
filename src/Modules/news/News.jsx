@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Feed, Image, Item } from 'semantic-ui-react';
+import { Menu, Feed, Image, Item, Divider } from 'semantic-ui-react';
 
 
 class News extends Component {
@@ -17,8 +17,6 @@ class News extends Component {
     }).then(data => {
       let articles = data.articles;
       this.setState({ articles: articles });
-      console.log(this.state)
-
     })
   }
   render() {
@@ -27,22 +25,24 @@ class News extends Component {
       <div className="news-container">
         <Item.Group>
         {articles.map(article =>
-          <Item key={article.objectID}>
+          <Item key={article.objectID} style={{ margin: '10px' }}>
             <a href={article.url} target="_blank">
-            <Item.Image src={article.urlToImage} size='tiny' />
             <Item.Content>
+            <Item.Image src={article.urlToImage} size='small' style={{ padding: '10px', float: 'right' }}/>
               <Item.Header>
               {article.title}
               </Item.Header>
-              <Item.Meta>Description</Item.Meta>
-              <Item.Description>
-              {article.description.substring(0, 100)}
-              </Item.Description>
-
+              <Item.Extra>
+              { (article.description.length > 120) ?
+                (`${article.description.substring(0, 120)}...`) :
+                (`${article.description}`)
+              }
+              </Item.Extra>
             </Item.Content>
             </a>
           </Item>
         )}
+        <Divider />
         </Item.Group>
       </div>
     )
