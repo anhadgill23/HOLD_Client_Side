@@ -93,7 +93,7 @@ class Portfolio extends Component {
           />
           <Divider />
           <Link to="/transactions/btc/chart">
-            <TransactionChart maxSize={60} />
+            <TransactionChart maxSize={60} color="blue" />
           </Link>
           <Divider hidden />
         </Grid.Column>

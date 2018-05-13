@@ -3,7 +3,21 @@ import { Header } from 'semantic-ui-react';
 import { Bubble } from 'react-chartjs-2';
 
 class TransactionChart extends Component {
-  static reloadData( data ) {
+  static getColor( color ) {
+    let chartColor = 'rgba(65, 81, 128';
+    const colorMap = {
+      yellow: () => 'rgba(255, 255, 0',
+      blue: () => 'rgba(65, 81, 128',
+    };
+    const fn = colorMap[color];
+    if ( fn ) {
+      chartColor = fn();
+    }
+    return chartColor;
+  }
+
+  static reloadData( data, color ) {
+    console.log( color );
     return {
       labels: ['January'],
       datasets: [
@@ -11,8 +25,8 @@ class TransactionChart extends Component {
           scaleOverride: true,
           fill: false,
           lineTension: 0.1,
-          backgroundColor: 'rgba(65, 81, 128,0.4)',
-          borderColor: 'rgb(65, 81, 128 ,1)',
+          backgroundColor: `${color},0.4)`,
+          borderColor: `${color} ,1)`,
           borderCapStyle: 'butt',
           borderDash: [],
           borderDashOffset: 0.0,
@@ -35,6 +49,7 @@ class TransactionChart extends Component {
 
   constructor( props ) {
     super( props );
+    console.log( this.props.color );
     this.scaleValue = this.scaleValue.bind( this );
     this.webSocket = new WebSocket( 'wss://ws.blockchain.info/inv' );
     this.state = {
@@ -69,7 +84,7 @@ class TransactionChart extends Component {
           }],
         },
       },
-      data: TransactionChart.reloadData( [] ),
+      data: TransactionChart.reloadData( [], TransactionChart.getColor( this.props.color ) ),
     };
   }
   componentDidMount() {
@@ -125,7 +140,7 @@ class TransactionChart extends Component {
 
       // normalize data
       this.setState( {
-        data: TransactionChart.reloadData( data ),
+        data: TransactionChart.reloadData( data, TransactionChart.getColor( this.props.color ) ),
         rawValues,
       } );
     };

@@ -7,7 +7,7 @@ class TransactionChartPage extends Component {
     return (
       <Grid.Row>
         <Grid.Column>
-          <Chart maxSize={250} canRedirect />
+          <Chart maxSize={250} canRedirect color="yellow" />
         </Grid.Column>
       </Grid.Row>
     );
