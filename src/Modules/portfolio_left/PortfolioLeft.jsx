@@ -46,13 +46,13 @@ class PortfolioLeft extends Component {
 export default PortfolioLeft;
 
 PortfolioLeft.propTypes = {
-  currentValuesFromAllCoins: PropTypes.number,
+  currentValuesFromAllCoins: PropTypes.arrayOf( PropTypes.number ),
   currentUserName: PropTypes.string,
-  gainsFromAllCoins: PropTypes.number,
+  gainsFromAllCoins: PropTypes.arrayOf( PropTypes.number ),
 };
 
 PortfolioLeft.defaultProps = {
-  currentValuesFromAllCoins: 0,
+  currentValuesFromAllCoins: [],
   currentUserName: '',
   gainsFromAllCoins: PropTypes.number,
 };

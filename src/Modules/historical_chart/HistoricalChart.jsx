@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'chart.js';
-import 'chartjs-plugin-annotation';
 import moment from 'moment';
 import { Line } from 'react-chartjs-2';
 import { Divider } from 'semantic-ui-react';
