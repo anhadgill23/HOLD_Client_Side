@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { List, Table, Icon, Divider, Image } from 'semantic-ui-react';
-import SingleCurrencyPage from '../single_curency_page/SingleCurrencyPage.jsx';
-import {
-  Route,
-  Link,
-} from 'react-router-dom';
-import Portfolio from '../portfolio_page/Portfolio.jsx';
+import { Link } from 'react-router-dom';
+
 
 class PortfolioRight extends Component {
   constructor() {

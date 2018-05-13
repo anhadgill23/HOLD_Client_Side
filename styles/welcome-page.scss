@@ -9,3 +9,14 @@
 #login-and-tagline {
     height: 100vh;
 }
+
+@media only screen and (max-width: $computerBreakpoint) {
+    #buttons-container {
+        padding-top: 50px;
+    }
+
+    #login-and-tagline {
+        height: auto;
+    }
+}
+
