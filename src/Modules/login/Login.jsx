@@ -46,7 +46,7 @@ class Login extends Component {
 
   render() {
     return (
-      <Grid.Row>
+      <Grid.Row className="login-page">
         <Grid.Column width={16}>
           <Grid>
             <Grid.Row centered>
