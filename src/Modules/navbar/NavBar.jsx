@@ -4,7 +4,6 @@ import logo2 from './logo2.png';
 import { Link, Redirect } from 'react-router-dom';
 
 class NavBar extends Component {
-
   constructor( props ) {
     super( props );
 
@@ -28,19 +27,19 @@ class NavBar extends Component {
             <img src={logo2} alt="cross logo" /> HOLD
           </Menu.Item>
         </Link>
-        {( this.props.isAuthorized == true || this.props.isAuthorized == 'true' ) &&
+        {( this.props.isAuthorized === true || this.props.isAuthorized === 'true' ) &&
           <Menu.Item className="news-button" position="right">
             <Button secondary onClick={this.props.toggleVisibility}>
-            <Icon name='newspaper' />News
+              <Icon name="newspaper" />News
             </Button>
           </Menu.Item>}
-        {( this.props.isAuthorized == true || this.props.isAuthorized == 'true' ) &&
-          <Menu.Item className="ui right floated button">
+        {( this.props.isAuthorized === true || this.props.isAuthorized === 'true' ) &&
+          <Menu.Item>
             <Link to="/">
-            <Button secondary onClick={this.handleLogout} >
+              <Button secondary onClick={this.handleLogout} >
           Log Out
-          </Button>
-          </Link>
+              </Button>
+            </Link>
           </Menu.Item>}
       </Menu>
     );
