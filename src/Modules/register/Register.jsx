@@ -15,7 +15,7 @@ class Register extends Component {
       error: '',
     };
     this.onChange = this.onChange.bind( this );
-    this.onSubmi = this.onSubmit.bind( this );
+    this.onSubmit = this.onSubmit.bind( this );
   }
   onChange( e ) {
     this.setState( {
