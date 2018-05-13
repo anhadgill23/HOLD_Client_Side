@@ -19,9 +19,9 @@ class PortfolioLeft extends Component {
         <div>
           <img className="ui centered small image"src={logo2} alt="cross logo" />
           <h6 className="WelcomeName">
-             Hello {this.props.currentUserName}
+             Hello {this.props.currentUserName},
           </h6>
-          <h3 className="ui header">YOUR PORTFOLIO BALANCE IS</h3>
+          <h5 className="ui header">YOUR PORTFOLIO BALANCE IS</h5>
           <h1 className="ui header">${totalValue}</h1>
           <h4 className="green ui header"><i className="green caret up icon" />${totalGain}</h4>
           <div className="ui divider" />
