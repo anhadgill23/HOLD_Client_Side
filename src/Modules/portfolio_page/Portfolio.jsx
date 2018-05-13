@@ -50,7 +50,6 @@ class Portfolio extends Component {
           const number = Number( indiv.remaining );
           const numCurrentValueFromACoin = Number( indiv.currentValue );
           const numGainFromACoin = Number( indiv.gain );
-
           labels.push( indiv.symbol );
           remainingData.push( number );
           currentValuesFromAllCoins.push( numCurrentValueFromACoin );
@@ -68,6 +67,7 @@ class Portfolio extends Component {
 
 
   render() {
+    console.log( this.state.transactions );
     const transactions =
     this.state.transactions.map( transaction =>
       ( <PortfolioRight
