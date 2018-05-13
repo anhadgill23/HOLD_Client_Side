@@ -8,11 +8,13 @@ class PortfolioRight extends Component {
     super();
     this.handleOnClick = this.handleOnClick.bind( this );
   }
+  componentDidMount() {
+    localStorage.removeItem( 'symbol' );
+  }
   handleOnClick() {
     this.props.setSymbol( this.props.singleTransaction.symbol );
   }
   render() {
-    // Make sure prop name is correct
     const { singleTransaction } = this.props;
     const value = singleTransaction.currentValue * singleTransaction.remaining;
     const color = parseFloat( singleTransaction.gain ) > 0 ? 'green' : 'red';
