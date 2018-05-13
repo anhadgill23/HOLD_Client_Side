@@ -53,7 +53,7 @@ class Register extends Component {
 
   render() {
     return (
-      <Grid.Row>
+      <Grid.Row className="register-page">
         <Grid.Column width={16}>
           <Grid>
             <Grid.Row centered>
@@ -68,16 +68,12 @@ class Register extends Component {
                   <Form.Input label="Enter Email" placeholder="Email" name="email" onChange={this.onChange} type="email" required />
                   <Form.Input label="Enter Password" placeholder="Password" name="password" onChange={this.onChange} type="password" required />
                   <Form.Input label="Confirm Password" placeholder="Confirm Password" name="confirmPassword" onChange={this.onChange} type="password" required />
-                  <Form.Button type="submit" inverted>Register</Form.Button>
+                  <Button className="ui grey button" type="submit" size="large" >Register</Button>
+                  <Link to="/login"><Button className="ui grey button" size="large">Login</Button></Link>
                 </Form>
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <Button.Group>
-            <Link to="/"><Button inverted >Back</Button></Link>
-            <Button.Or />
-            <Link to="/login"><Button inverted >Login Page</Button></Link>
-          </Button.Group>
         </Grid.Column>
       </Grid.Row>
     );
