@@ -33,7 +33,7 @@ class PortfolioRight extends Component {
               </Table.Header>
               <Table.Body>
                 <Table.Row>
-                  <Table.Cell />
+                  <Table.Cell>Current Price: ${singleTransaction.currentPrice}</Table.Cell>
                   <Table.Cell>QTY: {singleTransaction.remaining} (${value})</Table.Cell>
                   <Table.Cell>${singleTransaction.currentValue}</Table.Cell>
                 </Table.Row>
