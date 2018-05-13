@@ -60,7 +60,6 @@
   },
   "dependencies": {
     "chart.js": "^2.7.2",
-    "chartjs-plugin-annotation": "^0.5.7",
     "moment": "^2.22.1",
     "react": "15.4.2",
     "react-chartjs-2": "^2.7.2",

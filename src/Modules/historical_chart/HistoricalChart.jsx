@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Chart from 'chart.js';
 import 'chartjs-plugin-annotation';
 import moment from 'moment';
 import { Line } from 'react-chartjs-2';
-import { Header } from 'semantic-ui-react';
+import { Divider } from 'semantic-ui-react';
 import InfoBox from './InfoBox.jsx';
 
 
@@ -19,13 +20,26 @@ class HistoricalChart extends Component {
     };
     this.fetchHistoricalData = this.fetchHistoricalData.bind( this );
     this.setChartData = this.setChartData.bind( this );
+    // const parentEventHandler = Chart.Controller.prototype.eventHandler;
+    // Chart.Controller.prototype.eventHandler = function () {
+    //   const ret = parentEventHandler.apply( this, arguments );
+    //   const { x } = arguments[0];
+    //   this.clear();
+    //   this.draw();
+    //   const yScale = this.scales['y-axis-0'];
+    //   this.chart.ctx.beginPath();
+    //   this.chart.ctx.moveTo( x, yScale.getPixelForValue( yScale.max ) );
+    //   this.chart.ctx.strokeStyle = '#ffffff';
+    //   this.chart.ctx.lineTo( x, yScale.getPixelForValue( yScale.min ) );
+    //   this.chart.ctx.stroke();
+    //   return ret;
+    // };
   }
 
 
   componentDidMount() {
     this.fetchHistoricalData();
   }
-
 
   setChartData( pointsArray, timeStampArray ) {
     const data = {
@@ -58,6 +72,8 @@ class HistoricalChart extends Component {
 
     const options = {
       tooltips: {
+        mode: 'index',
+        intersect: false,
         displayColors: false,
         // callbacks: {
         //   title: ( items, data ) => data.datasets[items[0].datasetIndex].data[items[0].index].hash,
@@ -67,15 +83,12 @@ class HistoricalChart extends Component {
       legend: {
         display: false,
       },
-      onHover( event ) {
-        console.log( event );
-      },
       scales: {
         yAxes: [{
-          display: false,
+          display: true,
         }],
         xAxes: [{
-          display: false,
+          display: true,
         }],
       },
     };
@@ -114,15 +127,18 @@ class HistoricalChart extends Component {
 
   render() {
     return (
-      <div style={{ maxWidth: '50vw', margin: '0 auto' }}>
-        <Header size="huge" style={{ color: '#7C7C7C' }}>30 Day Bitcoin Price Chart</Header>
+      <div className="historical-chart-container">
         <InfoBox
           currentPrice={this.state.currentPrice}
           priceChange={this.state.priceChange}
           percentChange={this.state.percentChange}
           timeOfPrice={this.state.timeOfPrice}
         />
-        <Line data={this.state.data} options={this.state.options} />
+        <Divider hidden />
+        <Line
+          data={this.state.data}
+          options={this.state.options}
+        />
       </div>
     );
   }
