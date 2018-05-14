@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { List, Grid, Loader, Button } from 'semantic-ui-react';
-import { Link, Redirect } from 'react-router-dom';
+import { List, Grid, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import Ticker from '../ticker/Ticker.jsx';
 import Transaction from '../transaction/Transaction.jsx';
 import AddCoinModal from '../add_coin_modal/AddCoinModal.jsx';
@@ -19,9 +20,11 @@ class SingleCurrencyPage extends Component {
   }
 
   componentWillMount() {
-    localStorage.getItem( 'symbol' ) && this.setState( {
-      symbol: JSON.parse( localStorage.getItem( 'symbol' ) ),
-    } );
+    if ( localStorage.getItem( 'symbol' ) ) {
+      this.setState( {
+        symbol: JSON.parse( localStorage.getItem( 'symbol' ) ),
+      } );
+    }
   }
   componentDidMount() {
     this.fetchTransactions();
@@ -64,7 +67,11 @@ class SingleCurrencyPage extends Component {
   render() {
     const transactions =
     this.state.transactions.map( transaction =>
-      <Transaction key={transaction.id} transaction={transaction} handleDelete={this.handleDeleteTransaction} /> );
+      ( <Transaction
+        key={transaction.id}
+        transaction={transaction}
+        handleDelete={this.handleDeleteTransaction}
+      /> ) );
     return (
       <Grid.Row id="RowOnSingleCurrency">
         <Grid.Column width={5} style={{ height: '100vh' }}>
@@ -75,7 +82,11 @@ class SingleCurrencyPage extends Component {
         <Grid.Column className="ColumnOnSingleCurrency" width={11}>
           <div className="transaction-list">
             <List verticalAlign="middle">
-              <AddCoinModal symbol={this.state.symbol} userId={this.state.userId} fetchTransactions={this.fetchTransactions} />
+              <AddCoinModal
+                symbol={this.state.symbol}
+                userId={this.state.userId}
+                fetchTransactions={this.fetchTransactions}
+              />
               <br />
               {transactions}
             </List>
@@ -86,5 +97,16 @@ class SingleCurrencyPage extends Component {
     );
   }
 }
+SingleCurrencyPage.propTypes = {
+  handleLoading: PropTypes.func,
+  userId: PropTypes.string,
+  symbol: PropTypes.string,
+};
+
+SingleCurrencyPage.defaultProps = {
+  symbol: {},
+  userId: {},
+  handleLoading: () => {},
+};
 
 export default SingleCurrencyPage;
