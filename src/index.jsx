@@ -7,5 +7,4 @@ import App from './App.jsx';
 
 require( '../styles/application.scss' );
 
-
 ReactDOM.render( <Router><App /></Router>, document.getElementById( 'react-root' ) );
