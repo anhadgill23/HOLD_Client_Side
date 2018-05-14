@@ -15,11 +15,11 @@ class InfoBox extends Component {
         <Grid stackable columns="equal" divided textAlign="center">
           <Grid.Row style={{ paddingBottom: '0' }}>
             <Grid.Column>
-              <Header size="huge" style={{ marginBottom: 0, color: '#7C7C7C' }}>USD${this.props.currentPrice}</Header>
+              <Header size="huge" style={{ marginBottom: 0, color: '#7C7C7C' }}>${this.props.currentPrice}</Header>
               <Header size="tiny" style={{ marginTop: 0, color: '#7C7C7C' }}>Updated <TimeAgo date={this.props.timeOfPrice} /></Header>
             </Grid.Column>
             <Grid.Column>
-              <Header size="huge" style={{ marginBottom: 0, color: '#7C7C7C' }}>USD${this.props.priceChange}</Header>
+              <Header size="huge" style={{ marginBottom: 0, color: '#7C7C7C' }}>${this.props.priceChange}</Header>
               <Header size="tiny" style={{ marginTop: 0, color: '#7C7C7C' }}>Change Since Last Month (USD)</Header>
             </Grid.Column>
             <Grid.Column>

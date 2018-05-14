@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Grid } from 'semantic-ui-react';
 import ReactRevealText from 'react-reveal-text';
-import Graph from '../graph/src/Graph';
 import { Link } from 'react-router-dom';
 import HistoricalChart from '../historical_chart/HistoricalChart.jsx';
 
@@ -62,6 +61,7 @@ class WelcomePage extends Component {
           <div className="ui divider" />
           <br />
           <HistoricalChart />
+          <br />
         </Grid.Column>
       </Grid.Row>
     );
