@@ -46,7 +46,7 @@ class Login extends Component {
 
   render() {
     return (
-      <Grid.Row>
+      <Grid.Row className="login-page">
         <Grid.Column width={16}>
           <Grid>
             <Grid.Row centered>
@@ -58,16 +58,12 @@ class Login extends Component {
                   />}
                   <Form.Input label="Enter Email" placeholder="Email" name="email" type="email" onChange={this.onChange} required />
                   <Form.Input label="Enter Password" placeholder="Password" name="password" type="password" onChange={this.onChange} required />
-                  <Form.Button type="submit" inverted >Login</Form.Button>
+                  <Button className="ui grey button" type="submit" size="large" >Login</Button>
+                  <Link to="/register"><Button className="ui grey button" size="large">Register</Button></Link>
                 </Form>
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <Button.Group>
-            <Link to="/"><Button inverted >Back</Button></Link>
-            <Button.Or />
-            <Link to="/register"><Button inverted >Register Page</Button></Link>
-          </Button.Group>
         </Grid.Column>
       </Grid.Row>
     );

@@ -18,9 +18,16 @@ class SingleCurrencyPage extends Component {
     this.handleLoading = this.handleLoading.bind( this );
   }
 
+  componentWillMount() {
+    localStorage.getItem( 'symbol' ) && this.setState( {
+      symbol: JSON.parse( localStorage.getItem( 'symbol' ) ),
+    } );
+  }
   componentDidMount() {
-    console.log( 'MOUNT' );
     this.fetchTransactions();
+  }
+  componentWillUpdate( nextProps, nextState ) {
+    localStorage.setItem( 'symbol', JSON.stringify( nextState.symbol ) );
   }
   handleLoading() {
     this.props.handleLoading();

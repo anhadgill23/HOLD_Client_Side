@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 import { List, Table, Icon, Divider, Image } from 'semantic-ui-react';
-import SingleCurrencyPage from '../single_curency_page/SingleCurrencyPage.jsx';
-import {
-  Route,
-  Link,
-} from 'react-router-dom';
-import Portfolio from '../portfolio_page/Portfolio.jsx';
+import { Link } from 'react-router-dom';
+
 
 class PortfolioRight extends Component {
   constructor() {
     super();
     this.handleOnClick = this.handleOnClick.bind( this );
   }
+  componentDidMount() {
+    localStorage.removeItem( 'symbol' );
+  }
   handleOnClick() {
     this.props.setSymbol( this.props.singleTransaction.symbol );
   }
   render() {
-    // Make sure prop name is correct
     const { singleTransaction } = this.props;
     const value = singleTransaction.currentValue * singleTransaction.remaining;
     const color = parseFloat( singleTransaction.gain ) > 0 ? 'green' : 'red';
@@ -35,7 +33,7 @@ class PortfolioRight extends Component {
               </Table.Header>
               <Table.Body>
                 <Table.Row>
-                  <Table.Cell />
+                  <Table.Cell>Current Price: ${singleTransaction.currentPrice}</Table.Cell>
                   <Table.Cell>QTY: {singleTransaction.remaining} (${value})</Table.Cell>
                   <Table.Cell>${singleTransaction.currentValue}</Table.Cell>
                 </Table.Row>

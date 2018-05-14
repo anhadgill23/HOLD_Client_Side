@@ -1,6 +1,15 @@
 // This is the top-level scss file. Import all other files in here.
+$mobileBreakpoint            : 320px;
+$tabletBreakpoint            : 768px;
+$computerBreakpoint          : 992px;
+$largeMonitorBreakpoint      : 1200px;
+$widescreenMonitorBreakpoint : 1920px;
+
 @import 'home';
 @import 'transaction-pages';
 @import 'portfolio-main';
 @import 'welcome-page';
+@import 'login-page';
+@import 'register-page';
 @import 'navbar';
+@import 'historical-chart';
