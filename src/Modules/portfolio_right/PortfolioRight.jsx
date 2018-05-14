@@ -16,7 +16,6 @@ class PortfolioRight extends Component {
   }
   render() {
     const { singleTransaction } = this.props;
-    const value = singleTransaction.currentValue * singleTransaction.remaining;
     const color = parseFloat( singleTransaction.gain ) > 0 ? 'green' : 'red';
     const arrow = parseFloat( singleTransaction.gain ) > 0 ? 'caret up' : 'caret down';
     return (
@@ -34,7 +33,7 @@ class PortfolioRight extends Component {
               <Table.Body>
                 <Table.Row>
                   <Table.Cell>Current Price: ${singleTransaction.currentPrice}</Table.Cell>
-                  <Table.Cell>QTY: {singleTransaction.remaining} (${value})</Table.Cell>
+                  <Table.Cell>QTY: {singleTransaction.remaining}</Table.Cell>
                   <Table.Cell>${singleTransaction.currentValue}</Table.Cell>
                 </Table.Row>
               </Table.Body>
