@@ -37,16 +37,24 @@ class WelcomePage extends Component {
                 show={this.state.show}
                 className="my-class-name"
                 style={{
- color: '#FFFFFF', letterSpacing: '4px', fontSize: '35px', fontWeight: 'bold', lineHeight: '36px',
-}}
+                        color: '#FFFFFF',
+                        letterSpacing: '4px',
+                        fontSize: '38px',
+                        fontWeight: '300',
+                        lineHeight: '43px',
+                      }}
               />
               <ReactRevealText
                 text="We’ll keep a track of them."
                 show={this.state.show}
                 className="my-class-name"
                 style={{
- color: '#FFFFFF', letterSpacing: '4px', fontSize: '35px', fontWeight: 'bold', lineHeight: '36px',
-}}
+                        color: '#FFFFFF',
+                        letterSpacing: '4px',
+                        fontSize: '38px',
+                        fontWeight: '300',
+                        lineHeight: '43px',
+                      }}
               />
             </div>
           </div>
