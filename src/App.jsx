@@ -119,6 +119,7 @@ class App extends Component {
                   {...props}
                   userName={this.state.userName}
                   userId={this.state.userId}
+                  visible={this.state.visible}
                   symbol={this.state.symbol}
                   handleLoading={this.handleLoading}
                 /> ) :

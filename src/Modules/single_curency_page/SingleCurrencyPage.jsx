@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { List, Grid, Button } from 'semantic-ui-react';
+import { List, Grid, Button, Sidebar, Menu, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Ticker from '../ticker/Ticker.jsx';
 import Transaction from '../transaction/Transaction.jsx';
 import AddCoinModal from '../add_coin_modal/AddCoinModal.jsx';
+import News from '../news/News.jsx';
 
 class SingleCurrencyPage extends Component {
   constructor( props ) {
@@ -80,17 +81,37 @@ class SingleCurrencyPage extends Component {
           <Link to={`/portfolio/${this.props.userId}`}><Button>Back to Portfolio</Button></Link>
         </Grid.Column>
         <Grid.Column className="ColumnOnSingleCurrency" width={11}>
-          <div className="transaction-list">
-            <List verticalAlign="middle">
-              <AddCoinModal
-                symbol={this.state.symbol}
-                userId={this.state.userId}
-                fetchTransactions={this.fetchTransactions}
-              />
-              <br />
-              {transactions}
-            </List>
-          </div>
+          <Sidebar.Pushable>
+            <Sidebar
+              as={Menu}
+              animation="overlay"
+              width="wide"
+              direction="right"
+              visible={this.props.visible}
+              style={{ backgroundColor: '#7C8D97', padding: '10px' }}
+              icon="labeled"
+              vertical
+              inverted
+            >
+              <Header>Crypto Coins News</Header>
+              <p>Source: www.ccn.com</p>
+              <News />
+            </Sidebar>
+            <Sidebar.Pusher>
+
+              <div className="transaction-list">
+                <List verticalAlign="middle">
+                  <AddCoinModal
+                    symbol={this.state.symbol}
+                    userId={this.state.userId}
+                    fetchTransactions={this.fetchTransactions}
+                  />
+                  <br />
+                  {transactions}
+                </List>
+              </div>
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
         </Grid.Column>
       </Grid.Row>
 
