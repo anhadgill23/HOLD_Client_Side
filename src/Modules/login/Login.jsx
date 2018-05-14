@@ -59,7 +59,7 @@ class Login extends Component {
                   <Form.Input label="Enter Email" placeholder="Email" name="email" type="email" onChange={this.onChange} required />
                   <Form.Input label="Enter Password" placeholder="Password" name="password" type="password" onChange={this.onChange} required />
                   <Button className="ui grey button" type="submit" size="large" >Login</Button>
-                  <Link to="/register"><Button className="ui grey button" size="large">Register</Button></Link>
+                  <Link to="/"><Button className="ui grey button" size="large">Back</Button></Link>
                 </Form>
               </Grid.Column>
             </Grid.Row>
