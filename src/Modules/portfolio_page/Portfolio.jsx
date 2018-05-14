@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Sidebar, Menu, List, Header, Grid, Divider, Extra } from 'semantic-ui-react';
+import { Sidebar, Menu, List, Header, Grid, Divider } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
 import News from '../news/News.jsx';
 import PortfolioLeft from '../portfolio_left/PortfolioLeft.jsx';
@@ -67,7 +67,6 @@ class Portfolio extends Component {
 
 
   render() {
-    console.log( this.state.transactions );
     const transactions =
     this.state.transactions.map( transaction =>
       ( <PortfolioRight
