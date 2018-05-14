@@ -69,7 +69,7 @@ class Register extends Component {
                   <Form.Input label="Enter Password" placeholder="Password" name="password" onChange={this.onChange} type="password" required />
                   <Form.Input label="Confirm Password" placeholder="Confirm Password" name="confirmPassword" onChange={this.onChange} type="password" required />
                   <Button className="ui grey button" type="submit" size="large" >Register</Button>
-                  <Link to="/login"><Button className="ui grey button" size="large">Login</Button></Link>
+                  <Link to="/"><Button className="ui grey button" size="large">Back</Button></Link>
                 </Form>
               </Grid.Column>
             </Grid.Row>
