@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Header } from 'semantic-ui-react';
 import { Doughnut } from 'react-chartjs-2';
@@ -47,6 +48,15 @@ class PieChart extends Component {
     );
   }
 }
+PieChart.propTypes = {
+  labels: PropTypes.arrayOf( PropTypes.string.isRequired ),
+  remaining: PropTypes.arrayOf( PropTypes.number.isRequired ),
+};
+
+PieChart.defaultProps = {
+  labels: [],
+  remaining: [],
+};
 
 // PieChart.propTypes = {
 //   data: PropTypes.shape( {
