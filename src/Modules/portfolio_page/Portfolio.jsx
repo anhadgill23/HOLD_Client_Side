@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Sidebar, Menu, List, Header, Grid, Divider } from 'semantic-ui-react';
+import { Sidebar, Menu, List, Header, Grid, Divider, Extra } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
 import News from '../news/News.jsx';
 import PortfolioLeft from '../portfolio_left/PortfolioLeft.jsx';
@@ -105,11 +105,13 @@ class Portfolio extends Component {
               width="wide"
               direction="right"
               visible={this.props.visible}
+              style={{ backgroundColor: '#7C8D97', padding: '10px' }}
               icon="labeled"
               vertical
               inverted
             >
-              <Header>Crypto News</Header>
+              <Header>Crypto Coins News</Header>
+              <p>Source: www.ccn.com</p>
               <News />
             </Sidebar>
             <Sidebar.Pusher>
