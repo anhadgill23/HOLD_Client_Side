@@ -38,7 +38,7 @@ class WelcomePage extends Component {
                 show={this.state.show}
                 className="my-class-name"
                 style={{
- color: '#FFFFFF', letterSpacing: '4px', fontSize: '30px', lineHeight: '36px',
+ color: '#FFFFFF', letterSpacing: '4px', fontSize: '35px', fontWeight: 'bold', lineHeight: '36px',
 }}
               />
               <ReactRevealText
@@ -46,7 +46,7 @@ class WelcomePage extends Component {
                 show={this.state.show}
                 className="my-class-name"
                 style={{
- color: '#FFFFFF', letterSpacing: '4px', fontSize: '30px', lineHeight: '36px',
+ color: '#FFFFFF', letterSpacing: '4px', fontSize: '35px', fontWeight: 'bold', lineHeight: '36px',
 }}
               />
             </div>
