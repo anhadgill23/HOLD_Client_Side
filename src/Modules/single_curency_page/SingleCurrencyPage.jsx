@@ -99,13 +99,13 @@ class SingleCurrencyPage extends Component {
 }
 SingleCurrencyPage.propTypes = {
   handleLoading: PropTypes.func,
-  userId: PropTypes.string,
+  userId: PropTypes.number,
   symbol: PropTypes.string,
 };
 
 SingleCurrencyPage.defaultProps = {
-  symbol: {},
-  userId: {},
+  symbol: 'BTC',
+  userId: -1,
   handleLoading: () => {},
 };
 
