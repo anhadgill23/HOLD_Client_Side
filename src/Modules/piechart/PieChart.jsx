@@ -16,7 +16,11 @@ class PieChart extends Component {
           '#079186',
           '#2EB176',
           '#345853',
-          '#99CEB5'],
+          '#99CEB5',
+          '#97CE53',
+          '#CFAE51',
+          '#7E88A4',
+          '#6C5C79'],
         hoverBackgroundColor: [
           '#0C2E59',
           '#36A2EB',
@@ -24,7 +28,11 @@ class PieChart extends Component {
           '#079186',
           '#2EB176',
           '#345853',
-          '#99CEB5'],
+          '#99CEB5',
+          '#97CE53',
+          '#CFAE51',
+          '#7E88A4',
+          '#6C5C79'],
       }],
 
     };
@@ -39,5 +47,17 @@ class PieChart extends Component {
     );
   }
 }
+
+// PieChart.propTypes = {
+//   data: PropTypes.shape( {
+//     labels: PropTypes.string,
+//     remaining: PropTypes.number,
+//   } ),
+// };
+
+// PieChart.defaultProps = {
+//   data: {},
+// };
+
 
 export default PieChart;
