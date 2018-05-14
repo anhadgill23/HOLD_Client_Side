@@ -53,7 +53,6 @@ class WelcomePage extends Component {
           </div>
           <div className="ui divider" />
           <br />
-          <Graph />
           <HistoricalChart />
         </Grid.Column>
       </Grid.Row>

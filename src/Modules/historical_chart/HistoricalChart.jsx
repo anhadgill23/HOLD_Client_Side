@@ -49,7 +49,7 @@ class HistoricalChart extends Component {
           label: 'BTC price',
           fill: true,
           lineTension: 0.1,
-          backgroundColor: 'rgba(65, 81, 128,0.5)',
+          backgroundColor: '#92a2af',
           borderColor: 'rgba(65, 81, 128,1)',
           borderCapStyle: 'butt',
           borderDash: [],
@@ -87,7 +87,7 @@ class HistoricalChart extends Component {
           display: true,
         }],
         xAxes: [{
-          display: true,
+          display: false,
         }],
       },
     };
@@ -137,7 +137,10 @@ class HistoricalChart extends Component {
         <Line
           data={this.state.data}
           options={this.state.options}
-        />
+        /> <br />
+        <div className="row">
+          <div id="coindesk"> © Copyright 2018 HOLD </div>
+        </div> <br />
       </div>
     );
   }
