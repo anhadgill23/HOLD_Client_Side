@@ -38,7 +38,7 @@ class WelcomePage extends Component {
                 show={this.state.show}
                 className="my-class-name"
                 style={{
- color: '#FFFFFF', letterSpacing: '4px', fontSize: '38px', fontWeight: '300', lineHeight: '43px',
+ color: '#FFFFFF', letterSpacing: '4px', fontSize: '35px', fontWeight: 'bold', lineHeight: '36px',
 }}
               />
               <ReactRevealText
@@ -46,7 +46,7 @@ class WelcomePage extends Component {
                 show={this.state.show}
                 className="my-class-name"
                 style={{
- color: '#FFFFFF', letterSpacing: '4px', fontSize: '38px', fontWeight: '300', lineHeight: '43px',
+ color: '#FFFFFF', letterSpacing: '4px', fontSize: '35px', fontWeight: 'bold', lineHeight: '36px',
 }}
               />
             </div>
@@ -54,6 +54,10 @@ class WelcomePage extends Component {
           <div className="ui divider" />
           <br />
           <HistoricalChart />
+          <br />
+          <div className="row">
+            <div id="coindesk"> © Copyright 2018 HOLD </div>
+          </div> <br />
         </Grid.Column>
       </Grid.Row>
     );
