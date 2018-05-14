@@ -1,6 +1,6 @@
 # HOLD - Cryptocurrency Portfolio Tracker
 
-### Main Contributers: [Andy Vo](https://github.com/AndyVo1998), [Morgan Yu](https://github.com/Morganyyu), [Alexander Holliday](https://github.com/popnfresh234) and [Anhad Gill](https://github.com/anhadgill23)
+### Main Contributers: [Andy Vo](https://github.com/AndyVo1998), [Morgan Yu](https://github.com/Morganyyu), [Alexander Holliday](https://github.com/popnfresh234), [Anhad Gill](https://github.com/anhadgill23)
 
 ## Overview
 
