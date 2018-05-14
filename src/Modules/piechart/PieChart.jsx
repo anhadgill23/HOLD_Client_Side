@@ -48,4 +48,16 @@ class PieChart extends Component {
   }
 }
 
+// PieChart.propTypes = {
+//   data: PropTypes.shape( {
+//     labels: PropTypes.string,
+//     remaining: PropTypes.number,
+//   } ),
+// };
+
+// PieChart.defaultProps = {
+//   data: {},
+// };
+
+
 export default PieChart;
