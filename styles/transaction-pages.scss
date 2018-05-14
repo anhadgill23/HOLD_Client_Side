@@ -1,11 +1,12 @@
-$mobileBreakpoint            : 320px;
-$tabletBreakpoint            : 768px;
-$computerBreakpoint          : 992px;
-$largeMonitorBreakpoint      : 1200px;
-$widescreenMonitorBreakpoint : 1920px;
+
 
 .transaction-list{
     max-width: 50vw;
+    margin: auto;
+}
+
+.transaction-list-portfolio{
+    max-width: 35vw;
     margin: auto;
 }
 
@@ -14,9 +15,10 @@ $widescreenMonitorBreakpoint : 1920px;
         max-width: 100vw;
         margin: auto;
     }
+    .transaction-list-portfolio{
+        max-width: 100vw;
+        margin: auto;
+    }
+
 }
 
-.transaction-list-portfolio{
-    max-width: 35vw;
-    margin: auto;
-}

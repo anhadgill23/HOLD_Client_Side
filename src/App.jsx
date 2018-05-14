@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Loader, Dimmer } from 'semantic-ui-react';
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
@@ -13,6 +12,7 @@ import WelcomePage from './Modules/welcome/WelcomePage.jsx';
 import Portfolio from './Modules/portfolio_page/Portfolio.jsx';
 import SingleCurrencyPage from './Modules/single_curency_page/SingleCurrencyPage.jsx';
 import TransactionChartPage from './Modules/transaction_chart_page/TransactionChartPage.jsx';
+import HistoricalChart from './Modules/historical_chart/HistoricalChart.jsx';
 
 
 class App extends Component {
@@ -23,18 +23,12 @@ class App extends Component {
       userId: '',
       userName: '',
       loading: false,
+      visible: false,
     };
     this.setLoggedin = this.setLoggedin.bind( this );
     this.setSymbol = this.setSymbol.bind( this );
     this.handleLoading = this.handleLoading.bind( this );
-  }
-
-  setLoggedin( loggedIn, id, userName ) {
-    this.setState( { isLoggedIn: loggedIn, userId: id, userName } );
-    localStorage.setItem( 'isLoggedIn', loggedIn );
-    localStorage.setItem( 'userId', id );
-
-    localStorage.setItem( 'userName', userName );
+    this.toggleVisibility = this.toggleVisibility.bind( this );
   }
 
 
@@ -50,6 +44,13 @@ class App extends Component {
     } );
   }
 
+  setLoggedin( loggedIn, id, userName ) {
+    this.setState( { isLoggedIn: loggedIn, userId: id, userName } );
+    localStorage.setItem( 'isLoggedIn', loggedIn );
+    localStorage.setItem( 'userId', id );
+    localStorage.setItem( 'userName', userName );
+  }
+
   setSymbol( symbol ) {
     this.setState( { symbol } );
   }
@@ -61,6 +62,10 @@ class App extends Component {
     }
   }
 
+  toggleVisibility() {
+    this.setState( { visible: !this.state.visible } );
+  }
+
 
   render() {
     return (
@@ -69,7 +74,12 @@ class App extends Component {
         <Dimmer active={this.state.loading} page>
           <Loader size="massive" />
         </Dimmer>
-        <NavBar isAuthorized={this.state.isLoggedIn} handleAuth={this.setLoggedin} userId={this.state.userId} />
+        <NavBar
+          isAuthorized={this.state.isLoggedIn}
+          toggleVisibility={this.toggleVisibility}
+          handleAuth={this.setLoggedin}
+          userId={this.state.userId}
+        />
         <div>
           <Grid stackable >
             <Switch>
@@ -88,8 +98,15 @@ class App extends Component {
                 path="/portfolio/:userId"
                 exact
                 render={props => (
-                  this.state.isLoggedIn ?
-                  ( <Portfolio {...props} userName={this.state.userName} userId={this.state.userId} setSymbol={this.setSymbol} handleLoading={this.handleLoading} /> ) :
+                  ( this.state.isLoggedIn === true || this.state.isLoggedIn === 'true' ) ?
+                  ( <Portfolio
+                    {...props}
+                    userName={this.state.userName}
+                    userId={this.state.userId}
+                    visible={this.state.visible}
+                    setSymbol={this.setSymbol}
+                    handleLoading={this.handleLoading}
+                  /> ) :
                   ( <Redirect to="/" /> )
                   )}
               />
@@ -97,8 +114,15 @@ class App extends Component {
                 exact
                 path="/:userId/transactions/:symbol"
                 render={props => (
-                this.state.isLoggedIn ?
-                ( <SingleCurrencyPage {...props} userName={this.state.userName} userId={this.state.userId} symbol={this.state.symbol} handleLoading={this.handleLoading} /> ) :
+                ( this.state.isLoggedIn === true || this.state.isLoggedIn === 'true' ) ?
+                ( <SingleCurrencyPage
+                  {...props}
+                  userName={this.state.userName}
+                  userId={this.state.userId}
+                  visible={this.state.visible}
+                  symbol={this.state.symbol}
+                  handleLoading={this.handleLoading}
+                /> ) :
                 ( <Redirect to="/login" /> )
                 )}
               />

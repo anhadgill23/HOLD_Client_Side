@@ -19,10 +19,10 @@ class Transaction extends Component {
     const transactionType = transaction.buy ? 'Cost' : 'Proceeds';
     const buyOrSell = transaction.buy ? `${transaction.symbol} Buy Price` : `${transaction.symbol} Sell Price`;
     const amountBoughtOrSoldHeader = transaction.buy ? 'Bought' : 'Sold';
+    // 2018-05-11T19:24:52.957Z
     return (
 
-      <List.Item color="grey">
-
+      <List.Item>
         <List.Content floated="right">
 
           <Table fixed unstackable color={transaction.buy ? 'green' : 'red'} celled>
@@ -36,7 +36,7 @@ class Transaction extends Component {
             </Table.Header>
             <Table.Body>
               <Table.Row>
-                <Table.Cell />
+                <Table.Cell>{transaction.created_at.slice( 0, 10 )}</Table.Cell>
                 <Table.Cell>{transaction.price}</Table.Cell>
                 <Table.Cell>{transaction.tradingPair}</Table.Cell>
                 <Table.Cell>{transaction.amount}</Table.Cell>
@@ -85,10 +85,12 @@ Transaction.propTypes = {
     buy: PropTypes.bool,
     id: PropTypes.number,
   } ),
+  handleDelete: PropTypes.func,
 };
 
 Transaction.defaultProps = {
   transaction: {},
+  handleDelete: () => {},
 };
 
 

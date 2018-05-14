@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Simple and lightweight Boilerplate for ReactJS projects",
   "scripts": {
+    "build": "webpack && rsync -auv dist/ ../final_project_server_side/public/build",
     "lint": "eslint --ext .jsx,.js src --fix",
     "start": "node server.js"
   },
@@ -68,6 +69,7 @@
     "react-reveal-text": "^0.1.1",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.1.4",
+    "react-timeago": "^4.1.9",
     "semantic-ui-react": "^0.79.1",
     "serve": "^6.5.6",
     "socket.io-client": "^2.1.0",

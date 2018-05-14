@@ -1,0 +1,22 @@
+.welcome-page {
+    background-color: #d2d2d2;
+}
+
+#buttons-container {
+    padding-top: 220px;
+}
+
+#login-and-tagline {
+    height: 100vh;
+}
+
+@media only screen and (max-width: $computerBreakpoint) {
+    #buttons-container {
+        padding-top: 50px;
+    }
+
+    #login-and-tagline {
+        height: auto;
+    }
+}
+

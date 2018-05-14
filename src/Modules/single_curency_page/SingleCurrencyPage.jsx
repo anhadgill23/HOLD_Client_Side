@@ -1,9 +1,11 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { List, Grid, Loader, Button } from 'semantic-ui-react';
-import { Link, Redirect } from 'react-router-dom';
+import { List, Grid, Button, Sidebar, Menu, Header } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import Ticker from '../ticker/Ticker.jsx';
 import Transaction from '../transaction/Transaction.jsx';
 import AddCoinModal from '../add_coin_modal/AddCoinModal.jsx';
+import News from '../news/News.jsx';
 
 class SingleCurrencyPage extends Component {
   constructor( props ) {
@@ -18,9 +20,18 @@ class SingleCurrencyPage extends Component {
     this.handleLoading = this.handleLoading.bind( this );
   }
 
+  componentWillMount() {
+    if ( localStorage.getItem( 'symbol' ) ) {
+      this.setState( {
+        symbol: JSON.parse( localStorage.getItem( 'symbol' ) ),
+      } );
+    }
+  }
   componentDidMount() {
-    console.log( 'MOUNT' );
     this.fetchTransactions();
+  }
+  componentWillUpdate( nextProps, nextState ) {
+    localStorage.setItem( 'symbol', JSON.stringify( nextState.symbol ) );
   }
   handleLoading() {
     this.props.handleLoading();
@@ -57,7 +68,11 @@ class SingleCurrencyPage extends Component {
   render() {
     const transactions =
     this.state.transactions.map( transaction =>
-      <Transaction key={transaction.id} transaction={transaction} handleDelete={this.handleDeleteTransaction} /> );
+      ( <Transaction
+        key={transaction.id}
+        transaction={transaction}
+        handleDelete={this.handleDeleteTransaction}
+      /> ) );
     return (
       <Grid.Row id="RowOnSingleCurrency">
         <Grid.Column width={5} style={{ height: '100vh' }}>
@@ -66,18 +81,53 @@ class SingleCurrencyPage extends Component {
           <Link to={`/portfolio/${this.props.userId}`}><Button>Back to Portfolio</Button></Link>
         </Grid.Column>
         <Grid.Column className="ColumnOnSingleCurrency" width={11}>
-          <div className="transaction-list">
-            <List verticalAlign="middle">
-              <br />
-              {transactions}
-            </List>
-          </div>
-          <AddCoinModal symbol={this.state.symbol} userId={this.state.userId} fetchTransactions={this.fetchTransactions} />
+          <Sidebar.Pushable>
+            <Sidebar
+              as={Menu}
+              animation="overlay"
+              width="wide"
+              direction="right"
+              visible={this.props.visible}
+              style={{ backgroundColor: '#7C8D97', padding: '10px' }}
+              icon="labeled"
+              vertical
+              inverted
+            >
+              <Header>Crypto Coins News</Header>
+              <p>Source: www.ccn.com</p>
+              <News />
+            </Sidebar>
+            <Sidebar.Pusher>
+
+              <div className="transaction-list">
+                <List verticalAlign="middle">
+                  <AddCoinModal
+                    symbol={this.state.symbol}
+                    userId={this.state.userId}
+                    fetchTransactions={this.fetchTransactions}
+                  />
+                  <br />
+                  {transactions}
+                </List>
+              </div>
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
         </Grid.Column>
       </Grid.Row>
 
     );
   }
 }
+SingleCurrencyPage.propTypes = {
+  handleLoading: PropTypes.func,
+  userId: PropTypes.number,
+  symbol: PropTypes.string,
+};
+
+SingleCurrencyPage.defaultProps = {
+  symbol: 'BTC',
+  userId: -1,
+  handleLoading: () => {},
+};
 
 export default SingleCurrencyPage;
