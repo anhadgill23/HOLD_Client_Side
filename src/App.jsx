@@ -68,17 +68,20 @@ class App extends Component {
 
 
   render() {
+    const {
+      loading, isLoggedIn, userId, visible, userName,
+    } = this.state;
     return (
 
       <div className="App">
-        <Dimmer active={this.state.loading} page>
+        <Dimmer active={loading} page>
           <Loader size="massive" />
         </Dimmer>
         <NavBar
-          isAuthorized={this.state.isLoggedIn}
+          isAuthorized={isLoggedIn}
           toggleVisibility={this.toggleVisibility}
           handleAuth={this.setLoggedin}
-          userId={this.state.userId}
+          userId={userId}
         />
         <div>
           <Grid stackable >
@@ -98,12 +101,12 @@ class App extends Component {
                 path="/portfolio/:userId"
                 exact
                 render={props => (
-                  ( this.state.isLoggedIn === true || this.state.isLoggedIn === 'true' ) ?
+                  ( isLoggedIn === true || isLoggedIn === 'true' ) ?
                   ( <Portfolio
                     {...props}
-                    userName={this.state.userName}
-                    userId={this.state.userId}
-                    visible={this.state.visible}
+                    userName={userName}
+                    userId={userId}
+                    visible={visible}
                     setSymbol={this.setSymbol}
                     handleLoading={this.handleLoading}
                   /> ) :
@@ -114,12 +117,12 @@ class App extends Component {
                 exact
                 path="/:userId/transactions/:symbol"
                 render={props => (
-                ( this.state.isLoggedIn === true || this.state.isLoggedIn === 'true' ) ?
+                ( isLoggedIn === true || isLoggedIn === 'true' ) ?
                 ( <SingleCurrencyPage
                   {...props}
-                  userName={this.state.userName}
-                  userId={this.state.userId}
-                  visible={this.state.visible}
+                  userName={userName}
+                  userId={userId}
+                  visible={visible}
                   symbol={this.state.symbol}
                   handleLoading={this.handleLoading}
                 /> ) :
@@ -127,7 +130,15 @@ class App extends Component {
                 )}
               />
               <Route path="/transactions/btc/chart" exact component={TransactionChartPage} />
-              <Route path="/" exact component={WelcomePage} />
+              <Route
+                path="/"
+                exact
+                render={props => (
+                  ( isLoggedIn === true || isLoggedIn === 'true' ) ?
+                  ( <Redirect to={`/portfolio/${userId}`} /> ) :
+                  <WelcomePage />
+                )}
+              />
             </Switch>
           </Grid>
         </div>
