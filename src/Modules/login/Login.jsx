@@ -51,7 +51,7 @@ class Login extends Component {
           <Grid>
             <Grid.Row centered>
               <Grid.Column width={6}>
-                <Header>Login</Header>
+                <h2 className="ui header">Login</h2>
                 <Form onSubmit={this.onSubmit}>
                   {this.state.error && <Message
                     content={this.state.error}

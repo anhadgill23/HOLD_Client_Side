@@ -58,7 +58,7 @@ class Register extends Component {
           <Grid>
             <Grid.Row centered>
               <Grid.Column width={6}>
-                <Header>Register</Header>
+                <h2 className="ui header">Register</h2>
                 <Form onSubmit={this.onSubmit}>
 
                   {this.state.error && <Message
