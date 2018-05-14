@@ -22,7 +22,7 @@ class News extends Component {
   render() {
     const {articles} = this.state;
     return (
-      <div className="news-container">
+      <div className="news-container" style={{ backgroundColor: '#C1D9E0' }}>
         <Item.Group>
         {articles.map(article =>
           <Item key={article.objectID} style={{ margin: '10px' }}>
