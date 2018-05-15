@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header } from 'semantic-ui-react';
+import { Transition, Label } from 'semantic-ui-react';
 import { Bubble } from 'react-chartjs-2';
 
 class TransactionChart extends Component {
@@ -49,7 +49,6 @@ class TransactionChart extends Component {
 
   constructor( props ) {
     super( props );
-    console.log( this.props.color );
     this.scaleValue = this.scaleValue.bind( this );
     this.webSocket = new WebSocket( 'wss://ws.blockchain.info/inv' );
     this.state = {
@@ -86,6 +85,7 @@ class TransactionChart extends Component {
       },
       data: TransactionChart.reloadData( [], TransactionChart.getColor( this.props.color ) ),
     };
+    this.toggleVisibility = this.toggleVisibility.bind( this );
   }
   componentDidMount() {
     this.init();
@@ -112,6 +112,7 @@ class TransactionChart extends Component {
       console.log( event.data );
     };
     this.webSocket.onmessage = ( event ) => {
+      this.toggleVisibility();
       let data = this.state.data.datasets[0].data.slice( 0 );
       let rawValues = this.state.rawValues.slice( 0 );
       const message = JSON.parse( event.data );
@@ -146,11 +147,15 @@ class TransactionChart extends Component {
     };
   }
 
+  toggleVisibility() {
+    this.setState( {
+      visible: !this.state.visible,
+    } );
+  }
 
   render() {
     return (
       <div>
-        <Header size="tiny">Realtime BTC transactions</Header>
         <Bubble
           data={this.state.data}
           options={this.state.options}

@@ -1,10 +1,31 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Header } from 'semantic-ui-react';
-import { Doughnut } from 'react-chartjs-2';
+import { Doughnut, Chart } from 'react-chartjs-2';
 
 
 class PieChart extends Component {
+  componentWillMount() {
+    Chart.plugins.register( {
+      afterDraw( chart ) {
+        if ( chart.data.datasets[0].data.length === 0 ) {
+          // No data is present
+          const ctx = chart.chart.ctx;
+          const width = chart.chart.width;
+          const height = chart.chart.height;
+          chart.clear();
+
+          ctx.save();
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.font = "16px normal 'Helvetica Nueue'";
+          ctx.fillText( 'No data to display', width / 2, height / 2 );
+          ctx.restore();
+        }
+      },
+    } );
+  }
+
   render() {
     const data = {
       labels: this.props.labels,

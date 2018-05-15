@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Sidebar, Menu, List, Header, Grid, Divider } from 'semantic-ui-react';
+import { Sidebar, Menu, List, Header, Grid, Divider, Transition, Label, Icon } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
 import News from '../news/News.jsx';
+import Dashboard from '../dashboard/Dashboard.jsx';
 import PortfolioLeft from '../portfolio_left/PortfolioLeft.jsx';
 import PortfolioRight from '../portfolio_right/PortfolioRight.jsx';
 import AddCoinModal from '../add_coin_modal/AddCoinModal.jsx';
@@ -13,6 +14,7 @@ class Portfolio extends Component {
     super( props );
     this.fetchTransactions = this.fetchTransactions.bind( this );
     this.state = {
+      visible: true,
       currentUserName: this.props.userName,
       currentUserId: this.props.userId,
       labels: [],
@@ -27,6 +29,9 @@ class Portfolio extends Component {
   }
   componentDidMount() {
     this.fetchTransactions();
+    setInterval( () => {
+      this.setState( { visible: !this.state.visible } );
+    }, 1500 );
   }
   setSymbol( symbol ) {
     this.props.setSymbol( symbol );
@@ -68,14 +73,14 @@ class Portfolio extends Component {
 
   render() {
     const transactions =
-    this.state.transactions.map( transaction =>
-      ( <PortfolioRight
-        key={this.state.transactions.indexOf( transaction )}
-        singleTransaction={transaction}
-        userName={this.statecurrentUserName}
-        userId={this.state.currentUserId}
-        setSymbol={this.setSymbol}
-      /> ) );
+      this.state.transactions.map( transaction =>
+        ( <PortfolioRight
+          key={this.state.transactions.indexOf( transaction )}
+          singleTransaction={transaction}
+          userName={this.statecurrentUserName}
+          userId={this.state.currentUserId}
+          setSymbol={this.setSymbol}
+        /> ) );
     return (
 
 
@@ -92,7 +97,10 @@ class Portfolio extends Component {
           />
           <Divider />
           <Link to="/transactions/btc/chart">
-            <TransactionChart maxSize={60} color="blue" />
+            <Transition animation="pulse" duration="1000" visible={this.state.visible}>
+              <Label basic color="blue" pointing="below" size="mini">Click me!</Label>
+            </Transition>
+            <TransactionChart loading={this.props.loading} maxSize={60} color="blue" />
           </Link>
           <Divider hidden />
         </Grid.Column>
@@ -114,11 +122,13 @@ class Portfolio extends Component {
               <News />
             </Sidebar>
             <Sidebar.Pusher>
+
               <div className="transaction-list-portfolio">
                 <AddCoinModal
                   userId={this.state.currentUserId}
                   fetchTransactions={this.fetchTransactions}
                 />
+                {transactions.length === 0 && <Dashboard visible={this.state.visible} />}
                 <List>
                   {transactions}
                 </List>
