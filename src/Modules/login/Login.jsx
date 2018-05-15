@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Header, Form, Grid, Message } from 'semantic-ui-react';
+import { Button, Form, Grid, Message } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 class Login extends Component {
