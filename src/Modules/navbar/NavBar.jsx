@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Menu, Button, Icon } from 'semantic-ui-react';
 import logo8 from './hold_logo_white.png';
-import { Link } from 'react-router-dom';
 
 class NavBar extends Component {
   constructor( props ) {
@@ -15,6 +16,7 @@ class NavBar extends Component {
       credentials: 'same-origin',
     } )
       .then( ( result ) => {
+        console.log( result );
         this.props.handleAuth( false, null, null );
       } );
   }
@@ -23,7 +25,7 @@ class NavBar extends Component {
     return (
       <Menu borderless>
         <Link to={`/portfolio/${this.props.userId}`}>
-          <Menu.Item id = "logo">
+          <Menu.Item id="logo">
             <img className="ui tiny image" src={logo8} alt="cross logo" />
           </Menu.Item>
         </Link>
@@ -46,3 +48,17 @@ class NavBar extends Component {
   }
 }
 export default NavBar;
+
+NavBar.propTypes = {
+  handleAuth: PropTypes.func,
+  toggleVisibility: PropTypes.func,
+  isAuthorized: PropTypes.string,
+  userId: PropTypes.string,
+};
+
+NavBar.defaultProps = {
+  handleAuth: () => {},
+  toggleVisibility: () => {},
+  isAuthorized: '',
+  userId: '',
+};

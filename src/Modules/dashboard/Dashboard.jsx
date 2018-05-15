@@ -21,3 +21,11 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
+
+Dashboard.propTypes = {
+  visible: PropTypes.bool,
+};
+
+Dashboard.defaultProps = {
+  visible: true,
+};

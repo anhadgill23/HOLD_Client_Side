@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 import socketIOClient from 'socket.io-client';
-import { getChanges } from './websocket_utils';
-import CCC from './ccc-streamer-utils';
+import { getChanges } from './WebsocketUtils';
 
+const CURRENTAGG = '5';
 
 class Ticker extends Component {
   static getColor( flag ) {
@@ -33,7 +33,7 @@ class Ticker extends Component {
     this.socket.emit( 'SubAdd', { subs: subscription } );
     this.socket.on( 'm', ( message ) => {
       const messageType = message.substring( 0, message.indexOf( '~' ) );
-      if ( messageType === CCC.STATIC.TYPE.CURRENTAGG ) {
+      if ( messageType === CURRENTAGG ) {
         const changes = ( getChanges( message ) );
 
         Object.keys( changes ).forEach( ( key ) => {

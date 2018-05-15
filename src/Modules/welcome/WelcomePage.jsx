@@ -4,9 +4,11 @@ import ReactRevealText from 'react-reveal-text';
 import { Link } from 'react-router-dom';
 import HistoricalChart from '../historical_chart/HistoricalChart.jsx';
 
+
 class WelcomePage extends Component {
   constructor( props ) {
     super( props );
+    this.CURRENTAGG = '5';
     this.state = {
       show: false,
     };

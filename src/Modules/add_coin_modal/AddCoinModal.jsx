@@ -1,5 +1,6 @@
 import { Button, Modal, Dropdown, Divider, Input } from 'semantic-ui-react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import 'react-datepicker/dist/react-datepicker.css';
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
@@ -37,7 +38,8 @@ class AddCoinModal extends Component {
     } )
       .then( response => response.json() )
       .then( ( coins ) => {
-        const parsedCoins = coins.map( coin => ( { key: coin.Symbol, value: coin.Symbol, text: coin.FullName } ) );
+        const parsedCoins = coins.map( coin =>
+          ( { key: coin.Symbol, value: coin.Symbol, text: coin.FullName } ) );
         this.setState( { coins: parsedCoins } );
       } )
       .catch( ( error ) => {
@@ -136,6 +138,7 @@ class AddCoinModal extends Component {
       } ),
       credentials: 'same-origin',
     } ).then( ( result ) => {
+      console.log( result );
       this.props.fetchTransactions();
       this.setState( {
         amount_error: true,
@@ -180,3 +183,15 @@ class AddCoinModal extends Component {
 }
 
 export default AddCoinModal;
+
+AddCoinModal.propTypes = {
+  fetchTransactions: PropTypes.func,
+  symbol: PropTypes.string,
+  userId: PropTypes.string,
+};
+
+AddCoinModal.defaultProps = {
+  fetchTransactions: () => {},
+  symbol: 'BTC',
+  userId: '',
+};
