@@ -38,7 +38,6 @@ class Register extends Component {
       } )
         .then( response => response.json() )
         .then( ( data ) => {
-          console.log( data );
           if ( data.err === 'Email already taken' ) {
             this.setState( { error: 'This email is already taken.' } );
           } else {

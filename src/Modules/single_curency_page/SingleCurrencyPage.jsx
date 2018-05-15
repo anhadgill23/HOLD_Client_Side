@@ -52,7 +52,6 @@ class SingleCurrencyPage extends Component {
   }
 
   handleDeleteTransaction( transactionId ) {
-    console.log( transactionId );
     fetch( `/api/transactions/${transactionId}`, {
       method: 'POST',
       body: JSON.stringify( this.state ),
