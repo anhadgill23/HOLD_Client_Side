@@ -24,7 +24,6 @@ class Portfolio extends Component {
       gainsFromAllCoins: [],
       transactions: [],
     };
-    console.log( this.props );
     this.setSymbol = this.setSymbol.bind( this );
     this.handleLoading = this.handleLoading.bind( this );
   }
