@@ -21,7 +21,6 @@ class HistoricalChart extends Component {
 
 
   componentDidMount() {
-    console.log( 'DID MOUNT' );
     this.fetchHistoricalData();
   }
 
@@ -85,7 +84,6 @@ class HistoricalChart extends Component {
   }
 
   fetchHistoricalData() {
-    console.log( 'FETCHING HISTORICAL DATA' );
     fetch( 'https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=29' )
       .then( response => response.json() )
       .then( ( historicalData ) => {
@@ -97,7 +95,6 @@ class HistoricalChart extends Component {
         fetch( 'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD' )
           .then( response => response.json() )
           .then( ( price ) => {
-            console.log( moment().format() );
             this.setState( {
               currentPrice: price.USD,
               priceChange: HistoricalChart.roundNumber( price.USD - pointsArray[0], 2 ),

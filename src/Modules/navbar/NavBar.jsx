@@ -53,12 +53,12 @@ NavBar.propTypes = {
   handleAuth: PropTypes.func,
   toggleVisibility: PropTypes.func,
   isAuthorized: PropTypes.string,
-  userId: PropTypes.string,
+  userId: PropTypes.number,
 };
 
 NavBar.defaultProps = {
   handleAuth: () => {},
   toggleVisibility: () => {},
   isAuthorized: '',
-  userId: '',
+  userId: -1,
 };

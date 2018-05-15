@@ -53,11 +53,11 @@ PortfolioRight.propTypes = {
     symbol: PropTypes.string,
   } ),
   setSymbol: PropTypes.func,
-  userId: PropTypes.string,
+  userId: PropTypes.number,
 };
 
 PortfolioRight.defaultProps = {
   singleTransaction: {},
   setSymbol: () => {},
-  userId: '',
+  userId: -1,
 };

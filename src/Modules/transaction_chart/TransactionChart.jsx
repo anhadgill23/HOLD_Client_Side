@@ -94,7 +94,6 @@ class TransactionChart extends Component {
   }
 
   componentWillUnmount() {
-    console.log( 'CLOSE SOCKET' );
     this.webSocket.close();
   }
 
@@ -112,7 +111,7 @@ class TransactionChart extends Component {
 
 
     this.webSocket.onerror = ( event ) => {
-      console.log( event.data );
+      console.log( event );
     };
     this.webSocket.onmessage = ( event ) => {
       this.toggleVisibility();

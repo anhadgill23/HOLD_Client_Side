@@ -153,7 +153,7 @@ Portfolio.propTypes = {
   handleLoading: PropTypes.func,
   visible: PropTypes.bool,
   loading: PropTypes.bool,
-  userId: PropTypes.string,
+  userId: PropTypes.number,
   userName: PropTypes.string,
 };
 
@@ -162,6 +162,6 @@ Portfolio.defaultProps = {
   handleLoading: () => {},
   visible: false,
   loading: true,
-  userId: '',
+  userId: -1,
   userName: '',
 };

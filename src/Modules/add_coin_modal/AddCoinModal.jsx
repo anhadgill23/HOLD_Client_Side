@@ -187,11 +187,11 @@ export default AddCoinModal;
 AddCoinModal.propTypes = {
   fetchTransactions: PropTypes.func,
   symbol: PropTypes.string,
-  userId: PropTypes.string,
+  userId: PropTypes.number,
 };
 
 AddCoinModal.defaultProps = {
   fetchTransactions: () => {},
   symbol: 'BTC',
-  userId: '',
+  userId: -1,
 };
