@@ -30,10 +30,15 @@ class Portfolio extends Component {
   }
   componentDidMount() {
     this.fetchTransactions();
-    setInterval( () => {
+    this.interval = setInterval( () => {
       this.setState( { visible: !this.state.visible } );
     }, 1500 );
   }
+
+  componentWillUnmount() {
+    clearInterval( this.interval );
+  }
+
   setSymbol( symbol ) {
     this.props.setSymbol( symbol );
   }
