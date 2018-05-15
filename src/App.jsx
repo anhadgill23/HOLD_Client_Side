@@ -129,7 +129,11 @@ class App extends Component {
                 ( <Redirect to="/login" /> )
                 )}
               />
-              <Route path="/transactions/btc/chart" exact component={TransactionChartPage} />
+              <Route
+              path="/transactions/btc/chart"
+              exact
+              render={props => <TransactionChartPage {...props} visible={visible} />}
+              />
               <Route
                 path="/"
                 exact
