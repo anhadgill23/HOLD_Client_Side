@@ -100,33 +100,36 @@ class App extends Component {
                 path="/portfolio/:userId"
                 exact
                 render={props => (
-                  ( isLoggedIn === true || isLoggedIn === 'true' ) ?
-                    ( <Portfolio
-                      {...props}
-                      userName={userName}
-                      userId={userId.toString()}
-                      visible={visible}
-                      setSymbol={this.setSymbol}
-                      handleLoading={this.handleLoading}
-                      loading={this.state.loading}
-                    /> ) :
-                    ( <Redirect to="/" /> )
-                )}
+
+                  ( isLoggedIn === 'true' ) ?
+                  ( <Portfolio
+                    {...props}
+                    userName={userName}
+                    userId={userId}
+                    visible={visible}
+                    setSymbol={this.setSymbol}
+                    handleLoading={this.handleLoading}
+                    loading={this.state.loading}
+                  /> ) :
+                  ( <Redirect to="/" /> )
+                  )}
+
               />
               <Route
                 exact
                 path="/:userId/transactions/:symbol"
                 render={props => (
-                  ( isLoggedIn === true || isLoggedIn === 'true' ) ?
-                    ( <SingleCurrencyPage
-                      {...props}
-                      userName={userName}
-                      userId={userId}
-                      visible={visible}
-                      symbol={this.state.symbol}
-                      handleLoading={this.handleLoading}
-                    /> ) :
-                    ( <Redirect to="/login" /> )
+
+                ( isLoggedIn === 'true' ) ?
+                ( <SingleCurrencyPage
+                  {...props}
+                  userName={userName}
+                  userId={userId}
+                  visible={visible}
+                  symbol={this.state.symbol}
+                  handleLoading={this.handleLoading}
+                /> ) :
+                ( <Redirect to="/login" /> )
                 )}
               />
               <Route
@@ -138,9 +141,9 @@ class App extends Component {
                 path="/"
                 exact
                 render={props => (
-                  ( isLoggedIn === true || isLoggedIn === 'true' ) ?
-                    ( <Redirect to={`/portfolio/${userId}`} /> ) :
-                    <WelcomePage />
+                  ( isLoggedIn === 'true' ) ?
+                  ( <Redirect to={`/portfolio/${userId}`} /> ) :
+                  <WelcomePage />
                 )}
               />
             </Switch>

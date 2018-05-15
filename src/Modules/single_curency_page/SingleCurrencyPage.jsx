@@ -79,7 +79,7 @@ class SingleCurrencyPage extends Component {
           <br />
           <div className="tickerDiv" style={{ marginLeft: '1em' }}>
             <Ticker symbol={this.state.symbol} />
-          <Link to={`/portfolio/${this.props.userId}`}><Button className="ui grey button">Back to Portfolio</Button></Link>
+            <Link to={`/portfolio/${this.props.userId}`}><Button className="ui grey button">Back to Portfolio</Button></Link>
           </div>
 
         </Grid.Column>
@@ -110,6 +110,7 @@ class SingleCurrencyPage extends Component {
                     fetchTransactions={this.fetchTransactions}
                   />
                   <br />
+                  {transactions.length === 0 && <Header style={{ color: 'black' }}>You have no {this.state.symbol} transactions!</Header>}
                   {transactions}
                 </List>
               </div>

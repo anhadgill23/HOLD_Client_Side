@@ -11,7 +11,7 @@ class Dashboard extends Component {
         <Transition animation="pulse" duration="1000" visible={this.props.visible}>
           <Icon color="black" size="huge" name="arrow circle outline up" />
         </Transition>
-        <Header style={{ color: 'black' }}>Welcome, it appears you havent recorded any transactions yet!  Give it a try!</Header>
+        <Header style={{ color: 'black' }}>Welcome, it appears you have not recorded any transactions yet.  Give it a try!</Header>
         <Divider />
         <Header style={{ color: 'black' }}>Real time BTC transactions</Header>
         <Ticker />
