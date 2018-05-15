@@ -47,7 +47,7 @@ class WelcomePage extends Component {
                       }}
               />
               <ReactRevealText
-                text="We’ll keep a track of them."
+                text="We’ll keep track of them."
                 show={this.state.show}
                 className="my-class-name"
                 style={{
