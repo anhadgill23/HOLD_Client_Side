@@ -8,7 +8,7 @@ class PieChart extends Component {
   componentWillMount() {
     Chart.plugins.register( {
       afterDraw( chart ) {
-        if ( chart.data.datasets[0].data.length === 0 ) {
+        if ( chart.data.datasets[0].data.length === 0 && chart.config.options.usePlugin ) {
           // No data is present
           const ctx = chart.chart.ctx;
           const width = chart.chart.width;
@@ -64,6 +64,7 @@ class PieChart extends Component {
         <Header size="tiny">Portfolio Distribution</Header>
         <Doughnut
           data={data}
+          options={{ usePlugin: true }}
         />
       </div>
     );
