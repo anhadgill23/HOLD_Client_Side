@@ -98,7 +98,7 @@ class Portfolio extends Component {
           />
           <PieChart
             labels={this.state.labels}
-            remaining={this.state.remainingData}
+            currentValuesFromAllCoins={this.state.currentValuesFromAllCoins}
           />
           <Divider />
           <Link to="/transactions/btc/chart">

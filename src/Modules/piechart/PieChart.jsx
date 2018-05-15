@@ -28,7 +28,7 @@ class PieChart extends Component {
     const data = {
       labels: this.props.labels,
       datasets: [{
-        data: this.props.remaining,
+        data: this.props.currentValuesFromAllCoins,
         backgroundColor: [
           '#0C2E59',
           '#36A2EB',
@@ -70,12 +70,12 @@ class PieChart extends Component {
 }
 PieChart.propTypes = {
   labels: PropTypes.arrayOf( PropTypes.string.isRequired ),
-  remaining: PropTypes.arrayOf( PropTypes.number.isRequired ),
+  currentValuesFromAllCoins: PropTypes.arrayOf( PropTypes.number.isRequired ),
 };
 
 PieChart.defaultProps = {
   labels: [],
-  remaining: [],
+  currentValuesFromAllCoins: [],
 };
 
 export default PieChart;
