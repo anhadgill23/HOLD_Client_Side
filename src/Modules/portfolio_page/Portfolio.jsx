@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Sidebar, Menu, List, Header, Grid, Divider, Transition, Label, Icon } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { Sidebar, Menu, List, Header, Grid, Divider, Transition, Label } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
 import News from '../news/News.jsx';
 import Dashboard from '../dashboard/Dashboard.jsx';
@@ -142,3 +143,21 @@ class Portfolio extends Component {
 }
 
 export default Portfolio;
+
+Portfolio.propTypes = {
+  setSymbol: PropTypes.func,
+  handleLoading: PropTypes.func,
+  visible: PropTypes.bool,
+  loading: PropTypes.bool,
+  userId: PropTypes.string,
+  userName: PropTypes.string,
+};
+
+Portfolio.defaultProps = {
+  setSymbol: () => {},
+  handleLoading: () => {},
+  visible: false,
+  loading: true,
+  userId: '',
+  userName: '',
+};

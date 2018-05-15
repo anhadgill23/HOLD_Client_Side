@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { List, Table, Icon, Divider, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
@@ -46,3 +47,17 @@ class PortfolioRight extends Component {
   }
 }
 export default PortfolioRight;
+
+PortfolioRight.propTypes = {
+  singleTransaction: PropTypes.shape( {
+    symbol: PropTypes.string,
+  } ),
+  setSymbol: PropTypes.func,
+  userId: PropTypes.string,
+};
+
+PortfolioRight.defaultProps = {
+  singleTransaction: {},
+  setSymbol: () => {},
+  userId: '',
+};
