@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import logo2 from '../navbar/logo2.png';
 
 class PortfolioLeft extends Component {
   static currentValue( arr ) {
