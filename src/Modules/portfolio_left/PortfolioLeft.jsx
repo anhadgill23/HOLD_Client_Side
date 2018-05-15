@@ -17,7 +17,7 @@ class PortfolioLeft extends Component {
     if ( totalGain >= 0 ) {
       return (
         <div>
-          <img className="ui centered small image"src={logo2} alt="cross logo" />
+          <br /> <br />
           <h6 className="WelcomeName">
              Hello {this.props.currentUserName},
           </h6>
