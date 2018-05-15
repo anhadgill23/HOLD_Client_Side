@@ -23,7 +23,7 @@ class News extends Component {
       <div className="news-container" >
         <Item.Group>
           {articles.map( article =>
-          ( <Item key={article.objectID} style={{ margin: '10px', paddingTop: '10px' }}>
+          ( <Item key={articles.indexOf( article )} style={{ margin: '10px', paddingTop: '10px' }}>
             <a href={article.url} target="_blank">
               <Item.Content>
                 <Item.Image src={article.urlToImage} size="small" style={{ padding: '10px', float: 'right' }} />

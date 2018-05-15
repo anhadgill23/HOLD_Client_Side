@@ -50,31 +50,31 @@ class Ticker extends Component {
 
   render() {
     return (
-      <Table unstackable>
+      <Table unstackable color='blue' >
         <Table.Body>
           <Table.Row>
             <Table.Cell textAlign="right">
               <span>{this.state.From} ~ {this.state.To} </span>
             </Table.Cell>
-            <Table.Cell>
+            <Table.Cell textAlign="left">
               <span style={Ticker.getColor( this.state.Flag )}>{this.state.Price}</span>
             </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell textAlign="right"><span>Last Market: </span></Table.Cell>
-            <Table.Cell><span>{this.state.LastMarket}</span></Table.Cell>
+            <Table.Cell textAlign="left"><span>{this.state.LastMarket}</span></Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell textAlign="right"><span>Open Day: </span></Table.Cell>
-            <Table.Cell><span>{this.state.Open24Hour}</span></Table.Cell>
+            <Table.Cell textAlign="left"><span>{this.state.Open24Hour}</span></Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell textAlign="right"><span>High Day: </span></Table.Cell>
-            <Table.Cell><span>{this.state.High24Hour}</span></Table.Cell>
+            <Table.Cell textAlign="left"><span>{this.state.High24Hour}</span></Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell textAlign="right"><span>Low Day: </span></Table.Cell>
-            <Table.Cell><span>{this.state.Low24Hour}</span></Table.Cell>
+            <Table.Cell textAlign="left"><span>{this.state.Low24Hour}</span></Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>

@@ -17,7 +17,6 @@ class TransactionChart extends Component {
   }
 
   static reloadData( data, color ) {
-    console.log( color );
     return {
       labels: ['January'],
       datasets: [
