@@ -100,7 +100,7 @@ class App extends Component {
                 path="/portfolio/:userId"
                 exact
                 render={props => (
-                  ( isLoggedIn === true || isLoggedIn === 'true' ) ?
+                  ( isLoggedIn === 'true' ) ?
                   ( <Portfolio
                     {...props}
                     userName={userName}
@@ -117,7 +117,7 @@ class App extends Component {
                 exact
                 path="/:userId/transactions/:symbol"
                 render={props => (
-                ( isLoggedIn === true || isLoggedIn === 'true' ) ?
+                ( isLoggedIn === 'true' ) ?
                 ( <SingleCurrencyPage
                   {...props}
                   userName={userName}
@@ -138,7 +138,7 @@ class App extends Component {
                 path="/"
                 exact
                 render={props => (
-                  ( isLoggedIn === true || isLoggedIn === 'true' ) ?
+                  ( isLoggedIn === 'true' ) ?
                   ( <Redirect to={`/portfolio/${userId}`} /> ) :
                   <WelcomePage />
                 )}
