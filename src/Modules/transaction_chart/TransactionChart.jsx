@@ -54,6 +54,7 @@ class TransactionChart extends Component {
     this.state = {
       rawValues: [0, 500],
       options: {
+        usePlugin: false,
         tooltips: {
           displayColors: false,
           callbacks: {
