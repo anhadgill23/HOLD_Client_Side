@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Transition, Label } from 'semantic-ui-react';
 import { Bubble } from 'react-chartjs-2';
+import PropTypes from 'prop-types';
 
 class TransactionChart extends Component {
   static getColor( color ) {
@@ -58,8 +58,10 @@ class TransactionChart extends Component {
         tooltips: {
           displayColors: false,
           callbacks: {
-            title: ( items, data ) => data.datasets[items[0].datasetIndex].data[items[0].index].hash,
-            label: ( item, data ) => `฿ ${data.datasets[item.datasetIndex].data[item.index].value}`,
+            title: ( items, data ) =>
+              data.datasets[items[0].datasetIndex].data[items[0].index].hash,
+            label: ( item, data ) =>
+              `฿ ${data.datasets[item.datasetIndex].data[item.index].value}`,
           },
         },
         legend: {
@@ -100,7 +102,7 @@ class TransactionChart extends Component {
     const xMin = Math.min.apply( null, rawValuesArray );
     const xMax = Math.max.apply( null, rawValuesArray );
     const x = rawValuesArray[rawValuesArray.length - 1];
-    return 1 + ( x - xMin ) * ( this.props.maxSize - 1 ) / ( xMax - xMin );
+    return ( 1 + ( ( x - xMin ) * ( this.props.maxSize - 1 ) ) ) / ( xMax - xMin );
   }
 
   init() {
@@ -173,3 +175,15 @@ class TransactionChart extends Component {
 }
 
 export default TransactionChart;
+
+TransactionChart.propTypes = {
+  canRedirect: PropTypes.bool,
+  color: PropTypes.string,
+  maxSize: PropTypes.number,
+};
+
+TransactionChart.defaultProps = {
+  canRedirect: false,
+  color: 'blue',
+  maxSize: 50,
+};

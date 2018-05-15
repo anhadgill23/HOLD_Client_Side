@@ -10,9 +10,7 @@ class PieChart extends Component {
       afterDraw( chart ) {
         if ( chart.data.datasets[0].data.length === 0 && chart.config.options.usePlugin ) {
           // No data is present
-          const ctx = chart.chart.ctx;
-          const width = chart.chart.width;
-          const height = chart.chart.height;
+          const { ctx, width, height } = chart.chart;
           chart.clear();
 
           ctx.save();
@@ -79,17 +77,5 @@ PieChart.defaultProps = {
   labels: [],
   remaining: [],
 };
-
-// PieChart.propTypes = {
-//   data: PropTypes.shape( {
-//     labels: PropTypes.string,
-//     remaining: PropTypes.number,
-//   } ),
-// };
-
-// PieChart.defaultProps = {
-//   data: {},
-// };
-
 
 export default PieChart;
