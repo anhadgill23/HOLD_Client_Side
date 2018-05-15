@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Menu, Button, Icon } from 'semantic-ui-react';
-import logo2 from './logo2.png';
-import logo8 from './hold_logo8.png';
+import logo8 from './hold_logo_white.png';
 import { Link } from 'react-router-dom';
 
 class NavBar extends Component {
