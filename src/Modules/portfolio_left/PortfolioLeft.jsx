@@ -29,7 +29,7 @@ class PortfolioLeft extends Component {
     }
     return (
       <div>
-        <img className="ui centered small image"src={logo2} alt="cross logo" />
+        <br /> <br />
         <h6 className="WelcomeName">
              Hello {this.props.currentUserName}
         </h6>
