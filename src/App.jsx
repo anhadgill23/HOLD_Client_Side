@@ -12,7 +12,6 @@ import WelcomePage from './Modules/welcome/WelcomePage.jsx';
 import Portfolio from './Modules/portfolio_page/Portfolio.jsx';
 import SingleCurrencyPage from './Modules/single_curency_page/SingleCurrencyPage.jsx';
 import TransactionChartPage from './Modules/transaction_chart_page/TransactionChartPage.jsx';
-import HistoricalChart from './Modules/historical_chart/HistoricalChart.jsx';
 
 
 class App extends Component {
