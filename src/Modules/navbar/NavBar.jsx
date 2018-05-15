@@ -23,7 +23,7 @@ class NavBar extends Component {
     return (
       <Menu borderless>
         <Link to={`/portfolio/${this.props.userId}`}>
-          <Menu.Item>
+          <Menu.Item id = "logo">
             <img className="ui tiny image" src={logo8} alt="cross logo" />
           </Menu.Item>
         </Link>
