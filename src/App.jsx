@@ -38,7 +38,7 @@ class App extends Component {
 
     this.setState( {
       isLoggedIn: loginStat,
-      userId: id.toString(),
+      userId: parseInt( id, 10 ),
       userName: name,
     } );
   }
