@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Sidebar, Menu, List, Header, Grid, Divider, Transition, Label, Icon } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
 import News from '../news/News.jsx';
+import Dashboard from '../dashboard/Dashboard.jsx';
 import PortfolioLeft from '../portfolio_left/PortfolioLeft.jsx';
 import PortfolioRight from '../portfolio_right/PortfolioRight.jsx';
 import AddCoinModal from '../add_coin_modal/AddCoinModal.jsx';
@@ -127,9 +128,7 @@ class Portfolio extends Component {
                   userId={this.state.currentUserId}
                   fetchTransactions={this.fetchTransactions}
                 />
-                {transactions.length === 0 && <Divider hidden />}
-                {transactions.length === 0 && <Transition animation="pulse" duration="1000" visible={this.state.visible}><Icon color="black" size="huge" name="arrow circle outline up" /></Transition>}
-                {transactions.length === 0 && <Header style={{ color: 'black' }}>Welcome, it appears you havent recorded any transactions yet!  Give it a try!</Header>}
+                {transactions.length === 0 && <Dashboard visible={this.state.visible} />}
                 <List>
                   {transactions}
                 </List>
