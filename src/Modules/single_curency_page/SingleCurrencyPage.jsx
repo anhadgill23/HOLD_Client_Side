@@ -120,7 +120,7 @@ class SingleCurrencyPage extends Component {
 }
 SingleCurrencyPage.propTypes = {
   handleLoading: PropTypes.func,
-  userId: PropTypes.number,
+  userId: PropTypes.string,
   symbol: PropTypes.string,
 };
 
