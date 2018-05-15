@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Sidebar, Menu, List, Header, Grid, Divider, Transition, Label } from 'semantic-ui-react';
+import { Sidebar, Menu, List, Header, Grid, Divider, Transition, Label, Icon } from 'semantic-ui-react';
 import PieChart from '../piechart/PieChart.jsx';
 import News from '../news/News.jsx';
 import PortfolioLeft from '../portfolio_left/PortfolioLeft.jsx';
@@ -29,7 +29,6 @@ class Portfolio extends Component {
   componentDidMount() {
     this.fetchTransactions();
     setInterval( () => {
-      console.log( 'MOUNNN' );
       this.setState( { visible: !this.state.visible } );
     }, 1500 );
   }
@@ -73,14 +72,14 @@ class Portfolio extends Component {
 
   render() {
     const transactions =
-    this.state.transactions.map( transaction =>
-      ( <PortfolioRight
-        key={this.state.transactions.indexOf( transaction )}
-        singleTransaction={transaction}
-        userName={this.statecurrentUserName}
-        userId={this.state.currentUserId}
-        setSymbol={this.setSymbol}
-      /> ) );
+      this.state.transactions.map( transaction =>
+        ( <PortfolioRight
+          key={this.state.transactions.indexOf( transaction )}
+          singleTransaction={transaction}
+          userName={this.statecurrentUserName}
+          userId={this.state.currentUserId}
+          setSymbol={this.setSymbol}
+        /> ) );
     return (
 
 
@@ -122,11 +121,15 @@ class Portfolio extends Component {
               <News />
             </Sidebar>
             <Sidebar.Pusher>
+
               <div className="transaction-list-portfolio">
                 <AddCoinModal
                   userId={this.state.currentUserId}
                   fetchTransactions={this.fetchTransactions}
                 />
+                {transactions.length === 0 && <Divider hidden />}
+                {transactions.length === 0 && <Transition animation="pulse" duration="1000" visible={this.state.visible}><Icon color="black" size="huge" name="arrow circle outline up" /></Transition>}
+                {transactions.length === 0 && <Header style={{ color: 'black' }}>Welcome, it appears you havent recorded any transactions yet!  Give it a try!</Header>}
                 <List>
                   {transactions}
                 </List>
