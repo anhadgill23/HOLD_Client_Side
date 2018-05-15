@@ -19,7 +19,7 @@ class PieChart extends Component {
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.font = "16px normal 'Helvetica Nueue'";
-          ctx.fillText( 'No data to display', width / 2, height / 2 );
+          ctx.fillText( 'No data yet, add a transaction!', width / 2, height / 2 );
           ctx.restore();
         }
       },
