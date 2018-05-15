@@ -43,7 +43,7 @@ class Register extends Component {
             this.setState( { error: 'This email is already taken.' } );
           } else {
             this.setState( { id: data.id } );
-            this.props.handleAuth( true, this.state.id, data.name );
+            this.props.handleAuth( 'true', this.state.id, data.name );
             this.props.history.push( `/portfolio/${data.id}` );
           }
         } );

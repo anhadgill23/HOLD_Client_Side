@@ -37,7 +37,7 @@ class Login extends Component {
           this.setState( { error: 'Your email or password is incorrect, please try again.' } );
         } else {
           this.setState( { id: data.id } );
-          this.props.handleAuth( true, this.state.id, data.name );
+          this.props.handleAuth( 'true', this.state.id, data.name );
           this.props.history.push( `/portfolio/${data.id}` );
         }
       } );

@@ -29,13 +29,13 @@ class NavBar extends Component {
             <img className="ui tiny image" src={logo8} alt="cross logo" />
           </Menu.Item>
         </Link>
-        {( this.props.isAuthorized === true || this.props.isAuthorized === 'true' ) &&
+        {( this.props.isAuthorized === 'true' ) &&
           <Menu.Item className="news-button" position="right">
             <Button secondary onClick={this.props.toggleVisibility}>
               <Icon name="newspaper" />News
             </Button>
           </Menu.Item>}
-        {( this.props.isAuthorized === true || this.props.isAuthorized === 'true' ) &&
+        {( this.props.isAuthorized === 'true' ) &&
           <Menu.Item>
             <Link to="/">
               <Button secondary onClick={this.handleLogout} >
