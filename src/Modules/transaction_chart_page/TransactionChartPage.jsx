@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Grid, Sidebar, Menu, Header } from 'semantic-ui-react';
+
+import { Grid, Header, Segment, Sidebar, Menu, } from 'semantic-ui-react';
 import Chart from '../transaction_chart/TransactionChart.jsx';
 import News from '../news/News.jsx';
 
@@ -26,6 +27,10 @@ class TransactionChartPage extends Component {
             </Sidebar>
             <Sidebar.Pusher>
             <div>
+                        <Segment>
+            <Header>Real time BTC transactions.  Circle size is proportional to transaction size</Header>
+          </Segment>
+          <Chart maxSize={250} canRedirect color="yellow" />
               <Chart maxSize={250} canRedirect color="yellow" />
             </div>
            </Sidebar.Pusher>
