@@ -50,7 +50,7 @@ class Ticker extends Component {
 
   render() {
     return (
-      <Table unstackable color='blue' >
+      <Table unstackable color='blue' fixed >
         <Table.Body>
           <Table.Row>
             <Table.Cell textAlign="right">
