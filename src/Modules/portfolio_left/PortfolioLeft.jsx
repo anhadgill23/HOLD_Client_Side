@@ -22,7 +22,11 @@ class PortfolioLeft extends Component {
           </h6>
           <h5 className="ui header">YOUR PORTFOLIO BALANCE IS</h5>
           <h1 className="ui header">${totalValue}</h1>
-          <h4 className="green ui header"><i className="green caret up icon" />${totalGain}</h4>
+          { totalGain !== 0 ? (
+            <h4 className="green ui header"><i className="green caret up icon" />${totalGain}</h4>
+          ) : (
+            <div />
+          )}
           <div className="ui divider" />
         </div>
       );
