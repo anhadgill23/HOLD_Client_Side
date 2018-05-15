@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Header, Form, Message, Grid } from 'semantic-ui-react';
+import { Button, Form, Message, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 class Register extends Component {
