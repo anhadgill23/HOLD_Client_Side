@@ -77,8 +77,11 @@ class SingleCurrencyPage extends Component {
       <Grid.Row id="RowOnSingleCurrency">
         <Grid.Column width={5} style={{ height: '100vh' }}>
           <br />
-          <Ticker symbol={this.state.symbol} />
+          <div className="tickerDiv" style={{ marginLeft: '1em' }}>
+            <Ticker symbol={this.state.symbol} />
           <Link to={`/portfolio/${this.props.userId}`}><Button className="ui grey button">Back to Portfolio</Button></Link>
+          </div>
+
         </Grid.Column>
         <Grid.Column className="ColumnOnSingleCurrency" width={11}>
           <Sidebar.Pushable>
