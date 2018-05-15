@@ -8,7 +8,7 @@ class PieChart extends Component {
   componentWillMount() {
     Chart.plugins.register( {
       afterDraw( chart ) {
-        if ( chart.data.datasets[0].data.length === 0 && chart.config.options.usePlugin ) {
+        if ( chart.data.datasets[0] && chart.data.datasets[0].data.length === 0 && chart.config.options.usePlugin ) {
           // No data is present
           const { ctx, width, height } = chart.chart;
           chart.clear();

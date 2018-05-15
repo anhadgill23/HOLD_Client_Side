@@ -38,7 +38,7 @@ class App extends Component {
 
     this.setState( {
       isLoggedIn: loginStat,
-      userId: id,
+      userId: id.toString(),
       userName: name,
     } );
   }
@@ -100,6 +100,7 @@ class App extends Component {
                 path="/portfolio/:userId"
                 exact
                 render={props => (
+
                   ( isLoggedIn === 'true' ) ?
                   ( <Portfolio
                     {...props}
@@ -112,11 +113,13 @@ class App extends Component {
                   /> ) :
                   ( <Redirect to="/" /> )
                   )}
+
               />
               <Route
                 exact
                 path="/:userId/transactions/:symbol"
                 render={props => (
+
                 ( isLoggedIn === 'true' ) ?
                 ( <SingleCurrencyPage
                   {...props}
@@ -130,9 +133,9 @@ class App extends Component {
                 )}
               />
               <Route
-              path="/transactions/btc/chart"
-              exact
-              render={props => <TransactionChartPage {...props} visible={visible} />}
+                path="/transactions/btc/chart"
+                exact
+                render={props => <TransactionChartPage {...props} visible={visible} />}
               />
               <Route
                 path="/"

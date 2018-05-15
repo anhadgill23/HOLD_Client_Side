@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Chart from 'chart.js';
 import moment from 'moment';
 import { Line } from 'react-chartjs-2';
 import { Divider } from 'semantic-ui-react';
@@ -23,6 +21,7 @@ class HistoricalChart extends Component {
 
 
   componentDidMount() {
+    console.log( 'DID MOUNT' );
     this.fetchHistoricalData();
   }
 
@@ -61,8 +60,10 @@ class HistoricalChart extends Component {
         intersect: false,
         displayColors: false,
         // callbacks: {
-        //   title: ( items, data ) => data.datasets[items[0].datasetIndex].data[items[0].index].hash,
-        //   label: ( item, data ) => `฿ ${data.datasets[item.datasetIndex].data[item.index].value}`,
+        //   title: ( items, data ) => `
+        // data.datasets[items[0].datasetIndex].data[items[0].index].hash,
+        //   label: ( item, data ) => `
+        // ฿ ${data.datasets[item.datasetIndex].data[item.index].value}`,
         // },
       },
       legend: {

@@ -94,6 +94,7 @@ class TransactionChart extends Component {
   }
 
   componentWillUnmount() {
+    console.log( 'CLOSE SOCKET' );
     this.webSocket.close();
   }
 
