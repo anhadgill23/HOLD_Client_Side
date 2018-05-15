@@ -109,6 +109,7 @@ class App extends Component {
                     visible={visible}
                     setSymbol={this.setSymbol}
                     handleLoading={this.handleLoading}
+                    loading={this.state.loading}
                   /> ) :
                   ( <Redirect to="/" /> )
                   )}

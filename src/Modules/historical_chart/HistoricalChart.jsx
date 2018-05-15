@@ -19,20 +19,6 @@ class HistoricalChart extends Component {
     };
     this.fetchHistoricalData = this.fetchHistoricalData.bind( this );
     this.setChartData = this.setChartData.bind( this );
-    // const parentEventHandler = Chart.Controller.prototype.eventHandler;
-    // Chart.Controller.prototype.eventHandler = function () {
-    //   const ret = parentEventHandler.apply( this, arguments );
-    //   const { x } = arguments[0];
-    //   this.clear();
-    //   this.draw();
-    //   const yScale = this.scales['y-axis-0'];
-    //   this.chart.ctx.beginPath();
-    //   this.chart.ctx.moveTo( x, yScale.getPixelForValue( yScale.max ) );
-    //   this.chart.ctx.strokeStyle = '#ffffff';
-    //   this.chart.ctx.lineTo( x, yScale.getPixelForValue( yScale.min ) );
-    //   this.chart.ctx.stroke();
-    //   return ret;
-    // };
   }
 
 
