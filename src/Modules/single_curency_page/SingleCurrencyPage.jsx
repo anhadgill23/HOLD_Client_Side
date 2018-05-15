@@ -52,7 +52,6 @@ class SingleCurrencyPage extends Component {
   }
 
   handleDeleteTransaction( transactionId ) {
-    console.log( transactionId );
     fetch( `/api/transactions/${transactionId}`, {
       method: 'POST',
       body: JSON.stringify( this.state ),
@@ -79,7 +78,7 @@ class SingleCurrencyPage extends Component {
           <br />
           <div className="tickerDiv" style={{ marginLeft: '1em' }}>
             <Ticker symbol={this.state.symbol} />
-          <Link to={`/portfolio/${this.props.userId}`}><Button className="ui grey button">Back to Portfolio</Button></Link>
+            <Link to={`/portfolio/${this.props.userId}`}><Button className="ui grey button">Back to Portfolio</Button></Link>
           </div>
 
         </Grid.Column>

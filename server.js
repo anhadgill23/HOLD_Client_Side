@@ -16,7 +16,7 @@ new WebpackDevServer( webpack( config ), {
 } )
   .listen( 3000, '0.0.0.0', ( err, result ) => {
     if ( err ) {
-      console.log( err );
+      console.log( err, result );
     }
 
     console.log( 'Running at http://0.0.0.0:3000' );
