@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
-import { Grid, Header, Segment, Sidebar, Menu, } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { Grid, Header, Segment, Sidebar, Menu } from 'semantic-ui-react';
 import Chart from '../transaction_chart/TransactionChart.jsx';
 import News from '../news/News.jsx';
 
@@ -26,14 +26,16 @@ class TransactionChartPage extends Component {
               <News />
             </Sidebar>
             <Sidebar.Pusher>
-            <div>
-                        <Segment>
-            <Header>Real time BTC transactions.  Circle size is proportional to transaction size</Header>
-          </Segment>
-          <Chart maxSize={250} canRedirect color="yellow" />
-              <Chart maxSize={250} canRedirect color="yellow" />
-            </div>
-           </Sidebar.Pusher>
+              <div>
+                <Segment>
+                  <Header>
+                    Real time BTC transactions.  Circle size is proportional to transaction size
+                  </Header>
+                </Segment>
+                <Chart maxSize={250} canRedirect color="yellow" />
+                <Chart maxSize={250} canRedirect color="yellow" />
+              </div>
+            </Sidebar.Pusher>
           </Sidebar.Pushable>
         </Grid.Column>
       </Grid.Row>
@@ -42,3 +44,11 @@ class TransactionChartPage extends Component {
 }
 
 export default TransactionChartPage;
+
+TransactionChartPage.propTypes = {
+  visible: PropTypes.bool,
+};
+
+TransactionChartPage.defaultProps = {
+  visible: false,
+};
