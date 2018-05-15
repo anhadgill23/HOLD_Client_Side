@@ -39,7 +39,7 @@ class AddDeleteModal extends Component {
             </Button.Content>
           </Button>}
       >
-        <Header style={{ color: 'white' }}><Icon name="trash" />Are you sure you want to delete this transaction?</Header>
+        <Header style={{ color: 'white' }}><Icon name="question circle" />Are you sure you want to delete this transaction?</Header>
         <Modal.Actions>
           <Button color="grey" inverted onClick={this.handleClose}>
             Back
