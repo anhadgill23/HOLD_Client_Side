@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { List, Image, Table, Button, Icon } from 'semantic-ui-react';
+import { List, Image, Table } from 'semantic-ui-react';
+import AddDeleteModal from '../addConfirmDeleteModal/add_confirm_delete_modal.jsx';
 
 
 class Transaction extends Component {
@@ -53,12 +54,7 @@ class Transaction extends Component {
             <Table.Body>
               <Table.Row>
                 <Table.Cell>
-                  <Button color="red" inverted animated="vertical" onClick={this.handleDeleteButton}>
-                    <Button.Content hidden>Delete</Button.Content>
-                    <Button.Content visible>
-                      <Icon name="trash" />
-                    </Button.Content>
-                  </Button>
+                  <AddDeleteModal handleDeleteButton={this.handleDeleteButton} />
                 </Table.Cell>
                 <Table.Cell>{transaction.transactionCost}</Table.Cell>
                 <Table.Cell>{transaction.currentWorth}</Table.Cell>
