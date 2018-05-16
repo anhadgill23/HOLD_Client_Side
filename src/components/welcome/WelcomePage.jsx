@@ -35,7 +35,7 @@ class WelcomePage extends Component {
             <br />
             <div className="intro">
               <ReactRevealText
-                text="You make your cyptocurrency investments."
+                text="You make your cryptocurrency investments."
                 show={this.state.show}
                 className="my-class-name"
                 style={{
