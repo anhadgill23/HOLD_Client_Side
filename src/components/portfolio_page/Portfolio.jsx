@@ -56,11 +56,11 @@ class Portfolio extends Component {
         const gainsFromAllCoins = [];
         const labels = [];
         const remainingData = [];
-        transactions.forEach( ( indiv ) => {
-          const number = Number( indiv.remaining );
-          const numCurrentValueFromACoin = Number( indiv.currentValue );
-          const numGainFromACoin = Number( indiv.gain );
-          labels.push( indiv.symbol );
+        Object.values( transactions ).forEach( ( singleTransaction ) => {
+          const number = Number( singleTransaction.remaining );
+          const numCurrentValueFromACoin = Number( singleTransaction.currentValue );
+          const numGainFromACoin = Number( singleTransaction.gain );
+          labels.push( singleTransaction.symbol );
           remainingData.push( number );
           currentValuesFromAllCoins.push( numCurrentValueFromACoin );
           gainsFromAllCoins.push( numGainFromACoin );
