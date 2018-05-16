@@ -17,7 +17,7 @@ class NavBar extends Component {
     } )
       .then( ( result ) => {
         console.log( result );
-        this.props.handleAuth( false, null, null );
+        this.props.handleAuth( 'false', null, null );
       } );
   }
 

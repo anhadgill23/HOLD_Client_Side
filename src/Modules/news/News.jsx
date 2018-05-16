@@ -10,7 +10,7 @@ class News extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     fetch( 'https://newsapi.org/v2/top-headlines?sources=crypto-coins-news&apiKey=5810cfa4f4974a078d4ca19601bfb653' )
       .then( results => results.json() ).then( ( data ) => {
         const { articles } = data;
