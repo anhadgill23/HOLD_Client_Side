@@ -162,10 +162,12 @@ class TransactionChart extends Component {
           data={this.state.data}
           options={this.state.options}
           getElementAtEvent={( ( dataset ) => {
+            if ( dataset[0] ) {
             const { hash } = this.state.data.datasets[0].data[dataset[0]._index];
             if ( this.props.canRedirect ) {
             window.location = `https://blockchain.info/tx/${hash}`;
             }
+          }
           } )}
         />
       </div>
