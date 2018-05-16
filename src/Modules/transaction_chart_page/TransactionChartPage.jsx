@@ -33,7 +33,6 @@ class TransactionChartPage extends Component {
                   </Header>
                 </Segment>
                 <Chart maxSize={250} canRedirect color="yellow" />
-                <Chart maxSize={250} canRedirect color="yellow" />
               </div>
             </Sidebar.Pusher>
           </Sidebar.Pushable>
