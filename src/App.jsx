@@ -18,7 +18,7 @@ class App extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      isLoggedIn: null,
+      isLoggedIn: '',
       userId: '',
       userName: '',
       loading: false,
