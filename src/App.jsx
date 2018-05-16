@@ -5,13 +5,13 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-import Register from './Modules/register/Register.jsx';
-import Login from './Modules/login/Login.jsx';
-import NavBar from './Modules/navbar/NavBar.jsx';
-import WelcomePage from './Modules/welcome/WelcomePage.jsx';
-import Portfolio from './Modules/portfolio_page/Portfolio.jsx';
-import SingleCurrencyPage from './Modules/single_curency_page/SingleCurrencyPage.jsx';
-import TransactionChartPage from './Modules/transaction_chart_page/TransactionChartPage.jsx';
+import Register from './components/register/Register.jsx';
+import Login from './components/login/Login.jsx';
+import NavBar from './components/navbar/NavBar.jsx';
+import WelcomePage from './components/welcome/WelcomePage.jsx';
+import Portfolio from './components/portfolio_page/Portfolio.jsx';
+import SingleCurrencyPage from './components/single_curency_page/SingleCurrencyPage.jsx';
+import TransactionChartPage from './components/transaction_chart_page/TransactionChartPage.jsx';
 
 
 class App extends Component {
