@@ -10,12 +10,12 @@ HOLD helps solve the problem of people having to manually do the complex calcula
 
 ## Final Product
 !["Screenshot of welcome page"](https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/HomeScreen1.png?raw=true)
-!["Screenshot of welcome chart"]https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/HomeScreen2.png?raw=true
-!["Screenshot of portfolio page"]https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/Portfolio.png?raw=true
-!["Screenshot of adding transaction"]https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/AddTransaction.png?raw=true
-!["Screenshot of transactions page"]https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/Transactions.png?raw=true
-!["Screenshot of news page"]https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/news.png?raw=true
-!["Screenshot of real time bitcoin transactions"]https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/realTimeTransactions.png?raw=true
+!["Screenshot of welcome chart"](https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/HomeScreen2.png?raw=true)
+!["Screenshot of portfolio page"](https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/Portfolio.png?raw=true)
+!["Screenshot of adding transaction"](https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/AddTransaction.png?raw=true)
+!["Screenshot of transactions page"](https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/Transactions.png?raw=true)
+!["Screenshot of news page"](https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/news.png?raw=true)
+!["Screenshot of real time bitcoin transactions"](https://github.com/anhadgill23/HOLD_Client_Side/blob/master/docs/realTimeTransactions.png?raw=true)
 
 
 ## Getting started
